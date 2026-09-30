@@ -71,6 +71,8 @@ if (!fresh) {
 		}
 	} catch {}
 }
+// Clean checkouts have no ignored public data directories. Symlinks were checked above.
+fs.mkdirSync('play.pokemonshowdown.com/data/text', { recursive: true });
 const toID = Dex.toID;
 process.stdout.write("Loading gen 6 data... ");
 Dex.includeData();
