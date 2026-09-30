@@ -1,0 +1,4294 @@
+{
+  "metadata": {
+    "baseServerCommit": "2f5b273925862ac242b419086c1e7a8868b51da1",
+    "catalogHash": "de9e68c45fb5cc98c08247671f8457b56c79aeeec8ef90a20b843b52118ab4c3",
+    "datasetHash": "9a3b47cd2b6dc682f6750827487ffed634fa51cf61b6e3431939c1fd60fa94c0",
+    "formatID": "gen9tmt2seed",
+    "formatName": "[Gen 9] TMT2 Seed",
+    "generator": "tmt2-data/tmt05-v1",
+    "modID": "gen9tmt2seed",
+    "version": "0.1.0"
+  },
+  "seed": {
+    "abilities": [
+      {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#runaway",
+        "fieldSources": {
+          "behaviorRef": "showdown",
+          "id": "showdown",
+          "name": "showdown"
+        },
+        "id": "runaway",
+        "name": "Run Away"
+      },
+      {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#torrent",
+        "fieldSources": {
+          "behaviorRef": "showdown",
+          "id": "showdown",
+          "name": "showdown"
+        },
+        "id": "torrent",
+        "name": "Torrent"
+      },
+      {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#sturdy",
+        "fieldSources": {
+          "behaviorRef": "showdown",
+          "id": "showdown",
+          "name": "showdown"
+        },
+        "id": "sturdy",
+        "name": "Sturdy"
+      },
+      {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#overgrow",
+        "fieldSources": {
+          "behaviorRef": "showdown",
+          "id": "showdown",
+          "name": "showdown"
+        },
+        "id": "overgrow",
+        "name": "Overgrow"
+      },
+      {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#keeneye",
+        "fieldSources": {
+          "behaviorRef": "showdown",
+          "id": "showdown",
+          "name": "showdown"
+        },
+        "id": "keeneye",
+        "name": "Keen Eye"
+      }
+    ],
+    "chart": [
+      {
+        "attacker": "bug",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "dark",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "fairy",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "fighting",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "fire",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "flying",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "ghost",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "grass",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "poison",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "psychic",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "bug",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "dark",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "fairy",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "fighting",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "ghost",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "psychic",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "steel",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dark",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "rat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "boring",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "cat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "frog",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "magic",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dark",
+        "defender": "bird",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "dragon",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "fairy",
+        "multiplier": 0,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "dragon",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "dragon",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "electric",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "flying",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "grass",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "ground",
+        "multiplier": 0,
+        "source": "creatorchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "steel",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "electric",
+        "defender": "water",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "rat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "boring",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "cat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "frog",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "magic",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "electric",
+        "defender": "bird",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "dark",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "dragon",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "fighting",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "fire",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "poison",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fairy",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "bug",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "dark",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "fairy",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "flying",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "ghost",
+        "multiplier": 0,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "ice",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "normal",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "poison",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "psychic",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "rock",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "steel",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fighting",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "bug",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "dragon",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "fire",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "grass",
+        "multiplier": 2,
+        "source": "creatorchart"
+      },
+      {
+        "attacker": "fire",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "ice",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "rock",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "steel",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "fire",
+        "defender": "water",
+        "multiplier": 0.5,
+        "source": "creatorchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "bug",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "electric",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "fighting",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "grass",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "rock",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "flying",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "rat",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "boring",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "cat",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "frog",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "magic",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "flying",
+        "defender": "bird",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "dark",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "ghost",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "normal",
+        "multiplier": 0,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "psychic",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "steel",
+        "multiplier": 1,
+        "source": "creatorchart"
+      },
+      {
+        "attacker": "ghost",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "bug",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "dragon",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "fire",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "flying",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "grass",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "ground",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "poison",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "rock",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "grass",
+        "defender": "water",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "rat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "boring",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "cat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "frog",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "magic",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "grass",
+        "defender": "bird",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "ground",
+        "defender": "bug",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "electric",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "fire",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "flying",
+        "multiplier": 0,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "grass",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "poison",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "rock",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "steel",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ground",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "dragon",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "fire",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "flying",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "grass",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "ground",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "ice",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "ice",
+        "defender": "water",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "ghost",
+        "multiplier": 0,
+        "source": "creatorchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "rock",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "normal",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "rat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "boring",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "cat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "frog",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "magic",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "normal",
+        "defender": "bird",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "poison",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "fairy",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "ghost",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "grass",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "ground",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "poison",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "rock",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "steel",
+        "multiplier": 0,
+        "source": "showdown"
+      },
+      {
+        "attacker": "poison",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "dark",
+        "multiplier": 0,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "fighting",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "fire",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "poison",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "psychic",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "psychic",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "bug",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "fighting",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "fire",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "flying",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "ground",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "ice",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "rock",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "rock",
+        "defender": "water",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "rat",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "boring",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "cat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "frog",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "magic",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "rock",
+        "defender": "bird",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "steel",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "dragon",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "electric",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "fairy",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "fire",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "grass",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "ground",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "ice",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "rock",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "steel",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "steel",
+        "defender": "water",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "bug",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "dark",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "dragon",
+        "multiplier": 0.5,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "electric",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "fairy",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "fighting",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "fire",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "flying",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "ghost",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "grass",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "ground",
+        "multiplier": 2,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "ice",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "normal",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "poison",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "psychic",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "rock",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "steel",
+        "multiplier": 1,
+        "source": "showdown"
+      },
+      {
+        "attacker": "water",
+        "defender": "water",
+        "multiplier": 0.5,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "rat",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "boring",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "cat",
+        "multiplier": 2,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "frog",
+        "multiplier": 0,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "magic",
+        "multiplier": 1,
+        "source": "seedchart"
+      },
+      {
+        "attacker": "water",
+        "defender": "bird",
+        "multiplier": 1,
+        "source": "seedchart"
+      }
+    ],
+    "contract": "tmt04-bounded-adaptation-seed-v1",
+    "items": [
+      {
+        "behaviorRef": "policy:no-held-item",
+        "fieldSources": {
+          "behaviorRef": "policy",
+          "id": "policy",
+          "name": "policy"
+        },
+        "id": "none",
+        "name": "No item"
+      }
+    ],
+    "kind": "production",
+    "moves": [
+      {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#tackle",
+        "category": "Physical",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "tackle",
+        "name": "Tackle",
+        "pp": 35,
+        "priority": 0,
+        "type": "normal"
+      },
+      {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#quickattack",
+        "category": "Physical",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "quickattack",
+        "name": "Quick Attack",
+        "pp": 30,
+        "priority": 1,
+        "type": "normal"
+      },
+      {
+        "accuracy": 100,
+        "basePower": 60,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#bite",
+        "category": "Physical",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "bite": 1,
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "bite",
+        "name": "Bite",
+        "pp": 25,
+        "priority": 0,
+        "type": "dark"
+      },
+      {
+        "accuracy": true,
+        "basePower": 0,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#protect",
+        "category": "Status",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "failcopycat": 1,
+          "noassist": 1
+        },
+        "id": "protect",
+        "name": "Protect",
+        "pp": 10,
+        "priority": 4,
+        "type": "normal"
+      },
+      {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#pound",
+        "category": "Physical",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "pound",
+        "name": "Pound",
+        "pp": 35,
+        "priority": 0,
+        "type": "normal"
+      },
+      {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#watergun",
+        "category": "Special",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "watergun",
+        "name": "Water Gun",
+        "pp": 25,
+        "priority": 0,
+        "type": "water"
+      },
+      {
+        "accuracy": 90,
+        "basePower": 50,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#rockthrow",
+        "category": "Physical",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "rockthrow",
+        "name": "Rock Throw",
+        "pp": 15,
+        "priority": 0,
+        "type": "rock"
+      },
+      {
+        "accuracy": 90,
+        "basePower": 0,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#thunderwave",
+        "category": "Status",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1,
+          "reflectable": 1
+        },
+        "id": "thunderwave",
+        "name": "Thunder Wave",
+        "pp": 20,
+        "priority": 0,
+        "type": "electric"
+      },
+      {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#scratch",
+        "category": "Physical",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "scratch",
+        "name": "Scratch",
+        "pp": 35,
+        "priority": 0,
+        "type": "normal"
+      },
+      {
+        "accuracy": true,
+        "basePower": 60,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#magicalleaf",
+        "category": "Special",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "id": "magicalleaf",
+        "name": "Magical Leaf",
+        "pp": 20,
+        "priority": 0,
+        "type": "grass"
+      },
+      {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#gust",
+        "category": "Special",
+        "fieldSources": {
+          "accuracy": "showdown",
+          "basePower": "showdown",
+          "behaviorRef": "showdown",
+          "category": "showdown",
+          "flags": "showdown",
+          "id": "showdown",
+          "name": "showdown",
+          "pp": "showdown",
+          "priority": "showdown",
+          "type": "showdown"
+        },
+        "flags": {
+          "distance": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1,
+          "wind": 1
+        },
+        "id": "gust",
+        "name": "Gust",
+        "pp": 35,
+        "priority": 0,
+        "type": "flying"
+      }
+    ],
+    "rules": {
+      "ev": 0,
+      "format": "private-unranked-singles-premade",
+      "generation": 9,
+      "iv": 31,
+      "level": 50,
+      "source": "policy",
+      "teamSize": 3
+    },
+    "schemaVersion": 1,
+    "scope": {
+      "excluded": [
+        "custom passives",
+        "megas",
+        "type changes",
+        "fourth type",
+        "unreviewed custom moves/abilities/items",
+        "all species outside premades"
+      ],
+      "fullCatalog": false,
+      "romFidelityProven": false
+    },
+    "sources": [
+      {
+        "id": "showdown",
+        "kind": "showdown",
+        "locator": "https://github.com/matiHirCab/Pokemon-Too-Many-Types-2/tree/2f5b273925862ac242b419086c1e7a8868b51da1/data; selected historical learnset entries allowed by adaptation",
+        "sha256": "a7998893cd088eaa6772d82f9ac45b0bf9ae993fbe9c31e25b8502ab41c9c50c",
+        "version": "2f5b273925862ac242b419086c1e7a8868b51da1"
+      },
+      {
+        "id": "creatorchart",
+        "kind": "creator",
+        "locator": "https://docs.google.com/spreadsheets/d/1lclbDiHdUnETmFQRm0v_capEqSJaVBG2OsLuOJ6L9Kk/edit?usp=sharing; five chart coordinates in chartObservations",
+        "sha256": "7fb64afb266bfb5c50ac4f86ed1f84ee33b780b5e21d53916619ca69f51e7a6d",
+        "version": "observed-2026-09-30-not-release-bound"
+      },
+      {
+        "id": "policy",
+        "kind": "policy",
+        "locator": "provenance/sources.json#userApprovals",
+        "sha256": "3d540d19c7f631df11d9341bc44cbd5c31c0782539c14017556bedff22111922",
+        "version": "approved-2026-09-30"
+      },
+      {
+        "id": "creatorspecies",
+        "kind": "creator",
+        "locator": "provenance/seed-types.json: user transcription corroborated by relayed primary-sheet cell observations",
+        "sha256": "9c6af5ceeb36128235599386fc4e45578ff2f2084d05966641e33a42e05ab8d4",
+        "version": "observed-2026-09-30-not-release-bound"
+      },
+      {
+        "id": "seedchart",
+        "kind": "creator",
+        "locator": "provenance/seed-chart.json: exact primary chart coordinates",
+        "sha256": "5e1401bb8dc823b9c6ea0e8210dd8d82dd0704227c9c27dd0852f4fcbdc4963a",
+        "version": "observed-2026-09-30-not-release-bound"
+      }
+    ],
+    "species": [
+      {
+        "abilities": [
+          "runaway"
+        ],
+        "baseStats": {
+          "atk": 56,
+          "def": 35,
+          "hp": 30,
+          "spa": 25,
+          "spd": 35,
+          "spe": 72
+        },
+        "fieldSources": {
+          "abilities": "showdown",
+          "baseStats": "showdown",
+          "id": "showdown",
+          "learnset": "showdown",
+          "name": "showdown",
+          "types": "creatorspecies"
+        },
+        "id": "rattata",
+        "learnset": [
+          "tackle",
+          "quickattack",
+          "bite",
+          "protect"
+        ],
+        "name": "Rattata",
+        "types": [
+          "rat"
+        ]
+      },
+      {
+        "abilities": [
+          "runaway"
+        ],
+        "baseStats": {
+          "atk": 55,
+          "def": 50,
+          "hp": 55,
+          "spa": 45,
+          "spd": 65,
+          "spe": 55
+        },
+        "fieldSources": {
+          "abilities": "showdown",
+          "baseStats": "showdown",
+          "id": "showdown",
+          "learnset": "showdown",
+          "name": "showdown",
+          "types": "creatorspecies"
+        },
+        "id": "eevee",
+        "learnset": [
+          "tackle",
+          "quickattack",
+          "bite",
+          "protect"
+        ],
+        "name": "Eevee",
+        "types": [
+          "boring",
+          "cat"
+        ]
+      },
+      {
+        "abilities": [
+          "torrent"
+        ],
+        "baseStats": {
+          "atk": 56,
+          "def": 40,
+          "hp": 41,
+          "spa": 62,
+          "spd": 44,
+          "spe": 71
+        },
+        "fieldSources": {
+          "abilities": "showdown",
+          "baseStats": "showdown",
+          "id": "showdown",
+          "learnset": "showdown",
+          "name": "showdown",
+          "types": "creatorspecies"
+        },
+        "id": "froakie",
+        "learnset": [
+          "pound",
+          "watergun",
+          "quickattack",
+          "protect"
+        ],
+        "name": "Froakie",
+        "types": [
+          "water",
+          "frog"
+        ]
+      },
+      {
+        "abilities": [
+          "sturdy"
+        ],
+        "baseStats": {
+          "atk": 45,
+          "def": 135,
+          "hp": 30,
+          "spa": 45,
+          "spd": 90,
+          "spe": 30
+        },
+        "fieldSources": {
+          "abilities": "showdown",
+          "baseStats": "showdown",
+          "id": "showdown",
+          "learnset": "showdown",
+          "name": "showdown",
+          "types": "creatorspecies"
+        },
+        "id": "nosepass",
+        "learnset": [
+          "tackle",
+          "rockthrow",
+          "thunderwave",
+          "protect"
+        ],
+        "name": "Nosepass",
+        "types": [
+          "rock"
+        ]
+      },
+      {
+        "abilities": [
+          "overgrow"
+        ],
+        "baseStats": {
+          "atk": 80,
+          "def": 63,
+          "hp": 61,
+          "spa": 60,
+          "spd": 63,
+          "spe": 83
+        },
+        "fieldSources": {
+          "abilities": "showdown",
+          "baseStats": "showdown",
+          "id": "showdown",
+          "learnset": "showdown",
+          "name": "showdown",
+          "types": "creatorspecies"
+        },
+        "id": "floragato",
+        "learnset": [
+          "scratch",
+          "magicalleaf",
+          "bite",
+          "protect"
+        ],
+        "name": "Floragato",
+        "types": [
+          "grass",
+          "magic",
+          "cat"
+        ]
+      },
+      {
+        "abilities": [
+          "keeneye"
+        ],
+        "baseStats": {
+          "atk": 80,
+          "def": 75,
+          "hp": 83,
+          "spa": 70,
+          "spd": 70,
+          "spe": 101
+        },
+        "fieldSources": {
+          "abilities": "showdown",
+          "baseStats": "showdown",
+          "id": "showdown",
+          "learnset": "showdown",
+          "name": "showdown",
+          "types": "creatorspecies"
+        },
+        "id": "pidgeot",
+        "learnset": [
+          "tackle",
+          "gust",
+          "quickattack",
+          "protect"
+        ],
+        "name": "Pidgeot",
+        "types": [
+          "bird",
+          "bird",
+          "bird"
+        ]
+      }
+    ],
+    "teams": [
+      {
+        "id": "alpha",
+        "sets": [
+          {
+            "ability": "runaway",
+            "evs": {
+              "atk": 0,
+              "def": 0,
+              "hp": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0
+            },
+            "item": "none",
+            "ivs": {
+              "atk": 31,
+              "def": 31,
+              "hp": 31,
+              "spa": 31,
+              "spd": 31,
+              "spe": 31
+            },
+            "level": 50,
+            "moves": [
+              "tackle",
+              "quickattack",
+              "bite",
+              "protect"
+            ],
+            "nature": "Hardy",
+            "species": "rattata"
+          },
+          {
+            "ability": "runaway",
+            "evs": {
+              "atk": 0,
+              "def": 0,
+              "hp": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0
+            },
+            "item": "none",
+            "ivs": {
+              "atk": 31,
+              "def": 31,
+              "hp": 31,
+              "spa": 31,
+              "spd": 31,
+              "spe": 31
+            },
+            "level": 50,
+            "moves": [
+              "tackle",
+              "quickattack",
+              "bite",
+              "protect"
+            ],
+            "nature": "Hardy",
+            "species": "eevee"
+          },
+          {
+            "ability": "torrent",
+            "evs": {
+              "atk": 0,
+              "def": 0,
+              "hp": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0
+            },
+            "item": "none",
+            "ivs": {
+              "atk": 31,
+              "def": 31,
+              "hp": 31,
+              "spa": 31,
+              "spd": 31,
+              "spe": 31
+            },
+            "level": 50,
+            "moves": [
+              "pound",
+              "watergun",
+              "quickattack",
+              "protect"
+            ],
+            "nature": "Hardy",
+            "species": "froakie"
+          }
+        ]
+      },
+      {
+        "id": "beta",
+        "sets": [
+          {
+            "ability": "sturdy",
+            "evs": {
+              "atk": 0,
+              "def": 0,
+              "hp": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0
+            },
+            "item": "none",
+            "ivs": {
+              "atk": 31,
+              "def": 31,
+              "hp": 31,
+              "spa": 31,
+              "spd": 31,
+              "spe": 31
+            },
+            "level": 50,
+            "moves": [
+              "tackle",
+              "rockthrow",
+              "thunderwave",
+              "protect"
+            ],
+            "nature": "Hardy",
+            "species": "nosepass"
+          },
+          {
+            "ability": "overgrow",
+            "evs": {
+              "atk": 0,
+              "def": 0,
+              "hp": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0
+            },
+            "item": "none",
+            "ivs": {
+              "atk": 31,
+              "def": 31,
+              "hp": 31,
+              "spa": 31,
+              "spd": 31,
+              "spe": 31
+            },
+            "level": 50,
+            "moves": [
+              "scratch",
+              "magicalleaf",
+              "bite",
+              "protect"
+            ],
+            "nature": "Hardy",
+            "species": "floragato"
+          },
+          {
+            "ability": "keeneye",
+            "evs": {
+              "atk": 0,
+              "def": 0,
+              "hp": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0
+            },
+            "item": "none",
+            "ivs": {
+              "atk": 31,
+              "def": 31,
+              "hp": 31,
+              "spa": 31,
+              "spd": 31,
+              "spe": 31
+            },
+            "level": 50,
+            "moves": [
+              "tackle",
+              "gust",
+              "quickattack",
+              "protect"
+            ],
+            "nature": "Hardy",
+            "species": "pidgeot"
+          }
+        ]
+      }
+    ],
+    "types": [
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "bug",
+        "name": "Bug",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "dark",
+        "name": "Dark",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "dragon",
+        "name": "Dragon",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "electric",
+        "name": "Electric",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "fairy",
+        "name": "Fairy",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "fighting",
+        "name": "Fighting",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "fire",
+        "name": "Fire",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "flying",
+        "name": "Flying",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "ghost",
+        "name": "Ghost",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "grass",
+        "name": "Grass",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "ground",
+        "name": "Ground",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "ice",
+        "name": "Ice",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "normal",
+        "name": "Normal",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "poison",
+        "name": "Poison",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "psychic",
+        "name": "Psychic",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "rock",
+        "name": "Rock",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "steel",
+        "name": "Steel",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "showdown",
+          "name": "showdown",
+          "passive": "showdown"
+        },
+        "id": "water",
+        "name": "Water",
+        "passive": "ordinary-gen9"
+      },
+      {
+        "fieldSources": {
+          "id": "creatorspecies",
+          "name": "creatorspecies",
+          "passive": "policy"
+        },
+        "id": "rat",
+        "name": "Rat",
+        "passive": "none-adaptation"
+      },
+      {
+        "fieldSources": {
+          "id": "creatorspecies",
+          "name": "creatorspecies",
+          "passive": "policy"
+        },
+        "id": "boring",
+        "name": "Boring",
+        "passive": "none-adaptation"
+      },
+      {
+        "fieldSources": {
+          "id": "creatorspecies",
+          "name": "creatorspecies",
+          "passive": "policy"
+        },
+        "id": "cat",
+        "name": "Cat",
+        "passive": "none-adaptation"
+      },
+      {
+        "fieldSources": {
+          "id": "creatorspecies",
+          "name": "creatorspecies",
+          "passive": "policy"
+        },
+        "id": "frog",
+        "name": "Frog",
+        "passive": "none-adaptation"
+      },
+      {
+        "fieldSources": {
+          "id": "creatorspecies",
+          "name": "creatorspecies",
+          "passive": "policy"
+        },
+        "id": "magic",
+        "name": "Magic",
+        "passive": "none-adaptation"
+      },
+      {
+        "fieldSources": {
+          "id": "creatorspecies",
+          "name": "creatorspecies",
+          "passive": "policy"
+        },
+        "id": "bird",
+        "name": "Bird",
+        "passive": "none-adaptation"
+      }
+    ],
+    "version": "0.1.0"
+  },
+  "table": {
+    "abilities": {
+      "keeneye": {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#keeneye",
+        "exists": true,
+        "gen": 9,
+        "id": "keeneye",
+        "name": "Keen Eye"
+      },
+      "overgrow": {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#overgrow",
+        "exists": true,
+        "gen": 9,
+        "id": "overgrow",
+        "name": "Overgrow"
+      },
+      "runaway": {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#runaway",
+        "exists": true,
+        "gen": 9,
+        "id": "runaway",
+        "name": "Run Away"
+      },
+      "sturdy": {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#sturdy",
+        "exists": true,
+        "gen": 9,
+        "id": "sturdy",
+        "name": "Sturdy"
+      },
+      "torrent": {
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#torrent",
+        "exists": true,
+        "gen": 9,
+        "id": "torrent",
+        "name": "Torrent"
+      }
+    },
+    "items": {
+      "none": {
+        "behaviorRef": "policy:no-held-item",
+        "exists": true,
+        "gen": 9,
+        "id": "none",
+        "name": "No item"
+      }
+    },
+    "moves": {
+      "bite": {
+        "accuracy": 100,
+        "basePower": 60,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#bite",
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "bite": 1,
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "bite",
+        "name": "Bite",
+        "pp": 25,
+        "priority": 0,
+        "type": "Dark"
+      },
+      "gust": {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#gust",
+        "category": "Special",
+        "exists": true,
+        "flags": {
+          "distance": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1,
+          "wind": 1
+        },
+        "gen": 9,
+        "id": "gust",
+        "name": "Gust",
+        "pp": 35,
+        "priority": 0,
+        "type": "Flying"
+      },
+      "magicalleaf": {
+        "accuracy": true,
+        "basePower": 60,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#magicalleaf",
+        "category": "Special",
+        "exists": true,
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "magicalleaf",
+        "name": "Magical Leaf",
+        "pp": 20,
+        "priority": 0,
+        "type": "Grass"
+      },
+      "pound": {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#pound",
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "pound",
+        "name": "Pound",
+        "pp": 35,
+        "priority": 0,
+        "type": "Normal"
+      },
+      "protect": {
+        "accuracy": true,
+        "basePower": 0,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#protect",
+        "category": "Status",
+        "exists": true,
+        "flags": {
+          "failcopycat": 1,
+          "noassist": 1
+        },
+        "gen": 9,
+        "id": "protect",
+        "name": "Protect",
+        "pp": 10,
+        "priority": 4,
+        "type": "Normal"
+      },
+      "quickattack": {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#quickattack",
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "quickattack",
+        "name": "Quick Attack",
+        "pp": 30,
+        "priority": 1,
+        "type": "Normal"
+      },
+      "rockthrow": {
+        "accuracy": 90,
+        "basePower": 50,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#rockthrow",
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "rockthrow",
+        "name": "Rock Throw",
+        "pp": 15,
+        "priority": 0,
+        "type": "Rock"
+      },
+      "scratch": {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#scratch",
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "scratch",
+        "name": "Scratch",
+        "pp": 35,
+        "priority": 0,
+        "type": "Normal"
+      },
+      "tackle": {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#tackle",
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "contact": 1,
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "tackle",
+        "name": "Tackle",
+        "pp": 35,
+        "priority": 0,
+        "type": "Normal"
+      },
+      "thunderwave": {
+        "accuracy": 90,
+        "basePower": 0,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#thunderwave",
+        "category": "Status",
+        "exists": true,
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1,
+          "reflectable": 1
+        },
+        "gen": 9,
+        "id": "thunderwave",
+        "name": "Thunder Wave",
+        "pp": 20,
+        "priority": 0,
+        "type": "Electric"
+      },
+      "watergun": {
+        "accuracy": 100,
+        "basePower": 40,
+        "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/moves.ts#watergun",
+        "category": "Special",
+        "exists": true,
+        "flags": {
+          "metronome": 1,
+          "mirror": 1,
+          "protect": 1
+        },
+        "gen": 9,
+        "id": "watergun",
+        "name": "Water Gun",
+        "pp": 25,
+        "priority": 0,
+        "type": "Water"
+      }
+    },
+    "species": {
+      "eevee": {
+        "abilities": {
+          "0": "Run Away"
+        },
+        "baseStats": {
+          "atk": 55,
+          "def": 50,
+          "hp": 55,
+          "spa": 45,
+          "spd": 65,
+          "spe": 55
+        },
+        "exists": true,
+        "gen": 9,
+        "id": "eevee",
+        "learnset": [
+          "tackle",
+          "quickattack",
+          "bite",
+          "protect"
+        ],
+        "name": "Eevee",
+        "tier": "TMT2",
+        "types": [
+          "Boring",
+          "Cat"
+        ]
+      },
+      "floragato": {
+        "abilities": {
+          "0": "Overgrow"
+        },
+        "baseStats": {
+          "atk": 80,
+          "def": 63,
+          "hp": 61,
+          "spa": 60,
+          "spd": 63,
+          "spe": 83
+        },
+        "exists": true,
+        "gen": 9,
+        "id": "floragato",
+        "learnset": [
+          "scratch",
+          "magicalleaf",
+          "bite",
+          "protect"
+        ],
+        "name": "Floragato",
+        "tier": "TMT2",
+        "types": [
+          "Grass",
+          "Magic",
+          "Cat"
+        ]
+      },
+      "froakie": {
+        "abilities": {
+          "0": "Torrent"
+        },
+        "baseStats": {
+          "atk": 56,
+          "def": 40,
+          "hp": 41,
+          "spa": 62,
+          "spd": 44,
+          "spe": 71
+        },
+        "exists": true,
+        "gen": 9,
+        "id": "froakie",
+        "learnset": [
+          "pound",
+          "watergun",
+          "quickattack",
+          "protect"
+        ],
+        "name": "Froakie",
+        "tier": "TMT2",
+        "types": [
+          "Water",
+          "Frog"
+        ]
+      },
+      "nosepass": {
+        "abilities": {
+          "0": "Sturdy"
+        },
+        "baseStats": {
+          "atk": 45,
+          "def": 135,
+          "hp": 30,
+          "spa": 45,
+          "spd": 90,
+          "spe": 30
+        },
+        "exists": true,
+        "gen": 9,
+        "id": "nosepass",
+        "learnset": [
+          "tackle",
+          "rockthrow",
+          "thunderwave",
+          "protect"
+        ],
+        "name": "Nosepass",
+        "tier": "TMT2",
+        "types": [
+          "Rock"
+        ]
+      },
+      "pidgeot": {
+        "abilities": {
+          "0": "Keen Eye"
+        },
+        "baseStats": {
+          "atk": 80,
+          "def": 75,
+          "hp": 83,
+          "spa": 70,
+          "spd": 70,
+          "spe": 101
+        },
+        "exists": true,
+        "gen": 9,
+        "id": "pidgeot",
+        "learnset": [
+          "tackle",
+          "gust",
+          "quickattack",
+          "protect"
+        ],
+        "name": "Pidgeot",
+        "tier": "TMT2",
+        "types": [
+          "Bird",
+          "Bird",
+          "Bird"
+        ]
+      },
+      "rattata": {
+        "abilities": {
+          "0": "Run Away"
+        },
+        "baseStats": {
+          "atk": 56,
+          "def": 35,
+          "hp": 30,
+          "spa": 25,
+          "spd": 35,
+          "spe": 72
+        },
+        "exists": true,
+        "gen": 9,
+        "id": "rattata",
+        "learnset": [
+          "tackle",
+          "quickattack",
+          "bite",
+          "protect"
+        ],
+        "name": "Rattata",
+        "tier": "TMT2",
+        "types": [
+          "Rat"
+        ]
+      }
+    },
+    "types": {
+      "bird": {
+        "damageTaken": {
+          "Dark": 0,
+          "Electric": 1,
+          "Flying": 0,
+          "Grass": 2,
+          "Normal": 0,
+          "Rock": 1,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "bird",
+        "name": "Bird",
+        "passive": "none-adaptation"
+      },
+      "boring": {
+        "damageTaken": {
+          "Dark": 0,
+          "Electric": 1,
+          "Flying": 1,
+          "Grass": 1,
+          "Normal": 2,
+          "Rock": 2,
+          "Water": 1
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "boring",
+        "name": "Boring",
+        "passive": "none-adaptation"
+      },
+      "bug": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 2,
+          "Fire": 1,
+          "Flying": 1,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 2,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 1,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "bug",
+        "name": "Bug",
+        "passive": "ordinary-gen9"
+      },
+      "cat": {
+        "damageTaken": {
+          "Dark": 0,
+          "Electric": 0,
+          "Flying": 2,
+          "Grass": 0,
+          "Normal": 0,
+          "Rock": 0,
+          "Water": 1
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "cat",
+        "name": "Cat",
+        "passive": "none-adaptation"
+      },
+      "dark": {
+        "damageTaken": {
+          "Bug": 1,
+          "Dark": 2,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 1,
+          "Fighting": 1,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 2,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 3,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "dark",
+        "name": "Dark",
+        "passive": "ordinary-gen9"
+      },
+      "dragon": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 1,
+          "Electric": 2,
+          "Fairy": 1,
+          "Fighting": 0,
+          "Fire": 2,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 0,
+          "Ice": 1,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 2
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "dragon",
+        "name": "Dragon",
+        "passive": "ordinary-gen9"
+      },
+      "electric": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 2,
+          "Fairy": 0,
+          "Fighting": 0,
+          "Fire": 0,
+          "Flying": 2,
+          "Ghost": 0,
+          "Grass": 0,
+          "Ground": 1,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 2,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "electric",
+        "name": "Electric",
+        "passive": "ordinary-gen9"
+      },
+      "fairy": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 2,
+          "Dragon": 3,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 2,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 1,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 1,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "fairy",
+        "name": "Fairy",
+        "passive": "ordinary-gen9"
+      },
+      "fighting": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 2,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 1,
+          "Fighting": 0,
+          "Fire": 0,
+          "Flying": 1,
+          "Ghost": 0,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 1,
+          "Rock": 2,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "fighting",
+        "name": "Fighting",
+        "passive": "ordinary-gen9"
+      },
+      "fire": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 2,
+          "Fighting": 0,
+          "Fire": 2,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 1,
+          "Ice": 2,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 1,
+          "Steel": 2,
+          "Water": 1
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "fire",
+        "name": "Fire",
+        "passive": "ordinary-gen9"
+      },
+      "flying": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 1,
+          "Fairy": 0,
+          "Fighting": 2,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 3,
+          "Ice": 1,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 1,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "flying",
+        "name": "Flying",
+        "passive": "ordinary-gen9"
+      },
+      "frog": {
+        "damageTaken": {
+          "Dark": 0,
+          "Electric": 1,
+          "Flying": 1,
+          "Grass": 1,
+          "Normal": 0,
+          "Rock": 0,
+          "Water": 3
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "frog",
+        "name": "Frog",
+        "passive": "none-adaptation"
+      },
+      "ghost": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 1,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 3,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 1,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 0,
+          "Normal": 3,
+          "Poison": 2,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "ghost",
+        "name": "Ghost",
+        "passive": "ordinary-gen9"
+      },
+      "grass": {
+        "damageTaken": {
+          "Bug": 1,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 2,
+          "Fairy": 0,
+          "Fighting": 0,
+          "Fire": 1,
+          "Flying": 1,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 2,
+          "Ice": 1,
+          "Normal": 0,
+          "Poison": 1,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 2
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "grass",
+        "name": "Grass",
+        "passive": "ordinary-gen9"
+      },
+      "ground": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 3,
+          "Fairy": 0,
+          "Fighting": 0,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 1,
+          "Ground": 0,
+          "Ice": 1,
+          "Normal": 0,
+          "Poison": 2,
+          "Psychic": 0,
+          "Rock": 2,
+          "Steel": 0,
+          "Water": 1
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "ground",
+        "name": "Ground",
+        "passive": "ordinary-gen9"
+      },
+      "ice": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 1,
+          "Fire": 1,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 2,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 1,
+          "Steel": 1,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "ice",
+        "name": "Ice",
+        "passive": "ordinary-gen9"
+      },
+      "magic": {
+        "damageTaken": {
+          "Dark": 0,
+          "Electric": 2,
+          "Flying": 0,
+          "Grass": 0,
+          "Normal": 0,
+          "Rock": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "magic",
+        "name": "Magic",
+        "passive": "none-adaptation"
+      },
+      "normal": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 1,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 3,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "normal",
+        "name": "Normal",
+        "passive": "ordinary-gen9"
+      },
+      "poison": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 2,
+          "Fighting": 2,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 1,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 2,
+          "Psychic": 1,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "poison",
+        "name": "Poison",
+        "passive": "ordinary-gen9"
+      },
+      "psychic": {
+        "damageTaken": {
+          "Bug": 1,
+          "Dark": 1,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 2,
+          "Fire": 0,
+          "Flying": 0,
+          "Ghost": 1,
+          "Grass": 0,
+          "Ground": 0,
+          "Ice": 0,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 2,
+          "Rock": 0,
+          "Steel": 0,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "psychic",
+        "name": "Psychic",
+        "passive": "ordinary-gen9"
+      },
+      "rat": {
+        "damageTaken": {
+          "Dark": 0,
+          "Electric": 0,
+          "Flying": 1,
+          "Grass": 0,
+          "Normal": 0,
+          "Rock": 1,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "rat",
+        "name": "Rat",
+        "passive": "none-adaptation"
+      },
+      "rock": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 0,
+          "Fairy": 0,
+          "Fighting": 1,
+          "Fire": 2,
+          "Flying": 2,
+          "Ghost": 0,
+          "Grass": 1,
+          "Ground": 1,
+          "Ice": 0,
+          "Normal": 2,
+          "Poison": 2,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 1,
+          "Water": 1
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "rock",
+        "name": "Rock",
+        "passive": "ordinary-gen9"
+      },
+      "steel": {
+        "damageTaken": {
+          "Bug": 2,
+          "Dark": 0,
+          "Dragon": 2,
+          "Electric": 0,
+          "Fairy": 2,
+          "Fighting": 1,
+          "Fire": 1,
+          "Flying": 2,
+          "Ghost": 0,
+          "Grass": 2,
+          "Ground": 1,
+          "Ice": 2,
+          "Normal": 2,
+          "Poison": 3,
+          "Psychic": 2,
+          "Rock": 2,
+          "Steel": 2,
+          "Water": 0
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "steel",
+        "name": "Steel",
+        "passive": "ordinary-gen9"
+      },
+      "water": {
+        "damageTaken": {
+          "Bug": 0,
+          "Dark": 0,
+          "Dragon": 0,
+          "Electric": 1,
+          "Fairy": 0,
+          "Fighting": 0,
+          "Fire": 2,
+          "Flying": 0,
+          "Ghost": 0,
+          "Grass": 1,
+          "Ground": 0,
+          "Ice": 2,
+          "Normal": 0,
+          "Poison": 0,
+          "Psychic": 0,
+          "Rock": 0,
+          "Steel": 2,
+          "Water": 2
+        },
+        "effectType": "Type",
+        "exists": true,
+        "id": "water",
+        "name": "Water",
+        "passive": "ordinary-gen9"
+      }
+    }
+  }
+}

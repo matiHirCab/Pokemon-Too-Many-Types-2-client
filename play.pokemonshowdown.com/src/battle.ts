@@ -31,7 +31,7 @@
 import { BattleSceneStub } from './battle-scene-stub';
 import { BattleLog } from './battle-log';
 import { BattleScene, type PokemonSprite, BattleStatusAnims } from './battle-animations';
-import { Dex, PSUtils, toID, toUserid, type ID, type ModdedDex } from './battle-dex';
+import { TMT2, Dex, PSUtils, toID, toUserid, type ID, type ModdedDex } from './battle-dex';
 import { BattleTextParser, type Args, type KWArgs, type SideID } from './battle-text-parser';
 import { Teams } from './battle-teams';
 declare const app: { user: AnyObject, rooms: AnyObject, ignore?: AnyObject } | undefined;
@@ -3512,8 +3512,15 @@ export class Battle {
 			this.log(args);
 			break;
 		}
+		case 'tmt2data': {
+			TMT2.verify(args[1], args[2], args[3]);
+			this.dex = Dex.mod(TMT2.id as ID);
+			this.log(args);
+			break;
+		}
 		case 'tier': {
 			this.tier = args[1];
+			if (TMT2.matches(this.tier)) this.dex = Dex.forFormat(this.tier);
 			if (this.tier.endsWith('Random Battle')) {
 				this.speciesClause = true;
 			}
@@ -3831,7 +3838,7 @@ export class Battle {
 		}
 		case 'gen': {
 			this.gen = parseInt(args[1], 10);
-			this.dex = Dex.forGen(this.gen);
+			this.dex = TMT2.matches(this.tier) ? Dex.forFormat(this.tier) : Dex.forGen(this.gen);
 			this.scene.updateGen();
 			this.log(args);
 			break;

@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const root = path.resolve(__dirname, '..');
+const catalog = JSON.parse(fs.readFileSync(path.join(root, 'tmt2/catalog.json'), 'utf8'));
+function canonical(value) {
+	if (Array.isArray(value)) return value.map(canonical);
+	if (value && typeof value === 'object') {
+		return Object.fromEntries(Object.keys(value).sort().map(k => [k, canonical(value[k])]));
+	}
+	return value;
+}
+const hash = crypto.createHash('sha256').update(JSON.stringify(canonical(catalog.seed))).digest('hex');
+const factsHash = crypto.createHash('sha256')
+	.update(JSON.stringify(canonical({ seed: catalog.seed, table: catalog.table }))).digest('hex');
+if (catalog.metadata.catalogHash !== factsHash) throw new Error('TMT2 generated table drift');
+if (catalog.metadata.datasetHash !== hash || catalog.metadata.modID !== 'gen9tmt2seed') {
+	throw new Error('TMT2 catalog drift; regenerate from validated tmt2-data');
+}
+const target = path.join(root, 'play.pokemonshowdown.com/data/tmt2-seed.js');
+for (let at = target; at !== path.dirname(at); at = path.dirname(at)) {
+	if (fs.lstatSync(at, { throwIfNoEntry: false })?.isSymbolicLink()) {
+		throw new Error('Unsafe generated output symlink: ' + at);
+	}
+}
+fs.mkdirSync(path.dirname(target), { recursive: true });
+const output = '// Generated local bounded catalog; no upstream fetch.\n' +
+	`window.BattleTMT2 = ${JSON.stringify(catalog)};\n`;
+fs.writeFileSync(target, output);

@@ -28,6 +28,26 @@ import type { Teams } from "./battle-teams";
 import { Config } from "./client-main";
 import { BattleLog } from "./battle-log";
 
+/** Explicit isolated catalog route. Missing data is an error, never a base-Dex fallback. */
+export const TMT2 = {
+	id: 'gen9tmt2seed',
+	matches(format: string) { return toID(format.split('@@@')[0]) === 'gen9tmt2seed'; },
+	catalog() {
+		const data = window.BattleTMT2;
+		if (!data || data.metadata?.generator !== 'tmt2-data/tmt05-v1' ||
+			data.metadata?.modID !== this.id || !/^[a-f0-9]{64}$/.test(data.metadata?.datasetHash)) {
+			throw new Error('TMT2 catalog missing or incompatible; generate local pinned data');
+		}
+		return data;
+	},
+	verify(version: string, hash: string, catalogHash: string) {
+		const metadata = this.catalog().metadata;
+		if (metadata.version !== version || metadata.datasetHash !== hash || metadata.catalogHash !== catalogHash) {
+			throw new Error('TMT2 server/client dataset mismatch; stop and regenerate compatible data');
+		}
+	},
+};
+
 export declare namespace Dex {
 	/* eslint-disable @typescript-eslint/no-shadow */
 	export type Ability = DexData.Ability;
@@ -513,8 +533,9 @@ export const Dex = new class implements ModdedDex {
 	afdMode?: boolean | 'sprites';
 
 	mod(modid: ID): ModdedDex {
+		if (modid === TMT2.id) TMT2.catalog();
 		if (modid === 'gen9') return this;
-		if (!window.BattleTeambuilderTable) return this;
+		if (!window.BattleTeambuilderTable && modid !== TMT2.id) return this;
 		if (modid in this.moddedDexes) {
 			return this.moddedDexes[modid];
 		}
@@ -532,6 +553,7 @@ export const Dex = new class implements ModdedDex {
 		return parseInt(formatid.charAt(3)) || Dex.gen;
 	}
 	forFormat(format: string) {
+		if (TMT2.matches(format.split('@@@')[0])) return Dex.mod(TMT2.id as ID);
 		let dex = Dex.forGen(Dex.formatGen(format));
 
 		const formatid = toID(format).slice(4);
@@ -1247,6 +1269,9 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getTypeIcon(type: string | null, b?: boolean) { // b is just for utilichart.js
+		if (window.BattleTMT2?.table.types[toID(type)] && !this.types.get(type).exists) {
+			return `<span class="tmt2-type">${BattleLog.escapeHTML(window.BattleTMT2.table.types[toID(type)].name)}</span>`;
+		}
 		type = this.types.get(type).name;
 		if (!type) type = '???';
 		let sanitizedType = type.replace(/\?/g, '%3f');
@@ -1297,7 +1322,7 @@ export class ModdedDex {
 	constructor(modid: ID) {
 		this.modid = modid;
 		let gen = parseInt(modid.charAt(3), 10);
-		if (this.modid === 'champions') gen = 9;
+		if (this.modid === 'champions' || this.modid === TMT2.id) gen = 9;
 		if ((modid !== 'champions' && !modid.startsWith('gen')) || !gen) throw new Error("Unsupported modid");
 		this.gen = gen;
 	}
@@ -1320,6 +1345,11 @@ export class ModdedDex {
 	};
 	moves = {
 		get: (name: string): Move => {
+			if (this.modid === TMT2.id) {
+				const id = toID(name || '');
+				const data = TMT2.catalog().table.moves[id];
+				return new Move(id, name, data || { exists: false });
+			}
 			let id = toID(name);
 			if (window.BattleAliases && id in BattleAliases) {
 				name = BattleAliases[id];
@@ -1353,6 +1383,11 @@ export class ModdedDex {
 
 	items = {
 		get: (name: string): Item => {
+			if (this.modid === TMT2.id) {
+				const id = toID(name || 'none');
+				const data = TMT2.catalog().table.items[id];
+				return new Item(id, name, data || { exists: false });
+			}
 			let id = toID(name);
 			if (window.BattleAliases && id in BattleAliases) {
 				name = BattleAliases[id];
@@ -1383,6 +1418,11 @@ export class ModdedDex {
 
 	abilities = {
 		get: (name: string): Ability => {
+			if (this.modid === TMT2.id) {
+				const id = toID(name || '');
+				const data = TMT2.catalog().table.abilities[id];
+				return new Ability(id, name, data || { exists: false });
+			}
 			let id = toID(name);
 			if (window.BattleAliases && id in BattleAliases) {
 				name = BattleAliases[id];
@@ -1413,6 +1453,11 @@ export class ModdedDex {
 
 	species = {
 		get: (name: string): Species => {
+			if (this.modid === TMT2.id) {
+				const id = toID(name || '');
+				const data = TMT2.catalog().table.species[id];
+				return new Species(id, name, data || { exists: false });
+			}
 			let id = toID(name);
 			const originalId = id;
 			if (window.BattleAliases && id in BattleAliases) {
@@ -1466,6 +1511,7 @@ export class ModdedDex {
 	types = {
 		namesCache: null as readonly Dex.TypeName[] | null,
 		names: (): readonly Dex.TypeName[] => {
+			if (this.modid === TMT2.id) return Object.values(TMT2.catalog().table.types).map((t: any) => t.name);
 			if (this.types.namesCache) return this.types.namesCache;
 			const names = Dex.types.names();
 			if (!names.length) return [];
@@ -1478,6 +1524,9 @@ export class ModdedDex {
 			return curNames;
 		},
 		get: (name: string): Dex.Type => {
+			if (this.modid === TMT2.id) {
+				return TMT2.catalog().table.types[toID(name)] || { id: toID(name), name, exists: false, effectType: 'Type' };
+			}
 			const id = toID(name);
 			name = id.substr(0, 1).toUpperCase() + id.substr(1);
 
@@ -1518,6 +1567,7 @@ export class ModdedDex {
 if (typeof require === 'function') {
 	// in Node
 	global.Dex = Dex;
+	global.TMT2 = TMT2;
 	global.TL = TL;
 	global.toID = toID;
 }
