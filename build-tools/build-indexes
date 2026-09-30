@@ -109,23 +109,7 @@ function requireNoCache(pathSpec) {
 
 	const BattleArticleTitles = {};
 
-	try {
-		for (const file of fs.readdirSync('../dex.pokemonshowdown.com/articles/')) {
-			if (file.endsWith('.md')) {
-				const id = file.slice(0, -3);
-				const contents = '' + fs.readFileSync('../dex.pokemonshowdown.com/articles/' + file);
-				if (contents.startsWith('# ')) {
-					const title = contents.slice(2, contents.indexOf('\n'));
-					if (title !== id.charAt(0).toUpperCase() + id.slice(1)) {
-						BattleArticleTitles[id] = title;
-					}
-				}
-				index.push('' + id + ' article');
-			}
-		}
-	} catch {
-		console.log('\n(WARNING: NO ARTICLES)');
-	}
+	// Optional external article checkouts are not pinned inputs for this offline build.
 	index.push('pokemon article');
 	index.push('moves article');
 
