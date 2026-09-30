@@ -374,3 +374,18 @@
 .utilichart .ppsortcol {
 	width: 23px;
 }
+
+/* Local TMT2 catalog labels preserve every slot without assuming custom sprites. */
+.tmt2-type {
+	display: inline-block;
+	margin-right: 3px;
+	padding: 1px 4px;
+	border: 1px solid #777;
+	border-radius: 3px;
+	font-size: 11px;
+	line-height: 14px;
+}
+.utilichart .typecol:has(.tmt2-type) {
+	width: auto;
+	min-width: 100px;
+}

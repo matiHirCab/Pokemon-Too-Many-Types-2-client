@@ -286,6 +286,7 @@ https://replay.pokemonshowdown.com/gen7randomdoublesbattle-865046831.log
 <script defer src="//play.pokemonshowdown.com/js/lib/html-sanitizer-minified.js"></script>
 <script defer src="//play.pokemonshowdown.com/js/battle-sound.js"></script>
 <script defer src="//play.pokemonshowdown.com/js/battledata.js?a7"></script>
+<script src="//play.pokemonshowdown.com/data/tmt2-seed.js"></script>
 <script defer src="//play.pokemonshowdown.com/data/pokedex-mini.js?a7"></script>
 <script defer src="//play.pokemonshowdown.com/data/pokedex-mini-bw.js?a7"></script>
 <script defer src="//play.pokemonshowdown.com/data/graphics.js?a7"></script>

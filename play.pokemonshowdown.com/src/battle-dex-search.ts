@@ -11,7 +11,7 @@
  * @license MIT
  */
 
-import { Dex, type ModdedDex, TL, toID, type ID } from "./battle-dex";
+import { TMT2, Dex, type ModdedDex, TL, toID, type ID } from "./battle-dex";
 import type { PSSearchResults } from "./battle-searchresults";
 
 export type SearchType = (
@@ -307,6 +307,17 @@ export class DexSearch {
 	}
 
 	textSearch(query: string): SearchRow[] {
+		if (this.dex.modid === TMT2.id && this.typedSearch) {
+			const id = toID(query);
+			const rows = this.typedSearch.getResults(this.filters, this.sortCol);
+			const found = rows.filter(row => row[0] !== 'header' && toID(this.getResultName(row)).includes(id));
+			if (id && ['pokemon', 'move'].includes(this.typedSearch.searchType)) {
+				for (const type of this.dex.types.names()) {
+					if (toID(type).includes(id)) found.push(['type', toID(type)]);
+				}
+			}
+			return found;
+		}
 		query = toID(query);
 
 		this.exactMatch = false;
@@ -803,6 +814,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			format = format.slice(0, -5) as ID;
 			if (!format) format = 'anythinggoes' as ID;
 		}
+		if (format === 'tmt2seed') this.dex = Dex.forFormat('gen9tmt2seed');
 		this.format = format;
 
 		this.species = '' as ID;
@@ -816,6 +828,23 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		// if (!searchType || !this.set) return;
 	}
 	getResults(filters?: SearchFilter[] | null, sortCol?: string | null, reverseSort?: boolean): SearchRow[] {
+		if (this.dex.modid === TMT2.id) {
+			const keys: { [type: string]: string } = {
+				pokemon: 'species', move: 'moves', ability: 'abilities', item: 'items', type: 'types',
+			};
+			const key = keys[this.searchType];
+			const table = TMT2.catalog().table[key];
+			let rows: SearchRow[] = Object.keys(table).map(id => [this.searchType, toID(id)]);
+			if (this.species && this.searchType === 'move') rows = rows.filter(row => this.canLearn(this.species, toID(row[1])));
+			if (this.species && this.searchType === 'ability') {
+				rows = rows.filter(row => Dex.hasAbility(
+					this.dex.species.get(this.species), this.dex.abilities.get(row[1]).name
+				));
+			}
+			if (filters) rows = rows.filter(row => this.filter(row, filters));
+			if (sortCol && !['type', 'category', 'ability'].includes(sortCol)) rows = this.sort(rows, sortCol, reverseSort);
+			return rows;
+		}
 		if (sortCol === 'type') {
 			return [this.sortRow!, ...BattleTypeSearch.prototype.getDefaultResults.call(this, reverseSort)];
 		} else if (sortCol === 'category') {
@@ -939,6 +968,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		return '' as ID;
 	}
 	protected canLearn(speciesid: ID, moveid: ID) {
+		if (this.dex.modid === TMT2.id) return !!TMT2.catalog().table.species[speciesid]?.learnset.includes(moveid);
 		const move = this.dex.moves.get(moveid);
 		if (this.formatType?.includes('natdex') && move.isNonstandard && move.isNonstandard !== 'Past') {
 			return false;
@@ -986,6 +1016,7 @@ abstract class BattleTypedSearch<T extends SearchType> {
 		return false;
 	}
 	getTier(pokemon: Dex.Species) {
+		if (this.dex.modid === TMT2.id) return pokemon.exists ? 'TMT2' : 'Illegal';
 		if (this.formatType === 'metronome') {
 			return pokemon.num >= 0 ? String(pokemon.num) : pokemon.tier;
 		}
@@ -1333,7 +1364,7 @@ class BattlePokemonSearch extends BattleTypedSearch<'pokemon'> {
 		for (const [filterType, value] of filters) {
 			switch (filterType) {
 			case 'type':
-				if (species.types[0] !== value && species.types[1] !== value) return false;
+				if (!species.types.includes(value as Dex.TypeName)) return false;
 				break;
 			case 'egggroup':
 				if (species.eggGroups[0] !== value && species.eggGroups[1] !== value) return false;

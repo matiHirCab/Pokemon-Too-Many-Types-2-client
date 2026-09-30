@@ -122,7 +122,8 @@ export class PSSearchResults extends preact.Component<{
 			)}</span>`;
 		if (errorMessage) return `${buf}${errorMessage}</a></li>`;
 
-		buf += `<span class="col typecol">${pokemon.types.map(type =>
+		buf += `<span class="col typecol">${pokemon.types.map(type => search.dex.modid === 'gen9tmt2seed' ?
+			`<span class="tmt2-type">${escapeHTML(type)}</span>` :
 			`<img src="${Dex.resourcePrefix}sprites/types/${type}.png" alt="${escapeHTML(search.dex.text.typeName(type))}" height="14" width="32" class="pixelated" />`
 		).join('')}</span>`;
 
@@ -281,11 +282,12 @@ export class PSSearchResults extends preact.Component<{
 		const displayName = this.props.search.dex.text.typeName(name);
 		[matchStart, matchEnd] = getLocalizedMatch(displayName, name, matchStart, matchEnd);
 
+		const icon = this.props.search.dex.modid === 'gen9tmt2seed' ?
+			`<span class="tmt2-type">${escapeHTML(displayName)}</span>` : Dex.getTypeIcon(name);
 		return `<li class="result" value="${index}"><a href="${this.URL_ROOT}types/${id}" ` +
 			`data-target="push" data-entry="type|${escapeHTML(name)}">` +
 			`<span class="col namecol">${this.renderNameHTML(displayName, matchStart, matchEnd)}</span>` +
-			`<span class="col typecol"><img src="${Dex.resourcePrefix}sprites/types/${encodeURIComponent(name)}.png" ` +
-			`alt="${escapeHTML(displayName)}" height="14" width="32" class="pixelated" /></span>` +
+			`<span class="col typecol">${icon}</span>` +
 			(errorMessage || '') +
 			`</a></li>`;
 	}

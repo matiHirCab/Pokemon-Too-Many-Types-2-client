@@ -546,6 +546,8 @@ export class BattleTooltips {
 		Fairy: "Twinkle Tackle",
 		Stellar: "",
 		"???": "",
+		// No custom Z/Max move definitions are supported by the bounded seed.
+		Rat: "", Boring: "", Cat: "", Frog: "", Magic: "", Bird: "",
 	};
 
 	static maxMoveTable: { [type in Dex.TypeName]: string } = {
@@ -569,6 +571,8 @@ export class BattleTooltips {
 		Fairy: "Max Starfall",
 		Stellar: "",
 		"???": "",
+		// No custom Z/Max move definitions are supported by the bounded seed.
+		Rat: "", Boring: "", Cat: "", Frog: "", Magic: "", Bird: "",
 	};
 
 	getMaxMoveFromType(type: Dex.TypeName, gmaxMove?: string | Dex.Move) {

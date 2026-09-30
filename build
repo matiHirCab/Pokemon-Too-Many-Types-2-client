@@ -73,6 +73,7 @@ default:
 	break;
 }
 
+execFileSync(process.execPath, ['./build-tools/build-tmt2'], options);
 execSync(`node ./build-tools/update` + full, options);
 
 if (full) {

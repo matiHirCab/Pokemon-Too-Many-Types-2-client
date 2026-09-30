@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>TMT2 Seed — local integration view</title>
+<style>
+body{font:16px system-ui;max-width:960px;margin:2rem auto;padding:0 1rem;background:#f5f6f8;color:#17212b}
+header,main{background:white;padding:1.2rem;border-radius:8px;margin-bottom:1rem}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.65rem;border-bottom:1px solid #ddd}.tmt2-type{display:inline-block;border:1px solid #777;border-radius:3px;padding:2px 5px;margin-right:4px}select{font:inherit}code{overflow-wrap:anywhere}
+</style>
+<header><h1>[Gen 9] TMT2 Seed</h1><p>Hidden local adaptation · Integration view. Battle mechanics and legality are not certified.</p><p id="identity"></p><label>Filter by type <select id="type"><option value="">All six species</option></select></label></header>
+<main><table><thead><tr><th>Species</th><th>Ordered types</th><th>Selected ability</th><th>Selected moves</th></tr></thead><tbody id="roster"></tbody></table></main>
+<script src="js/battle-dex-data.js"></script>
+<script src="js/battle-dex.js"></script>
+<script src="data/tmt2-seed.js"></script>
+<script src="js/battle-dex-search.js"></script>
+<script>
+const catalog = TMT2.catalog();
+const dex = Dex.forFormat(catalog.metadata.formatName);
+const search = new DexSearch();
+const selector = document.getElementById('type');
+document.getElementById('identity').textContent = `Dataset ${catalog.metadata.version} · ${catalog.metadata.datasetHash} · mod ${dex.modid}`;
+for (const type of dex.types.names()) {
+ const option = document.createElement('option'); option.value = type; option.textContent = type; selector.append(option);
+}
+function render() {
+ search.setType('pokemon', catalog.metadata.formatID); search.filters = null;
+ if (selector.value) search.addFilter(['type', selector.value]);
+ search.find('');
+ const body = document.getElementById('roster'); body.replaceChildren();
+ for (const [, id] of search.results) {
+  const species = dex.species.get(id); const row = document.createElement('tr');
+  const name = document.createElement('td'); name.textContent = species.name; row.append(name);
+  const types = document.createElement('td');
+  for (const type of species.types) { const label = document.createElement('span'); label.className = 'tmt2-type'; label.textContent = type; types.append(label); }
+  row.append(types);
+  const ability = document.createElement('td'); ability.textContent = species.abilities[0]; row.append(ability);
+  const moves = document.createElement('td'); moves.textContent = catalog.table.species[id].learnset.map(m => dex.moves.get(m).name).join(', '); row.append(moves);
+  body.append(row);
+ }
+}
+selector.addEventListener('change', render); render();
+</script>
