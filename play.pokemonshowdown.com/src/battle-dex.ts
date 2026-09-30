@@ -46,6 +46,26 @@ export const TMT2 = {
 			throw new Error('TMT2 server/client dataset mismatch; stop and regenerate compatible data');
 		}
 	},
+	premade(id: string) {
+		const team = this.catalog().seed.teams.find((t: any) => t.id === id);
+		if (!team) throw new Error('Unknown TMT2 premade');
+		return JSON.parse(JSON.stringify(team.sets)).map((s: any) => ({ ...s, item: '' }));
+	},
+	stats(species: string) {
+		const data = this.catalog().table.species[toID(species)];
+		if (!data) throw new Error('Species outside the TMT2 seed');
+		const stats: { [stat: string]: number } = {};
+		for (const stat of ['hp', 'atk', 'def', 'spa', 'spd', 'spe']) {
+			stats[stat] = Math.floor((2 * data.baseStats[stat] + 31) / 2) + (stat === 'hp' ? 60 : 5);
+		}
+		return stats;
+	},
+	exportPremade(id: string) {
+		const table = this.catalog().table;
+		return this.premade(id).map((s: any) => [table.species[s.species].name,
+			`Ability: ${table.abilities[s.ability].name}`, 'Level: 50', 'Hardy Nature',
+			...s.moves.map((m: string) => `- ${table.moves[m].name}`)].join('\n')).join('\n\n');
+	},
 };
 
 export declare namespace Dex {
@@ -1347,7 +1367,8 @@ export class ModdedDex {
 		get: (name: string): Move => {
 			if (this.modid === TMT2.id) {
 				const id = toID(name || '');
-				const data = TMT2.catalog().table.moves[id];
+				const table = TMT2.catalog().table;
+				const data = table.moves[id] || table.engineMoves?.[id];
 				return new Move(id, name, data || { exists: false });
 			}
 			let id = toID(name);

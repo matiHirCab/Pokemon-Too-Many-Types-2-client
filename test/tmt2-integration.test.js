@@ -18,6 +18,24 @@ global.BattleLog = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com
 const TMTSearch = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-dex-search.js', 'utf8') + '\nDexSearch;');
 
 describe('TMT-05 client catalog routing (not complete battle)', () => {
+	it('provides fixed premades, authoritative EV0 stats and engine-only Struggle', () => {
+		for (const team of catalog.seed.teams) {
+			assert.equal(TMT2.premade(team.id).length, 3);
+			assert.match(TMT2.exportPremade(team.id), /Level: 50\nHardy Nature/);
+			for (const s of team.sets) {
+				const stats = TMT2.stats(s.species), base = catalog.table.species[s.species].baseStats;
+				for (const stat of ['hp', 'atk', 'def', 'spa', 'spd', 'spe']) {
+					assert.equal(stats[stat], Math.floor((2 * base[stat] + 31) / 2) + (stat === 'hp' ? 60 : 5));
+				}
+			}
+		}
+		const copy = TMT2.premade('alpha'); copy[0].evs.atk = 252;
+		assert.equal(TMT2.premade('alpha')[0].evs.atk, 0);
+		assert.throws(() => TMT2.premade('random'), /Unknown/);
+		assert.throws(() => TMT2.stats('mew'), /outside/);
+		assert.equal(Dex.forFormat('gen9tmt2seed').moves.get('struggle').basePower, 50);
+		assert.equal(catalog.table.moves.struggle, undefined);
+	});
 	it('uses explicit format routing even without upstream tables, never silently falls back', () => {
 		const dex = Dex.forFormat(catalog.metadata.formatName);
 		assert.equal(dex.modid, catalog.metadata.modID);
