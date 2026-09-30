@@ -17,6 +17,9 @@ if (args.length !== 4 || args[0] !== '--server' || args[2] !== '--commit' || !/^
 const server = fs.realpathSync(args[1]);
 const head = child_process.execFileSync('git', ['rev-parse', 'HEAD'], { cwd: server, encoding: 'utf8' }).trim();
 if (head !== args[3]) throw new Error('Local server revision does not match the explicit pin');
+if (child_process.execFileSync('git', ['status', '--porcelain'], { cwd: server, encoding: 'utf8' }).trim()) {
+	throw new Error('Pinned index input has uncommitted server source changes; use a reviewed clean checkout');
+}
 const Dex = require(path.join(server, 'dist/sim/dex')).Dex;
 const CompoundWordNames = require(path.join(server, 'dist/data/aliases')).CompoundWordNames;
 const tmt2 = JSON.parse(fs.readFileSync('tmt2/catalog.json', 'utf8'));
