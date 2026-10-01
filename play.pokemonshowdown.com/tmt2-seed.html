@@ -5,8 +5,9 @@
 body{font:16px system-ui;max-width:960px;margin:2rem auto;padding:0 1rem;background:#f5f6f8;color:#17212b}
 header,main{background:white;padding:1.2rem;border-radius:8px;margin-bottom:1rem}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:.65rem;border-bottom:1px solid #ddd}.tmt2-type{display:inline-block;border:1px solid #777;border-radius:3px;padding:2px 5px;margin-right:4px}select{font:inherit}code{overflow-wrap:anywhere}
 </style>
-<header><h1>[Gen 9] TMT2 Seed</h1><p>Hidden local adaptation · Integration view. Battle mechanics and legality are not certified.</p><p id="identity"></p><label>Filter by type <select id="type"><option value="">All six species</option></select></label></header>
-<main><table><thead><tr><th>Species</th><th>Ordered types</th><th>Selected ability</th><th>Selected moves</th></tr></thead><tbody id="roster"></tbody></table></main>
+<header><h1>[Gen 9] TMT2 Seed</h1><p>Private singles · Complete alpha or beta premade · Level 50 · IV31 · EV0 · Hardy · No items or transformations. Gen9 adaptation; exact ROM fidelity remains unverified.</p><p id="identity"></p><label>Filter by type <select id="type"><option value="">All six species</option></select></label></header>
+<main><table><thead><tr><th>Species</th><th>Ordered types</th><th>Selected ability</th><th>Selected moves</th><th>HP / Atk / Def / SpA / SpD / Spe</th></tr></thead><tbody id="roster"></tbody></table></main>
+<main><h2>Copy a complete premade</h2><p>Paste into the local client team import. The server rejects altered sets; member and move order may vary. These are fixed teams, not a general teambuilder.</p><div id="premades"></div></main>
 <script src="js/battle-dex-data.js"></script>
 <script src="js/battle-dex.js"></script>
 <script src="data/tmt2-seed.js"></script>
@@ -17,6 +18,12 @@ const dex = Dex.forFormat(catalog.metadata.formatName);
 const search = new DexSearch();
 const selector = document.getElementById('type');
 document.getElementById('identity').textContent = `Dataset ${catalog.metadata.version} · ${catalog.metadata.datasetHash} · mod ${dex.modid}`;
+for (const team of catalog.seed.teams) {
+ const label = document.createElement('label'); label.textContent = team.id;
+ const input = document.createElement('textarea'); input.readOnly = true; input.rows = 27; input.cols = 42;
+ input.setAttribute('aria-label', `${team.id} premade`); input.value = TMT2.exportPremade(team.id);
+ label.append(input); document.getElementById('premades').append(label);
+}
 for (const type of dex.types.names()) {
  const option = document.createElement('option'); option.value = type; option.textContent = type; selector.append(option);
 }
@@ -33,6 +40,7 @@ function render() {
   row.append(types);
   const ability = document.createElement('td'); ability.textContent = species.abilities[0]; row.append(ability);
   const moves = document.createElement('td'); moves.textContent = catalog.table.species[id].learnset.map(m => dex.moves.get(m).name).join(', '); row.append(moves);
+  const stats = TMT2.stats(id); const cell = document.createElement('td'); cell.textContent = ['hp','atk','def','spa','spd','spe'].map(s => stats[s]).join(' / '); row.append(cell);
   body.append(row);
  }
 }

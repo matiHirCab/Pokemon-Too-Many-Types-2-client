@@ -1,7 +1,7 @@
 {
   "metadata": {
     "baseServerCommit": "2f5b273925862ac242b419086c1e7a8868b51da1",
-    "catalogHash": "de9e68c45fb5cc98c08247671f8457b56c79aeeec8ef90a20b843b52118ab4c3",
+    "catalogHash": "f9aecbb1c477519ee839bade8764a732346c0a9fb73d63bff06c279f88417a40",
     "datasetHash": "9a3b47cd2b6dc682f6750827487ffed634fa51cf61b6e3431939c1fd60fa94c0",
     "formatID": "gen9tmt2seed",
     "formatName": "[Gen 9] TMT2 Seed",
@@ -3317,6 +3317,35 @@
         "gen": 9,
         "id": "torrent",
         "name": "Torrent"
+      }
+    },
+    "engineMoves": {
+      "struggle": {
+        "accuracy": true,
+        "basePower": 50,
+        "category": "Physical",
+        "exists": true,
+        "flags": {
+          "contact": 1,
+          "failcopycat": 1,
+          "failencore": 1,
+          "failinstruct": 1,
+          "failmefirst": 1,
+          "failmimic": 1,
+          "noassist": 1,
+          "nosketch": 1,
+          "nosleeptalk": 1,
+          "protect": 1
+        },
+        "gen": 1,
+        "name": "Struggle",
+        "noPPBoosts": true,
+        "num": 165,
+        "pp": 1,
+        "priority": 0,
+        "struggleRecoil": true,
+        "target": "randomNormal",
+        "type": "Normal"
       }
     },
     "items": {
