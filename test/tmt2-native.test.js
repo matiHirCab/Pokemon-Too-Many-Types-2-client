@@ -63,3 +63,15 @@ test('actual native browser recording reproduces winner and repeated types with 
  }finally{battle.destroy();}
  const drift=structuredClone(value);drift.catalogHash='0'.repeat(64);assert.throws(()=>TMT2.validateReplay(drift),/mismatch/);
 });
+
+test('local native background can initialize before PS without image-load bootstrap race', () => {
+ const source = fs.readFileSync('play.pokemonshowdown.com/src/client-core.ts','utf8');
+ const part = source.slice(source.indexOf('export const PSBackground'), source.indexOf('/**********************************************************************', source.indexOf('export const PSBackground')));
+ const js = babel.transformSync(part, {filename:'background.ts',babelrc:false,plugins:['@babel/plugin-transform-typescript']}).code.replace('export const','const');
+ let loaded;
+ const ctx = {Config:{tmt2Local:true},PSStreamModel:class {update(url){loaded=url;}},
+  Image:class {constructor(){throw Error('Image color extraction must not race absent PS');}}};
+ const bg = vm.runInNewContext(js+'\nPSBackground;',ctx);
+ assert.equal(loaded,'fx/bg-city.png');assert.equal(bg.menuColors.length,6);
+ assert.ok(fs.existsSync('play.pokemonshowdown.com/'+loaded));
+});

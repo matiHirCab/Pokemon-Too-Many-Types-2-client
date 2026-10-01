@@ -127,7 +127,7 @@ export const PSBackground = new class extends PSStreamModel<string | null> {
 	constructor() {
 		super();
 		try {
-			if (Config.tmt2Local) { this.load('fx/bg-city.png', 'custom'); return; }
+			if (Config.tmt2Local) { this.load('fx/bg-city.png', 'custom', Array(6).fill('210,20%')); return; }
 			let bg = localStorage.getItem('showdown_bg')?.split('\n') || [''];
 			if (bg.length === 1) {
 				// id

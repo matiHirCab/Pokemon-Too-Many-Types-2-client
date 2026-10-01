@@ -610,6 +610,7 @@ export class BattleScene implements BattleSceneStub {
 			else bg = `sprites/gen6bgs/${BattleBackdrops[this.numericId % BattleBackdrops.length]}`;
 		}
 
+		if (Config.tmt2Local) bg = 'fx/bg-city.png';
 		this.backdropImage = bg;
 		if (this.$bg) {
 			this.$bg.css('background-image', `url(${Dex.resourcePrefix}${this.backdropImage})`);
