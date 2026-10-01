@@ -26,6 +26,7 @@ const tmt2 = JSON.parse(fs.readFileSync('tmt2/catalog.json', 'utf8'));
 if (Dex.forFormat(tmt2.metadata.formatID).currentMod !== tmt2.metadata.modID) {
 	throw new Error('Pinned server lacks the TMT2 mod; refusing base-Dex substitution');
 }
+child_process.execFileSync(process.execPath, ['build-tools/build-native-tmt2', server, head], { stdio: 'inherit' });
 const crypto = require('node:crypto');
 function hashFile(file) {
 	return crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');

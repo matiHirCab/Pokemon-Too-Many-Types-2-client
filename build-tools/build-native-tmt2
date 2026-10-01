@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+'use strict';
+// Only local pinned source is consumed. These SVGs are labeled placeholders, not ROM artwork.
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const babel = require('@babel/core');
+const server = process.argv[2];
+const commit = process.argv[3];
+if (!server || !/^[a-f0-9]{40}$/.test(commit || '')) throw Error('Explicit server path and SHA required');
+const cp = require('node:child_process');
+const git = args => cp.execFileSync('git', args, { cwd: server, encoding: 'utf8' }).trim();
+if (git(['rev-parse', 'HEAD']) !== commit || git(['status', '--porcelain'])) {
+	throw Error('Native formatter requires clean exact pinned server');
+}
+const source = fs.readFileSync(path.join(server, 'server/chat-formatter.ts'), 'utf8');
+// Same repository-reviewed Babel config as the ordinary client build.
+// eslint-disable-next-line no-eval
+const babelOptions = eval('(' + fs.readFileSync('.babelrc', 'utf8') + ')');
+const opts = Object.assign(babelOptions, {
+	babelrc: false, filename: path.resolve('chat-formatter.ts'), sourceMaps: false,
+});
+const code = babel.transformSync(source, opts).code;
+const outputs = {
+	'js/server/chat-formatter.js': `${code}\nwindow.Chat = {formatText, stripFormatting};\n`,
+};
+const catalog = JSON.parse(fs.readFileSync('tmt2/catalog.json', 'utf8'));
+const cards = [
+	...catalog.seed.species, { id: 'placeholder', name: 'Unavailable' }, { id: 'trainer', name: 'Local player' },
+];
+for (const species of cards) {
+	if (!/^[a-z0-9]+$/.test(species.id)) throw Error('Unsafe card ID');
+	const name = species.name.replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
+	outputs[`tmt2/sprites/${species.id}.svg`] = [
+		'<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">',
+		'<rect x="1" y="1" width="94" height="94" rx="8" fill="#e6edf3" stroke="#536577"/>',
+		`<text x="48" y="40" text-anchor="middle" font-family="sans-serif" font-size="12">${name}</text>`,
+		'<text x="48" y="60" text-anchor="middle" font-family="sans-serif" font-size="9">sprite unavailable</text></svg>\n',
+	].join('');
+}
+const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
+const prefix = 'play.pokemonshowdown.com/';
+for (const file of [...Object.keys(outputs), 'data/tmt2-native-assets.json']) {
+	const target = prefix + file;
+	for (let at = target; at !== '.'; at = path.dirname(at)) {
+		if (fs.lstatSync(at, { throwIfNoEntry: false })?.isSymbolicLink()) throw Error('Unsafe native asset symlink');
+	}
+}
+for (const [file, bytes] of Object.entries(outputs)) {
+	const target = prefix + file;
+	fs.mkdirSync(path.dirname(target), { recursive: true }); fs.writeFileSync(target, bytes);
+}
+fs.writeFileSync(prefix + 'data/tmt2-native-assets.json', JSON.stringify({
+	sourceSha256: hash(fs.readFileSync(__filename)),
+	generator: 'tmt2-native-v1', datasetHash: catalog.metadata.datasetHash,
+	formatter: { serverCommit: commit, path: 'server/chat-formatter.ts', sha256: hash(source), license: 'MIT' },
+	placeholders: 'Code-generated labeled text cards; not Pokemon or ROM sprites. Official asset request blocked (403).',
+	outputs: Object.fromEntries(Object.entries(outputs).map(([file, bytes]) => [file, hash(bytes)])),
+}, null, 2) + '\n');

@@ -11,16 +11,7 @@
 			return url.href;
 		},
 		replay(value) {
-			if (value?.kind !== 'tmt2-local-replay-v1' || !Array.isArray(value.log) || value.log.length > 50000 ||
-				value.log.some(l => typeof l !== 'string' || l.length > 10000 || l.includes('\n') || !l.startsWith('|') ||
-					/^\|(request|challstr|pm|updateuser)\|/.test(l))) throw new Error('Invalid public replay');
-			root.TMT2.verify(value.version, value.datasetHash, value.catalogHash);
-			const records = value.log.filter(l => l.startsWith('|tmt2data|'));
-			const tiers = value.log.filter(l => l.startsWith('|tier|'));
-			if (records.length !== 1 || records[0] !== `|tmt2data|${value.version}|${value.datasetHash}|${value.catalogHash}` ||
-				tiers.length !== 1 || tiers[0] !== `|tier|${root.TMT2.catalog().metadata.formatName}` ||
-				!value.log.some(l => /^\|(win|tie)\|/.test(l))) throw new Error('Incomplete or incompatible replay');
-			return value;
+			return root.TMT2.validateReplay(value);
 		},
 	};
 	root.TMT2Private = api;

@@ -449,6 +449,7 @@ PSConnection.connect();
 
 export const PSLoginServer = new class {
 	rawQuery(act: string, data: PostData): Promise<string | null> {
+		if (Config.tmt2Local) return Promise.resolve(null); // No credentials/assertions in local guests mode.
 		// commenting out because for some reason this is working in Chrome????
 		// if (location.protocol === 'file:') {
 		// 	alert("Sorry, login server queries don't work in the testclient. To log in, see README.md to set up testclient-key.js");

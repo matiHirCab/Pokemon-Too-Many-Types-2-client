@@ -11,6 +11,7 @@
  * @license MIT
  */
 
+import { Config } from './client-main';
 import type { Battle, HPColor, Pokemon, Side, WeatherState } from './battle';
 import type { BattleSceneStub } from './battle-scene-stub';
 import { BattleMoveAnims } from './battle-animations-moves';
@@ -1689,6 +1690,7 @@ export class BattleScene implements BattleSceneStub {
 		this.updateBgm();
 	}
 	updateBgm() {
+		if (Config.tmt2Local) return; // Audio assets are excluded from the local native seed demo.
 		/**
 		 * - not playing in non-battle RoomGames before `|start` (turn -1)
 		 * - not playing at team preview in replays (paused)

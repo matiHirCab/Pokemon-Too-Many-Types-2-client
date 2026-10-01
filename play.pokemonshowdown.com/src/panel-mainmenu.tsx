@@ -12,12 +12,12 @@ import {
 	Config, PS, PSRoom, type PSRoomFocusOptions, type RoomID, type RoomOptions, type Team,
 } from "./client-main";
 import { PSIcon, PSPanelErrorBoundary, PSPanelWrapper, PSRoomPanel, PSView, ReconnectTimer } from "./panels";
-import type { BattlesRoom } from "./panel-battle";
+import { BattlePanel, type BattlesRoom } from "./panel-battle";
 import type { ChatRoom } from "./panel-chat";
 import type { LadderFormatRoom } from "./panel-ladder";
 import type { RoomsRoom } from "./panel-rooms";
 import { TeamBox, type SelectType } from "./panel-teamdropdown";
-import { Dex, TL, toID, type ID } from "./battle-dex";
+import { Dex, TMT2, TL, toID, type ID } from "./battle-dex";
 import type { Args } from "./battle-text-parser";
 import { BattleLog } from "./battle-log"; // optional
 
@@ -148,7 +148,7 @@ export class MainMenuRoom extends PSRoom {
 		} case 'updateuser': {
 			const [, fullName, namedCode, avatar, settingsJSON] = args;
 			const named = namedCode === '1';
-			if (named) PS.user.initializing = false;
+			if (named || Config.tmt2Local) PS.user.initializing = false;
 			if (settingsJSON) {
 				const serverSettings = JSON.parse(settingsJSON);
 				// don't trust server setting for language
@@ -157,6 +157,10 @@ export class MainMenuRoom extends PSRoom {
 			}
 			void Dex.loadTextData().then(() => PS.updateTranslatedText());
 			PS.user.setName(fullName, named, avatar);
+			if (Config.tmt2Local && !named) {
+				const savedName = sessionStorage.getItem('tmt2-local-name');
+				if (savedName) PS.user.changeName(savedName);
+			}
 			PS.teams.loadRemoteTeams();
 			return;
 		} case 'updatechallenges': {
@@ -361,6 +365,13 @@ export class MainMenuRoom extends PSRoom {
 			}
 		}
 
+		if (Config.tmt2Local) {
+			const meta = TMT2.catalog().metadata;
+			BattleFormats[meta.formatID] = { id: meta.formatID, name: meta.formatName,
+				section: 'TMT2 Private (local)', column: 1, searchShow: false, challengeShow: true,
+				tournamentShow: false, rated: false, isTeambuilderFormat: true, effectType: 'Format', teambuilderLevel: 50 };
+		}
+
 		// Match base formats to their variants, if they are unavailable in the server.
 		let multivariantFormats: { [id: string]: 1 } = {};
 		for (let id in BattleFormats) {
@@ -563,6 +574,18 @@ class NewsPanel extends PSRoomPanel {
 }
 
 class MainMenuPanel extends PSRoomPanel<MainMenuRoom> {
+	loadLocalReplay = (e: Event) => {
+		const file = (e.currentTarget as HTMLInputElement).files?.[0];
+		if (file) void file.text()
+			.then(text => BattlePanel.loadLocalReplay(JSON.parse(text)))
+			.catch(err => PS.alert(String(err)));
+	};
+	loadLastReplay = () => {
+		try {
+			BattlePanel.loadLocalReplay(JSON.parse(sessionStorage.getItem('tmt2-native-replay') || 'null'));
+		} catch (err) { PS.alert(String(err)); }
+	};
+
 	static readonly id = 'mainmenu';
 	static readonly routes = [''];
 	static readonly Model = MainMenuRoom;
@@ -757,6 +780,14 @@ class MainMenuPanel extends PSRoomPanel<MainMenuRoom> {
 			</div>
 			<div class={`mainmenu${tinyLayout}`}>
 				<div class="mainmenu-left">
+					{Config.tmt2Local && <div class="menugroup">
+						<p><strong>TMT2 private local seed</strong><br />Find a user → Challenge → TMT2 Seed → alpha/beta.</p>
+						<p>Native Showdown UI. Sprite art/audio unavailable; labeled local cards are used.</p>
+						<label class="button">Load local TMT2 replay {}
+							<input type="file" accept="application/json" onChange={this.loadLocalReplay} />
+						</label>
+						<button class="button" onClick={this.loadLastReplay}>Load last local replay</button>
+					</div>}
 					{this.renderGames()}
 
 					{this.renderSearchButton()}
