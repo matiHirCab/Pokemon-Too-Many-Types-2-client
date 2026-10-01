@@ -9,6 +9,7 @@
 <section><h2>Choose a complete premade</h2><select id="team" aria-label="Premade"><option value="alpha">Alpha: Rattata / Eevee / Froakie</option><option value="beta">Beta: Nosepass / Floragato / Pidgeot</option></select><pre id="premade"></pre><label>Opponent <input id="opponent" maxlength="18"></label><button id="challenge">Challenge privately</button><button id="cancel">Cancel challenge</button><button id="accept">Accept challenge</button><p id="pending"></p></section>
 <section><h2>Battle</h2><p id="room"></p><p id="result">No battle yet</p><pre id="state"></pre><div id="choices"></div><button id="rejoin">Rejoin room</button><pre id="log"></pre></section>
 <section><h2>Local replay</h2><p>Save the completed public battle log. Load it here with the same locally generated catalog; mismatches are rejected. Nothing is uploaded.</p><button id="save" disabled>Save replay JSON</button><label>Load replay <input type="file" id="replay-file" accept="application/json"></label><button id="last-replay">Load last local replay</button></section>
+<script>window.Config = {routes: {root: location.host}, whitelist: [], customcolors: {}};</script>
 <script src="js/battle-dex-data.js"></script><script src="js/battle-dex.js"></script><script src="data/tmt2-seed.js"></script>
 <script src="js/battle-teams.js"></script><script src="js/battle-scene-stub.js"></script><script src="js/battle-text-parser.js"></script><script src="js/battle-log.js"></script><script src="js/battle.js"></script>
 <script src="tmt2-private.js"></script>
