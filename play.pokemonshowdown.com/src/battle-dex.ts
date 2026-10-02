@@ -1208,7 +1208,8 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getPokemonIcon(pokemon: string | Pokemon | ServerPokemon | Dex.PokemonSet | null, facingLeft?: boolean) {
-		const localID = toID(typeof pokemon === 'string' ? pokemon : (pokemon as any)?.speciesForme || (pokemon as any)?.species);
+		const localID = toID(typeof pokemon === 'string' ? pokemon :
+			(pokemon as any)?.speciesForme || (pokemon as any)?.species);
 		if (Config.tmt2Local && (TMT2.artwork().mode !== 'originals-local-evaluation' ||
 			TMT2.artwork().placeholderSpecies?.includes(localID))) {
 			const id = localID;
