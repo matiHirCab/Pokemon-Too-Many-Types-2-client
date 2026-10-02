@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+'use strict';
+const path = require('node:path');
+const { importArtwork } = require('./tmt2-native-artwork');
+const pin = require('../tmt2/native-artwork.json');
+const args = process.argv.slice(2);
+if (args.length < 1 || args.length > 2 || args.some(a => a.startsWith('--'))) {
+	throw Error('Usage: node build-tools/import-tmt2-artwork sprites.zip [NEW_DIRECTORY]');
+}
+importArtwork(path.resolve(args[0]), args[1] || path.join(__dirname, '../caches/tmt2-native-artwork'), pin);
+console.log('Verified 16 original assets imported locally; redistribution rights remain unverified.');

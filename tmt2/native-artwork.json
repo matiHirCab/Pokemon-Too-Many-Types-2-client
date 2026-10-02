@@ -1,0 +1,211 @@
+{
+  "schemaVersion": 1,
+  "kind": "tmt2-native-artwork-local-evaluation",
+  "archiveSha256": "533b8f4315c3c144d8397dc881600d92a5258ecd3c430025e420a1c85754d4ab",
+  "manifestSha256": "205c2188cc5428ed241c15fa8403c6b291d0a6ea8acf00f6a4fbc27ef83c7ca5",
+  "origin": "https://play.pokemonshowdown.com",
+  "redistributionRights": "not-verified; public availability and code license do not establish asset redistribution rights",
+  "verification": "2026-10-02: uploaded ZIP entries/hash checked; all GIF frames and PNG pixels decoded; dimensions/frame counts matched manifest. Local evaluation only.",
+  "files": [
+    {
+      "id": "rattata",
+      "facing": "ani",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani/rattata.gif",
+      "path": "sprites/ani/rattata.gif",
+      "sizeBytes": 16397,
+      "sha256": "3f412941f4c49ec09c3403e959ede3321ad10bee61d5321fde246ab5913ee3f4",
+      "gif": {
+        "width": 43,
+        "height": 61,
+        "frames": 26
+      }
+    },
+    {
+      "id": "rattata",
+      "facing": "ani-back",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani-back/rattata.gif",
+      "path": "sprites/ani-back/rattata.gif",
+      "sizeBytes": 15463,
+      "sha256": "fa8dfed0523f38831a694281f621dc61db6890179cff29c0e50a4e64645e9519",
+      "gif": {
+        "width": 43,
+        "height": 64,
+        "frames": 25
+      }
+    },
+    {
+      "id": "eevee",
+      "facing": "ani",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani/eevee.gif",
+      "path": "sprites/ani/eevee.gif",
+      "sizeBytes": 18944,
+      "sha256": "244c533a4d2d96fb89f35195cde1eec7eb06bd3b5f137fa116190cceaec05670",
+      "gif": {
+        "width": 64,
+        "height": 55,
+        "frames": 25
+      }
+    },
+    {
+      "id": "eevee",
+      "facing": "ani-back",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani-back/eevee.gif",
+      "path": "sprites/ani-back/eevee.gif",
+      "sizeBytes": 16345,
+      "sha256": "1cc18c0bc14863cde4df3b18cc9dbf9984e0a2fd3577ea8a03b844f11bf64c7a",
+      "gif": {
+        "width": 72,
+        "height": 54,
+        "frames": 29
+      }
+    },
+    {
+      "id": "froakie",
+      "facing": "ani",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani/froakie.gif",
+      "path": "sprites/ani/froakie.gif",
+      "sizeBytes": 21228,
+      "sha256": "21c9206a5c7814fd1cacb3ecfaced803ea6a48af51b1702c4e1ac850074103a0",
+      "gif": {
+        "width": 45,
+        "height": 52,
+        "frames": 29
+      }
+    },
+    {
+      "id": "froakie",
+      "facing": "ani-back",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani-back/froakie.gif",
+      "path": "sprites/ani-back/froakie.gif",
+      "sizeBytes": 20183,
+      "sha256": "dd4e00fb68fa258b8661ee14daa0bd29742e21d259bf93ecbd1c6248a9c0f8ef",
+      "gif": {
+        "width": 46,
+        "height": 52,
+        "frames": 32
+      }
+    },
+    {
+      "id": "nosepass",
+      "facing": "ani",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani/nosepass.gif",
+      "path": "sprites/ani/nosepass.gif",
+      "sizeBytes": 36989,
+      "sha256": "3ec9be86686731c453dd7672f823067a0d68881fc07f9864f4904e5985f7d0da",
+      "gif": {
+        "width": 62,
+        "height": 58,
+        "frames": 61
+      }
+    },
+    {
+      "id": "nosepass",
+      "facing": "ani-back",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani-back/nosepass.gif",
+      "path": "sprites/ani-back/nosepass.gif",
+      "sizeBytes": 37268,
+      "sha256": "ba5afe7d3ab2a1aa240f935ce97a41a7c23b21264d1b750e8bd16ae4b707643f",
+      "gif": {
+        "width": 59,
+        "height": 58,
+        "frames": 59
+      }
+    },
+    {
+      "id": "floragato",
+      "facing": "ani",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani/floragato.gif",
+      "path": "sprites/ani/floragato.gif",
+      "sizeBytes": 53371,
+      "sha256": "e851b47605a9187495ec0121607b1bc3de5a91c8f636086d8bdb90889b4d3db0",
+      "gif": {
+        "width": 35,
+        "height": 78,
+        "frames": 37
+      }
+    },
+    {
+      "id": "floragato",
+      "facing": "ani-back",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani-back/floragato.gif",
+      "path": "sprites/ani-back/floragato.gif",
+      "sizeBytes": 46443,
+      "sha256": "31c9d75f98c7be0c09239ee3600f4063fa463ff26868d63f6938299a920bcdbc",
+      "gif": {
+        "width": 40,
+        "height": 80,
+        "frames": 37
+      }
+    },
+    {
+      "id": "pidgeot",
+      "facing": "ani",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani/pidgeot.gif",
+      "path": "sprites/ani/pidgeot.gif",
+      "sizeBytes": 68538,
+      "sha256": "87627a7e52808005076edf6aa4631eebeb2cfafbdae26b5590bb54ed901a8eca",
+      "gif": {
+        "width": 124,
+        "height": 124,
+        "frames": 53
+      }
+    },
+    {
+      "id": "pidgeot",
+      "facing": "ani-back",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/ani-back/pidgeot.gif",
+      "path": "sprites/ani-back/pidgeot.gif",
+      "sizeBytes": 61644,
+      "sha256": "ac52dcdd367fc7c6a26827328c5b028a1f8bf58cbc124c3b8602d5bb8995f2d2",
+      "gif": {
+        "width": 110,
+        "height": 117,
+        "frames": 54
+      }
+    },
+    {
+      "asset": "sprites/trainers/rosa.png",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/trainers/rosa.png",
+      "path": "sprites/trainers/rosa.png",
+      "sizeBytes": 774,
+      "sha256": "95a754179451eacec58d198cdd4a1a67f419e36a3761a492f7904bee3819a8cb",
+      "png": {
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "asset": "sprites/trainers/lyra.png",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/trainers/lyra.png",
+      "path": "sprites/trainers/lyra.png",
+      "sizeBytes": 676,
+      "sha256": "4ad96571f44cbf5c6a7da854c1eede14d60ed82fc6ea1ce6ea5b91d3d0a6e7f0",
+      "png": {
+        "width": 80,
+        "height": 80
+      }
+    },
+    {
+      "asset": "sprites/pokemonicons-sheet.png",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/pokemonicons-sheet.png",
+      "path": "sprites/pokemonicons-sheet.png",
+      "sizeBytes": 392317,
+      "sha256": "b1a02d8ecbeb6564a25b931e2b6a15d8cd55fb129f396c9bf2c9e8dc1332593b",
+      "png": {
+        "width": 480,
+        "height": 4110
+      }
+    },
+    {
+      "asset": "sprites/pokemonicons-pokeball-sheet.png",
+      "sourceUrl": "https://play.pokemonshowdown.com/sprites/pokemonicons-pokeball-sheet.png",
+      "path": "sprites/pokemonicons-pokeball-sheet.png",
+      "sizeBytes": 268,
+      "sha256": "4608f50697207f5655f7d8699f46df09e90bab8ef9e1c93a48cb1bbd462ed0ed",
+      "png": {
+        "width": 120,
+        "height": 30
+      }
+    }
+  ]
+}

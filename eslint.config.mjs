@@ -76,6 +76,7 @@ export default configure([
 			'build-tools/*.js',
 			'build-tools/update',
 			'build-tools/build-*',
+			'build-tools/import-tmt2-artwork',
 		],
 		extends: [configs.js],
 		languageOptions: {
