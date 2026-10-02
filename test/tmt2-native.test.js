@@ -8,6 +8,7 @@ const babel = require('@babel/core');
 global.window = global;
 global.Config = {routes: {root: 'localhost'}, whitelist: []};
 global.BattleTMT2 = require('../tmt2/catalog.json');
+global.BattleText = require('../play.pokemonshowdown.com/data/text/en.js').BattleText;
 vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/data/tmt2-native-assets.js','utf8'));
 require('../play.pokemonshowdown.com/js/battle-dex-data.js');
 Object.assign(global,vm.runInNewContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-dex-data.js','utf8')+
