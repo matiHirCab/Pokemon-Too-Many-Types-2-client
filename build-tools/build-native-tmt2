@@ -31,7 +31,8 @@ const artwork = process.env.TMT2_SPRITES_DIR || fs.existsSync(artworkDir) ?
 	require('./tmt2-native-artwork').loadArtwork(artworkDir, artworkPin) : null;
 if (artwork) Object.assign(outputs, artwork.outputs);
 const cards = [
-	...catalog.seed.species, { id: 'placeholder', name: 'Unavailable' }, { id: 'trainer', name: 'Local player' },
+	...catalog.seed.species, ...(catalog.seed.forms || []),
+	{ id: 'placeholder', name: 'Unavailable' }, { id: 'trainer', name: 'Local player' },
 ];
 for (const species of cards) {
 	if (!/^[a-z0-9]+$/.test(species.id)) throw Error('Unsafe card ID');

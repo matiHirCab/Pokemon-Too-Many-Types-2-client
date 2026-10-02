@@ -18,6 +18,35 @@ global.BattleLog = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com
 const TMTSearch = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-dex-search.js', 'utf8') + '\nDexSearch;');
 
 describe('TMT-05 client catalog routing (not complete battle)', () => {
+	it('preserves a catalog-selected stone in premade copies and text exports (synthetic item fixture)', () => {
+		const prior = global.BattleTMT2;
+		const copy = structuredClone(prior);
+		copy.seed.teams[1].sets.find(s => s.species === 'pidgeot').item = 'pidgeotite';
+		copy.table.items.pidgeotite = { id: 'pidgeotite', name: 'Pidgeotite' };
+		global.BattleTMT2 = copy;
+		try {
+			assert.equal(TMT2.premade('beta').find(s => s.species === 'pidgeot').item, 'pidgeotite');
+			assert.match(TMT2.exportPremade('beta'), /Pidgeot @ Pidgeotite/);
+			assert.equal(TMT2.premade('alpha')[0].item, '');
+		} finally { global.BattleTMT2 = prior; }
+	});
+	it('resolves the selected runtime mega and parses form changes without upstream types',
+		{ skip: !catalog.seed.forms?.length }, () => {
+			global.BattleText = require('../play.pokemonshowdown.com/data/text/en.js').BattleText;
+			const log = ['|gen|9', `|tier|${catalog.metadata.formatName}`,
+				`|tmt2data|${catalog.metadata.version}|${catalog.metadata.datasetHash}|${catalog.metadata.catalogHash}`,
+				'|player|p1|Alpha', '|player|p2|Beta', '|start', '|switch|p1a: Pidgeot|Pidgeot, L50|158/158',
+				'|detailschange|p1a: Pidgeot|Pidgeot-Mega, L50', '|-mega|p1a: Pidgeot|Pidgeot|Pidgeotite', '|win|Alpha'];
+			const replay = { kind: 'tmt2-local-replay-v1', ...catalog.metadata, log };
+			TMT2.validateReplay(replay);
+			const b = new Battle({ debug: true });
+			try {
+				b.setQueue(log); b.seekTurn(Infinity);
+				assert.equal(b.ended, true);
+				assert.deepEqual(b.p1.pokemon[0].getTypeList(), ['Holy', 'Bird', 'Bird']);
+				assert.equal(b.dex.species.get('pidgeotmega').requiredItem, 'Pidgeotite');
+			} finally { b.destroy(); }
+		});
 	it('provides fixed premades, authoritative EV0 stats and engine-only Struggle', () => {
 		for (const team of catalog.seed.teams) {
 			assert.equal(TMT2.premade(team.id).length, 3);
