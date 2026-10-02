@@ -10,7 +10,7 @@
   "version": "0.1.0",
   "room": "recorded-native-browser-battle",
   "log": [
-    "|error|The room 'battle-gen9tmt2seed-23-g2kyloqssa339ufnyt80isaposej0uqpw' does not exist or requires a login to join.",
+    "|error|The room 'recorded-previous-room' does not exist or requires a login to join.",
     "|raw|<div class=\"broadcast-red\"><strong>This battle is invite-only!</strong><br />Users must be invited with <code>/invite</code> (or be staff) to join</div>",
     "|j|\u2606NativeAlpha",
     "|j|\u2606NativeBeta",
@@ -174,6 +174,9 @@
     "turns": 11,
     "spriteArt": "labeled local placeholders",
     "audio": "excluded",
-    "notROMOrHumanPlaytest": true
+    "notROMOrHumanPlaytest": true,
+    "redactions": [
+      "Previous failed-join room capability replaced by a neutral name; error retained."
+    ]
   }
 }

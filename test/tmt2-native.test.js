@@ -64,6 +64,19 @@ test('actual native browser recording reproduces winner and repeated types with 
  const drift=structuredClone(value);drift.catalogHash='0'.repeat(64);assert.throws(()=>TMT2.validateReplay(drift),/mismatch/);
 });
 
+test('recovered final native browser recording completes cleanly after the recorded reload', () => {
+ const value=require('./fixtures/tmt2-native-final-replay.json');TMT2.validateReplay(value);
+ assert.equal(value.log.length,148);assert.equal(value.log.some(line=>line.startsWith('|error|')),false);
+ assert.match(value.evidence.sourceSha256,/^[a-f0-9]{64}$/);
+ const battle=new Battle({debug:true});try {
+ battle.setQueue(value.log);battle.seekTurn(Infinity);
+ assert.equal(battle.ended,true);assert.equal(battle.turn,11);assert.equal(battle.dex.modid,'gen9tmt2seed');
+ assert.equal(value.log.at(-1),'|win|NativeFinalB');
+ assert.deepEqual(battle.p2.pokemon.find(p=>p.speciesForme==='Pidgeot').getTypeList(),['Bird','Bird','Bird']);
+ }finally{battle.destroy();}
+ const drift=structuredClone(value);drift.datasetHash='0'.repeat(64);assert.throws(()=>TMT2.validateReplay(drift),/mismatch/);
+});
+
 test('local native background can initialize before PS without image-load bootstrap race', () => {
  const source = fs.readFileSync('play.pokemonshowdown.com/src/client-core.ts','utf8');
  const part = source.slice(source.indexOf('export const PSBackground'), source.indexOf('/**********************************************************************', source.indexOf('export const PSBackground')));
