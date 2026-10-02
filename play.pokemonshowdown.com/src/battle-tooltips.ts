@@ -9,7 +9,7 @@
  */
 
 import { Pokemon, type Battle, type PPState, type ServerPokemon } from "./battle";
-import { Dex, type ModdedDex, TL, toID, type ID } from "./battle-dex";
+import { Dex, TMT2, type ModdedDex, TL, toID, type ID } from "./battle-dex";
 import type { BattleScene } from "./battle-animations";
 import { BattleLog } from "./battle-log";
 import { Move, BattleNatures } from "./battle-dex-data";
@@ -1547,6 +1547,9 @@ export class BattleTooltips {
 				return `<p><small>${speedName}</small> ${speedRange} <small>${beforeStatStages}</small></p>`;
 			}
 			const beforeExternalModifiers = BattleTextParser.ui('beforeExternalModifiers');
+			if (this.battle.dex.modid === TMT2.id) {
+				return `<p><small>${speedName}</small> ${ev0} <small>${beforeExternalModifiers}</small></p>`;
+			}
 			if (this.battle.tier.includes('Random')) {
 				return `<p><small>${speedName}</small> ${min}${BattleTextParser.ui('or')}${ev84} <small>${beforeExternalModifiers}</small></p>`;
 			} else if (this.battle.tier.includes("Let's Go")) {
@@ -1644,6 +1647,10 @@ export class BattleTooltips {
 	 * Calculates possible Speed stat range of an opponent
 	 */
 	getSpeedRange(pokemon: Pokemon): { min: number, ev0: number, ev84: number, ev252: number, max: number } {
+		if (this.battle.dex.modid === TMT2.id) {
+			const spe = TMT2.stats(pokemon.speciesForme).spe;
+			return { min: spe, ev0: spe, ev84: spe, ev252: spe, max: spe };
+		}
 		const tr = Math.trunc || Math.floor;
 		const species = pokemon.getSpecies();
 		let rules = this.battle.rules;

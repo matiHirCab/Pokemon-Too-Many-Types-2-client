@@ -18,6 +18,7 @@ require('../play.pokemonshowdown.com/js/battle-text-parser.js');
 require('../play.pokemonshowdown.com/js/battle-scene-stub.js');
 global.BattleLog = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-log.js', 'utf8') + '\nBattleLog;');
 require('../play.pokemonshowdown.com/js/battle.js');
+const NativeTooltips=vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-tooltips.js','utf8')+'\nBattleTooltips;');
 const NativeTeams = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-teams.js', 'utf8') + '\nTeams;');
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 test('native bootstrap fails closed outside loopback and uses no public auth/data routes', () => {
@@ -111,6 +112,22 @@ test('recovered final native browser recording completes cleanly after the recor
  assert.deepEqual(battle.p2.pokemon.find(p=>p.speciesForme==='Pidgeot').getTypeList(),['Bird','Bird','Bird']);
  }finally{battle.destroy();}
  const drift=structuredClone(value);drift.datasetHash='0'.repeat(64);assert.throws(()=>TMT2.validateReplay(drift),/mismatch/);
+});
+
+test('native seed opponent tooltip uses exact EV0 IV31 Hardy speed; ordinary ranges remain intact',()=>{
+ const value=require('./fixtures/tmt2-native-final-replay.json');
+ const battle=new Battle({debug:true});try{
+  battle.setQueue(value.log);battle.seekTurn(Infinity);
+  const tooltip=Object.create(NativeTooltips.prototype);tooltip.battle=battle;
+  for(const p of [...battle.p1.pokemon,...battle.p2.pokemon]){
+   const expected=TMT2.stats(p.speciesForme).spe;
+   assert.deepEqual(tooltip.getSpeedRange(p),{min:expected,ev0:expected,ev84:expected,ev252:expected,max:expected});
+   assert.ok(!tooltip.renderStats(p).includes('&ndash;'));
+  }
+  battle.dex=Dex.forFormat('gen9ou');
+  const range=tooltip.getSpeedRange(battle.p2.pokemon.find(p=>p.speciesForme==='Pidgeot'));
+  assert.ok(range.min<range.max);
+ }finally{battle.destroy();}
 });
 
 test('local native background can initialize before PS without image-load bootstrap race', () => {
