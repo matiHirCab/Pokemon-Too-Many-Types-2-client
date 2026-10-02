@@ -69,7 +69,7 @@ export const TMT2 = {
 	premade(id: string) {
 		const team = this.catalog().seed.teams.find((t: any) => t.id === id);
 		if (!team) throw new Error('Unknown TMT2 premade');
-		return JSON.parse(JSON.stringify(team.sets)).map((s: any) => ({ ...s, item: '' }));
+		return JSON.parse(JSON.stringify(team.sets)).map((s: any) => ({ ...s, item: s.item === 'none' ? '' : s.item }));
 	},
 	stats(species: string) {
 		const data = this.catalog().table.species[toID(species)];
@@ -82,9 +82,11 @@ export const TMT2 = {
 	},
 	exportPremade(id: string) {
 		const table = this.catalog().table;
-		return this.premade(id).map((s: any) => [table.species[s.species].name,
-			`Ability: ${table.abilities[s.ability].name}`, 'Level: 50', 'Hardy Nature',
-			...s.moves.map((m: string) => `- ${table.moves[m].name}`)].join('\n')).join('\n\n');
+		return this.premade(id).map((s: any) => {
+			const name = table.species[s.species].name + (s.item ? ` @ ${table.items[s.item].name}` : '');
+			return [name, `Ability: ${table.abilities[s.ability].name}`, 'Level: 50', 'Hardy Nature',
+				...s.moves.map((m: string) => `- ${table.moves[m].name}`)].join('\n');
+		}).join('\n\n');
 	},
 };
 
@@ -1015,7 +1017,8 @@ export const Dex = new class implements ModdedDex {
 		if (Config.tmt2Local) {
 			const assets = TMT2.artwork();
 			const file = assets.files[`sprites/${isFront ? 'ani' : 'ani-back'}/${species.id}.gif`];
-			if (assets.mode === 'originals-local-evaluation' && TMT2.catalog().table.species[species.id] && !file) {
+			if (assets.mode === 'originals-local-evaluation' && TMT2.catalog().table.species[species.id] &&
+				!TMT2.catalog().seed.forms?.some((f: any) => f.id === species.id) && !file) {
 				throw new Error('Required local TMT2 sprite missing');
 			}
 			const card = TMT2.catalog().table.species[species.id] ? species.id : 'placeholder';

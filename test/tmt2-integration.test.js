@@ -18,6 +18,33 @@ global.BattleLog = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com
 const TMTSearch = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-dex-search.js', 'utf8') + '\nDexSearch;');
 
 describe('TMT-05 client catalog routing (not complete battle)', () => {
+	it('preserves a catalog-selected stone in premade copies and text exports (synthetic item fixture)', () => {
+		const prior = global.BattleTMT2;
+		const copy = structuredClone(prior);
+		copy.seed.teams[1].sets.find(s => s.species === 'pidgeot').item = 'pidgeotite';
+		copy.table.items.pidgeotite = { id: 'pidgeotite', name: 'Pidgeotite' };
+		global.BattleTMT2 = copy;
+		try {
+			assert.equal(TMT2.premade('beta').find(s => s.species === 'pidgeot').item, 'pidgeotite');
+			assert.match(TMT2.exportPremade('beta'), /Pidgeot @ Pidgeotite/);
+			assert.equal(TMT2.premade('alpha')[0].item, '');
+		} finally { global.BattleTMT2 = prior; }
+	});
+	it('parses completed deterministic simulator mega replay with selected Dex; rejects historical identity',
+		{ skip: !catalog.seed.forms?.length }, () => {
+			global.BattleText = require('../play.pokemonshowdown.com/data/text/en.js').BattleText;
+			const replay = require('./fixtures/tmt2-mega-simulator-replay.json');
+			const log = replay.log;
+			TMT2.validateReplay(replay);
+			const b = new Battle({ debug: true });
+			try {
+				b.paused = true; b.setQueue(log); b.seekTurn(2);
+				assert.equal(b.turn, 2);
+				assert.deepEqual(b.p1.pokemon.find(p => p.speciesForme === 'Pidgeot-Mega').getTypeList(), ['Holy', 'Bird', 'Bird']);
+				assert.deepEqual(b.dex.species.get('pidgeotmega').requiredItems, ['Pidgeotite']);
+				b.seekTurn(Infinity); assert.equal(b.ended, true); assert.equal(log.at(-1), '|win|MegaBeta');
+			} finally { b.destroy(); }
+		});
 	it('provides fixed premades, authoritative EV0 stats and engine-only Struggle', () => {
 		for (const team of catalog.seed.teams) {
 			assert.equal(TMT2.premade(team.id).length, 3);
@@ -75,7 +102,7 @@ describe('TMT-05 client catalog routing (not complete battle)', () => {
 		const search = new TMTSearch();
 		search.setType('pokemon', 'gen9tmt2seed');
 		search.find('');
-		assert.equal(search.results.length, 6);
+		assert.equal(search.results.length, catalog.seed.species.length + (catalog.seed.forms?.length || 0));
 		search.addFilter(['type', 'Cat']);
 		search.find('');
 		assert.deepEqual(search.results.map(r => r[1]).sort(), ['eevee', 'floragato']);
