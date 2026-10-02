@@ -54,7 +54,7 @@ test('native original artwork routes exact facing/dimensions, trainers and icon 
  global.BattleTMT2Assets={schemaVersion:1,datasetHash:BattleTMT2.metadata.datasetHash,mode:'originals-local-evaluation',
   files:Object.fromEntries(pin.files.map(f=>[f.path,{path:'tmt2/'+f.path,...(f.gif||f.png)}]))};Config.tmt2Local=true;
  try {
-  for(const id of Object.keys(BattleTMT2.table.species)) {
+  for(const id of BattleTMT2.seed.species.map(s=>s.id)) {
    for(const front of [true,false]) {
     const expected=pin.files.find(f=>f.path===`sprites/${front?'ani':'ani-back'}/${id}.gif`);
     const sprite=Dex.getSpriteData(id,front,{gen:9});
@@ -62,6 +62,10 @@ test('native original artwork routes exact facing/dimensions, trainers and icon 
     assert.equal(sprite.h,expected.gif.height);assert.equal(sprite.isFrontSprite,front);
     assert.equal(sprite.cryurl,'');
    }
+  }
+  for(const form of BattleTMT2.seed.forms || []) {
+   const sprite=Dex.getSpriteData(form.id,true,{gen:9});
+   assert.equal(sprite.url,`tmt2/sprites/${form.id}.svg`);assert.match(fs.readFileSync('play.pokemonshowdown.com/'+sprite.url,'utf8'),/sprite unavailable/);
   }
   assert.equal(Dex.resolveAvatar('265'),'tmt2/sprites/trainers/rosa.png');
   assert.equal(Dex.resolveAvatar('102'),'tmt2/sprites/trainers/lyra.png');
@@ -93,32 +97,24 @@ test('native premade installation preserves saved teams and avoids duplicates; o
  const second=new TeamModel();assert.equal(second.list.length,3);assert.equal(second.list.filter(t=>t.name==='Keep me').length,1);
  ctx.Config.tmt2Local=false;saved='';assert.equal(new TeamModel().list.length,0);
 });
-test('actual native browser recording reproduces winner and repeated types with compatibility rejection', () => {
- const value=require('./fixtures/tmt2-native-browser-replay.json');TMT2.validateReplay(value);
- const battle=new Battle({debug:true});try {
- battle.setQueue(value.log);battle.seekTurn(Infinity);assert.equal(battle.ended,true);assert.equal(battle.dex.modid,'gen9tmt2seed');
- assert.equal(value.log.at(-1),'|win|NativeBeta');assert.deepEqual(battle.p2.pokemon.find(p=>p.speciesForme==='Pidgeot').getTypeList(),['Bird','Bird','Bird']);
- }finally{battle.destroy();}
+test('historical v0.1 native recording is rejected by v0.2 without rewriting evidence', () => {
+ const value=require('./fixtures/tmt2-native-browser-replay.json');assert.throws(()=>TMT2.validateReplay(value),/mismatch/); // Historical v0.1 parser evidence only; not compatible playback.
+ assert.equal(value.log.at(-1),'|win|NativeBeta');
  const drift=structuredClone(value);drift.catalogHash='0'.repeat(64);assert.throws(()=>TMT2.validateReplay(drift),/mismatch/);
 });
 
-test('recovered final native browser recording completes cleanly after the recorded reload', () => {
- const value=require('./fixtures/tmt2-native-final-replay.json');TMT2.validateReplay(value);
+test('historical recovered native recording retains original evidence and is rejected by v0.2', () => {
+ const value=require('./fixtures/tmt2-native-final-replay.json');assert.throws(()=>TMT2.validateReplay(value),/mismatch/); // Preserve original browser evidence, never relabel its identity.
  assert.equal(value.log.length,148);assert.equal(value.log.some(line=>line.startsWith('|error|')),false);
  assert.match(value.evidence.sourceSha256,/^[a-f0-9]{64}$/);
- const battle=new Battle({debug:true});try {
- battle.setQueue(value.log);battle.seekTurn(Infinity);
- assert.equal(battle.ended,true);assert.equal(battle.turn,11);assert.equal(battle.dex.modid,'gen9tmt2seed');
  assert.equal(value.log.at(-1),'|win|NativeFinalB');
- assert.deepEqual(battle.p2.pokemon.find(p=>p.speciesForme==='Pidgeot').getTypeList(),['Bird','Bird','Bird']);
- }finally{battle.destroy();}
  const drift=structuredClone(value);drift.datasetHash='0'.repeat(64);assert.throws(()=>TMT2.validateReplay(drift),/mismatch/);
 });
 
 test('native seed opponent tooltip uses exact EV0 IV31 Hardy speed; ordinary ranges remain intact',()=>{
- const value=require('./fixtures/tmt2-native-final-replay.json');
+ const value=require('./fixtures/tmt2-mega-simulator-replay.json');
  const battle=new Battle({debug:true});try{
-  battle.setQueue(value.log);battle.seekTurn(Infinity);
+  battle.paused=true;battle.setQueue(value.log);battle.seekTurn(2);
   const tooltip=Object.create(NativeTooltips.prototype);tooltip.battle=battle;
   for(const p of [...battle.p1.pokemon,...battle.p2.pokemon]){
    const expected=TMT2.stats(p.speciesForme).spe;
@@ -126,7 +122,7 @@ test('native seed opponent tooltip uses exact EV0 IV31 Hardy speed; ordinary ran
    assert.ok(!tooltip.renderStats(p).includes('&ndash;'));
   }
   battle.dex=Dex.forFormat('gen9ou');
-  const range=tooltip.getSpeedRange(battle.p2.pokemon.find(p=>p.speciesForme==='Pidgeot'));
+  const range=tooltip.getSpeedRange(battle.p1.pokemon.find(p=>p.name==='Pidgeot'));
   assert.ok(range.min<range.max);
  }finally{battle.destroy();}
 });

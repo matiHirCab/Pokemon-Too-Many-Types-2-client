@@ -30,21 +30,19 @@ describe('TMT-05 client catalog routing (not complete battle)', () => {
 			assert.equal(TMT2.premade('alpha')[0].item, '');
 		} finally { global.BattleTMT2 = prior; }
 	});
-	it('resolves the selected runtime mega and parses form changes without upstream types',
+	it('parses completed deterministic simulator mega replay with selected Dex; rejects historical identity',
 		{ skip: !catalog.seed.forms?.length }, () => {
 			global.BattleText = require('../play.pokemonshowdown.com/data/text/en.js').BattleText;
-			const log = ['|gen|9', `|tier|${catalog.metadata.formatName}`,
-				`|tmt2data|${catalog.metadata.version}|${catalog.metadata.datasetHash}|${catalog.metadata.catalogHash}`,
-				'|player|p1|Alpha', '|player|p2|Beta', '|start', '|switch|p1a: Pidgeot|Pidgeot, L50|158/158',
-				'|detailschange|p1a: Pidgeot|Pidgeot-Mega, L50', '|-mega|p1a: Pidgeot|Pidgeot|Pidgeotite', '|win|Alpha'];
-			const replay = { kind: 'tmt2-local-replay-v1', ...catalog.metadata, log };
+			const replay = require('./fixtures/tmt2-mega-simulator-replay.json');
+			const log = replay.log;
 			TMT2.validateReplay(replay);
 			const b = new Battle({ debug: true });
 			try {
-				b.setQueue(log); b.seekTurn(Infinity);
-				assert.equal(b.ended, true);
-				assert.deepEqual(b.p1.pokemon[0].getTypeList(), ['Holy', 'Bird', 'Bird']);
-				assert.equal(b.dex.species.get('pidgeotmega').requiredItem, 'Pidgeotite');
+				b.paused = true; b.setQueue(log); b.seekTurn(2);
+				assert.equal(b.turn, 2);
+				assert.deepEqual(b.p1.pokemon.find(p => p.speciesForme === 'Pidgeot-Mega').getTypeList(), ['Holy', 'Bird', 'Bird']);
+				assert.deepEqual(b.dex.species.get('pidgeotmega').requiredItems, ['Pidgeotite']);
+				b.seekTurn(Infinity); assert.equal(b.ended, true); assert.equal(log.at(-1), '|win|MegaBeta');
 			} finally { b.destroy(); }
 		});
 	it('provides fixed premades, authoritative EV0 stats and engine-only Struggle', () => {
@@ -104,7 +102,7 @@ describe('TMT-05 client catalog routing (not complete battle)', () => {
 		const search = new TMTSearch();
 		search.setType('pokemon', 'gen9tmt2seed');
 		search.find('');
-		assert.equal(search.results.length, 6);
+		assert.equal(search.results.length, catalog.seed.species.length + (catalog.seed.forms?.length || 0));
 		search.addFilter(['type', 'Cat']);
 		search.find('');
 		assert.deepEqual(search.results.map(r => r[1]).sort(), ['eevee', 'floragato']);

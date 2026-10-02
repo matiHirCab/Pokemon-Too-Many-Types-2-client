@@ -25,25 +25,16 @@ test('private client accepts only credential-free loopback endpoints', () => {
 		assert.throws(() => privateClient.endpoint(url), /loopback/);
 	}
 });
-test('recorded two-browser replay parses with actual client, mod, winner and repeated types without graphics', () => {
-	privateClient.replay(recorded);
-	const battle = new Battle({ debug: true });
-	try {
-		battle.setQueue(recorded.log); battle.seekTurn(Infinity);
-		assert.equal(battle.ended, true);
-		assert.equal(battle.dex.modid, 'gen9tmt2seed');
-		assert.equal(battle.p1.name, 'TmtAlpha'); assert.equal(battle.p2.name, 'TmtBeta');
-		assert.equal(recorded.log.at(-1), '|win|TmtBeta');
-		assert.deepEqual(battle.p2.pokemon.find(p => p.speciesForme === 'Pidgeot').getTypeList(), ['Bird', 'Bird', 'Bird']);
-		assert.equal(battle.p1.pokemon.length, 3); assert.equal(battle.p2.pokemon.length, 3);
-	} finally { battle.destroy(); }
+test('historical two-browser recording is rejected by current identity without rewriting evidence', () => {
+	assert.throws(() => privateClient.replay(recorded), /mismatch/);
+	assert.equal(recorded.version, '0.1.0'); assert.equal(recorded.log.at(-1), '|win|TmtBeta');
 });
 test('local replay rejects drift, base format fallback, incomplete outcomes and private/auth payloads', () => {
 	for (const mutate of [r => { r.catalogHash = '0'.repeat(64); }, r => { r.datasetHash = '0'.repeat(64); },
 		r => { r.log = r.log.filter(l => !l.startsWith('|win|')); },
 		r => { r.log.push('|request|{}'); }, r => { r.log.push('|challstr|credential'); },
 		r => { r.log.push('|tier|[Gen 9] OU'); }, r => { r.log.push(r.log.find(l => l.startsWith('|tmt2data|'))); }]) {
-		const bad = structuredClone(recorded); mutate(bad); assert.throws(() => privateClient.replay(bad));
+		const bad = structuredClone(require('./fixtures/tmt2-mega-simulator-replay.json')); mutate(bad); assert.throws(() => privateClient.replay(bad));
 	}
 });
 test('browser controller sends each rqid once and halts choices on live dataset drift', () => {
