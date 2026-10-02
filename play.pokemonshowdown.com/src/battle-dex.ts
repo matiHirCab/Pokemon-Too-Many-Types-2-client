@@ -1018,7 +1018,7 @@ export const Dex = new class implements ModdedDex {
 			const assets = TMT2.artwork();
 			const file = assets.files[`sprites/${isFront ? 'ani' : 'ani-back'}/${species.id}.gif`];
 			if (assets.mode === 'originals-local-evaluation' && TMT2.catalog().table.species[species.id] &&
-				!TMT2.catalog().seed.forms?.some((f: any) => f.id === species.id) && !file) {
+				!assets.placeholderSpecies?.includes(species.id) && !file) {
 				throw new Error('Required local TMT2 sprite missing');
 			}
 			const card = TMT2.catalog().table.species[species.id] ? species.id : 'placeholder';
@@ -1208,8 +1208,10 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getPokemonIcon(pokemon: string | Pokemon | ServerPokemon | Dex.PokemonSet | null, facingLeft?: boolean) {
-		if (Config.tmt2Local && TMT2.artwork().mode !== 'originals-local-evaluation') {
-			const id = toID(typeof pokemon === 'string' ? pokemon : (pokemon as any)?.speciesForme || (pokemon as any)?.species);
+		const localID = toID(typeof pokemon === 'string' ? pokemon : (pokemon as any)?.speciesForme || (pokemon as any)?.species);
+		if (Config.tmt2Local && (TMT2.artwork().mode !== 'originals-local-evaluation' ||
+			TMT2.artwork().placeholderSpecies?.includes(localID))) {
+			const id = localID;
 			return `background: url(tmt2/sprites/${TMT2.catalog().table.species[id] ? id : 'placeholder'}.svg) center/40px 30px no-repeat`;
 		}
 		const iconPrefix = Config.tmt2Local ? 'tmt2/' : Dex.resourcePrefix;

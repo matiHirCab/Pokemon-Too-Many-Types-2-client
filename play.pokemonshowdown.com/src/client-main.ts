@@ -400,7 +400,8 @@ class PSTeams extends PSStreamModel<'team' | 'format'> {
 			this.unpackAll(localStorage.getItem('showdown_teams'));
 		} catch {}
 		if (Config.tmt2Local) {
-			['alpha', 'beta'].forEach(id => {
+			TMT2.catalog().seed.teams.forEach((team: any) => {
+				const id = team.id;
 				const packedTeam = Teams.pack(TMT2.premade(id));
 				if (!this.list.some(t => t.format === 'gen9tmt2seed' && t.packedTeam === packedTeam)) {
 					this.push({ name: `TMT2 ${id}`, format: 'gen9tmt2seed' as ID, packedTeam,
