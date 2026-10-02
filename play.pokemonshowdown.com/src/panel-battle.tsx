@@ -14,7 +14,7 @@ import { ChatLog, ChatRoom, ChatTextEntry, ChatUserList } from "./panel-chat";
 import { FormatDropdown } from "./panel-mainmenu";
 import { Battle, type Pokemon, type ServerPokemon } from "./battle";
 import { BattleScene } from "./battle-animations";
-import { Dex, TL, toID, type ID } from "./battle-dex";
+import { Dex, TMT2, TL, toID, type ID } from "./battle-dex";
 import {
 	BattleChoiceBuilder, type BattleRequestActivePokemon, type BattleRequestSideInfo,
 	type BattleRequest, type BattleMoveRequest, type BattleSwitchRequest, type BattleTeamRequest,
@@ -146,6 +146,11 @@ class BattlesPanel extends PSRoomPanel<BattlesRoom> {
 
 export class BattleRoom extends ChatRoom {
 	override readonly classType = 'battle';
+	override connect() {
+		if (Config.tmt2Local && this.id.startsWith('battle-uploaded-')) { this.connectMode = null; return; }
+		if (Config.tmt2Local && !PS.user.named) { this.connectMode = 'pending-login'; return; }
+		super.connect();
+	}
 	declare pmTarget: null;
 	declare challengeMenuOpen: false;
 	declare challengingFormat: null;
@@ -329,7 +334,7 @@ class TimerButton extends preact.Component<{ room: BattleRoom, top: number }> {
 	}
 };
 
-class BattlePanel extends PSRoomPanel<BattleRoom> {
+export class BattlePanel extends PSRoomPanel<BattleRoom> {
 	static readonly id = 'battle';
 	static readonly routes = ['battle-*', 'game-*'];
 	static readonly Model = BattleRoom;
@@ -352,6 +357,16 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 			return prefix + TL`${p1} vs. ${p2}`;
 		}
 		return title;
+	}
+	static loadLocalReplay(value: any, restoreID?: RoomID) {
+		TMT2.validateReplay(value);
+		let n = 1;
+		while (PS.rooms[`battle-uploaded-${n}`]) n++;
+		const id = restoreID || `battle-uploaded-${n}` as RoomID;
+		if (!PS.rooms[id]) PS.addRoom({ id, type: 'battle', connectMode: null, autofocus: true });
+		PS.rooms[id]!.connectMode = null;
+		PS.receive(`>${id}\n|init|battle\n|title|TMT2 local replay\n${value.log.join('\n')}`);
+		sessionStorage.setItem('tmt2-native-replay', JSON.stringify(value));
 	}
 	static handleDrop(ev: DragEvent) {
 		const file = ev.dataTransfer?.files?.[0];
@@ -525,6 +540,12 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 	}
 	override receiveLine(args: Args) {
 		const room = this.props.room;
+		if (args[0] === 'tmt2data') {
+			try { TMT2.verify(args[1], args[2], args[3]); } catch (err) {
+				room.request = null; room.choices = null; room.connectError = String(err);
+				PS.connection?.disconnect(); room.update(null); return;
+			}
+		}
 		switch (args[0]) {
 		case 'cantleave':
 			room.requireForfeit = true;
@@ -1317,7 +1338,7 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 						<i class="fa fa-download" aria-hidden></i> Download replay</a>
 					<br />
 					<br />
-					<button class="button" data-cmd="/savereplay">
+					<button class="button" data-cmd="/savereplay" disabled={!!Config.tmt2Local}>
 						<i class="fa fa-upload" aria-hidden></i> {TL`[Upload and share replay]`}
 					</button>
 				</span>
@@ -1359,6 +1380,15 @@ class BattlePanel extends PSRoomPanel<BattleRoom> {
 	handleDownloadReplay = (e: MouseEvent) => {
 		let room = this.props.room;
 		const target = e.currentTarget as HTMLAnchorElement;
+		if (Config.tmt2Local && TMT2.matches(room.battle.tier)) {
+			const meta = TMT2.catalog().metadata;
+			const value = TMT2.validateReplay({ kind: 'tmt2-local-replay-v1', ...meta, room: 'native-local-battle',
+				log: room.battle.stepQueue.filter(l => l.startsWith('|') && !/^\|(request|challstr|pm|updateuser)\|/.test(l)) });
+			sessionStorage.setItem('tmt2-native-replay', JSON.stringify(value));
+			const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' }));
+			target.href = url; target.download = 'tmt2-local-replay.json';
+			setTimeout(() => URL.revokeObjectURL(url), 60_000); e.stopPropagation(); return;
+		}
 		// download replay
 		let filename = (room.battle.tier || 'Battle').replace(/[^A-Za-z0-9]/g, '');
 		let date = new Date();

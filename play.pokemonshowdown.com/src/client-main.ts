@@ -14,7 +14,7 @@ import { PSModel, PSStreamModel } from './client-core';
 import type { PSRoomPanel, PSRouter } from './panels';
 import { ChatRoom } from './panel-chat';
 import type { MainMenuRoom } from './panel-mainmenu';
-import { Dex, TL, toID, type ID } from './battle-dex';
+import { Dex, TMT2, TL, toID, type ID } from './battle-dex';
 import { BattleTextParser, type Args } from './battle-text-parser';
 import type { BattleRoom } from './panel-battle';
 import { Teams } from './battle-teams';
@@ -57,6 +57,7 @@ export interface PSConfig {
 	customcolors: Record<string, string>;
 	whitelist?: string[];
 	testclient?: boolean;
+	tmt2Local?: boolean;
 }
 export declare const Config: PSConfig;
 
@@ -398,6 +399,15 @@ class PSTeams extends PSStreamModel<'team' | 'format'> {
 		try {
 			this.unpackAll(localStorage.getItem('showdown_teams'));
 		} catch {}
+		if (Config.tmt2Local) {
+			['alpha', 'beta'].forEach(id => {
+				const packedTeam = Teams.pack(TMT2.premade(id));
+				if (!this.list.some(t => t.format === 'gen9tmt2seed' && t.packedTeam === packedTeam)) {
+					this.push({ name: `TMT2 ${id}`, format: 'gen9tmt2seed' as ID, packedTeam,
+						folder: 'TMT2', key: '', iconCache: '', isBox: false });
+				}
+			});
+		}
 	}
 	teambuilderFormat(format: string): ID {
 		const ruleSepIndex = format.indexOf('@@@');
@@ -513,6 +523,7 @@ class PSTeams extends PSStreamModel<'team' | 'format'> {
 		};
 	}
 	loadRemoteTeams() {
+		if (Config.tmt2Local) return;
 		PSLoginServer.query('getteams').then(data => {
 			if (!data) return;
 			if (data.actionerror) {
@@ -657,6 +668,7 @@ class PSUser extends PSStreamModel<PSLoginState | null> {
 		this.group = group;
 		this.userid = toID(name);
 		this.named = named;
+		if (Config.tmt2Local && named) sessionStorage.setItem('tmt2-local-name', name);
 		this.avatar = avatar;
 		this.away = fullName.endsWith('@!');
 		this.update(null);
@@ -704,6 +716,12 @@ class PSUser extends PSStreamModel<PSLoginState | null> {
 
 		if (userid === this.userid) {
 			PS.send(`/trn ${name}`);
+			this.update({ success: true });
+			return;
+		}
+		if (Config.tmt2Local) {
+			if (!['127.0.0.1', 'localhost'].includes(PS.server.host)) throw new Error('Local names require loopback');
+			PS.send(`/trn ${name},0,`);
 			this.update({ success: true });
 			return;
 		}

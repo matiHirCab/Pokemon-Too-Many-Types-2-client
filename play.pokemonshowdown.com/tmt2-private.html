@@ -1,0 +1,16 @@
+<!doctype html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>TMT2 private local battle</title>
+<style>body{font:16px system-ui;max-width:1000px;margin:2rem auto;padding:1rem;background:#f5f6f8;color:#17212b}section{background:white;padding:1rem;margin:1rem 0;border-radius:8px}button,input,select{font:inherit;margin:.25rem;padding:.4rem}pre{white-space:pre-wrap;max-height:350px;overflow:auto}#error{color:#a00000}#result{font-size:1.3rem;font-weight:bold}.types{font-weight:bold}</style>
+<h1>TMT2 developer protocol harness</h1>
+<p>User-facing battles use <a href="testclient-new.html?~~127.0.0.1:8000">the native Showdown client</a>.</p>
+<p>Local guests only · Gen9 adaptation · Premade 3v3 · level50 / IV31 / EV0 / Hardy · No items or transformations.</p>
+<p id="identity"></p><p id="error" role="alert"></p>
+<section><h2>Connect</h2><label>Server <input id="server" value="ws://127.0.0.1:8000/showdown/websocket"></label><label>Local name <input id="name" maxlength="18"></label><button id="connect">Connect</button><p id="connection">Disconnected</p></section>
+<section><h2>Choose a complete premade</h2><select id="team" aria-label="Premade"><option value="alpha">Alpha: Rattata / Eevee / Froakie</option><option value="beta">Beta: Nosepass / Floragato / Pidgeot</option></select><pre id="premade"></pre><label>Opponent <input id="opponent" maxlength="18"></label><button id="challenge">Challenge privately</button><button id="cancel">Cancel challenge</button><button id="accept">Accept challenge</button><p id="pending"></p></section>
+<section><h2>Battle</h2><p id="room"></p><p id="result">No battle yet</p><pre id="state"></pre><div id="choices"></div><button id="rejoin">Rejoin room</button><pre id="log"></pre></section>
+<section><h2>Local replay</h2><p>Save the completed public battle log. Load it here with the same locally generated catalog; mismatches are rejected. Nothing is uploaded.</p><button id="save" disabled>Save replay JSON</button><label>Load replay <input type="file" id="replay-file" accept="application/json"></label><button id="last-replay">Load last local replay</button></section>
+<script>window.Config = {routes: {root: location.host}, whitelist: [], customcolors: {}};</script>
+<script src="js/battle-dex-data.js"></script><script src="js/battle-dex.js"></script><script src="data/tmt2-seed.js"></script>
+<script src="js/battle-teams.js"></script><script src="js/battle-scene-stub.js"></script><script src="js/battle-text-parser.js"></script><script src="js/battle-log.js"></script><script src="js/battle.js"></script>
+<script src="tmt2-private.js"></script>

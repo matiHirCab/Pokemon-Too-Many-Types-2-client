@@ -7,6 +7,7 @@
 	<link rel="stylesheet" href="style/battle.css" />
 	<link rel="stylesheet" href="style/client2.css" />
 	<link rel="stylesheet" href="style/utilichart.css" />
+	<link rel="stylesheet" href="style/tmt2-local.css" />
 	<meta name="robots" content="noindex" />
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
 	<!--[if lte IE 8]><script>
@@ -16,7 +17,7 @@
 	<div id="ps-frame">
 		<div id="header" class="header">
 			<div class="maintabbarbottom"></div>
-			<img class="logo" src="https://play.pokemonshowdown.com/favicon-256.png" alt="Pokémon Showdown! (beta)" width="50" height="50">
+			<img class="logo" src="favicon-256.png" alt="Pokémon Showdown! (beta)" width="50" height="50">
 		</div>
 		<div class="ps-room scrollable" id="room-">
 			<div class="mainmenu-mini-windows">
@@ -53,42 +54,20 @@
 		linkStyle("style/battle-search.css");
 		linkStyle("style/font-awesome.css");
 	</script>
-	<script src="https://play.pokemonshowdown.com/config/config.js"></script>
+	<script src="tmt2-native-config.js"></script>
+	<script src="data/tmt2-native-assets.js"></script>
 	<script>
-		if (!window.Config) {
-			// offline
-			window.Config = {
-				version: '0',
-				bannedHosts: [],
-				whitelist: [],
-				routes: {
-					root: "pokemonshowdown.com",
-					client: "play.pokemonshowdown.com",
-					dex: "dex.pokemonshowdown.com",
-					replays: "replay.pokemonshowdown.com",
-					users: "pokemonshowdown.com/users"
-				},
-				defaultserver: {
-					id: 'showdown',
-					host: 'sim3.psim.us',
-					port: 443,
-					httpport: 8000,
-					altport: 80,
-					registered: true
-				},
-				customcolors: {}
-			};
-		}
+		if (!window.Config) throw new Error('Local native configuration missing');
 		function loadRemoteData(src) {
-			var scriptEl = document.createElement('script');
-			scriptEl.src = src.replace(/.*\/(data|js)\//g, 'https://play.pokemonshowdown.com/$1/');
-			document.head.appendChild(scriptEl);
+			console.error('Required local native client asset missing: ' + src);
 		}
+
 		Config.testclient = true;
 		(function() {
 			if (location.search !== '') {
 				var m = /\?~~(([^:\/]*)(:[0-9]*)?)/.exec(location.search);
 				if (m) {
+					if (!['127.0.0.1', 'localhost'].includes(m[2])) throw new Error('Local client server must be loopback');
 					Config.defaultserver = {
 						id: m[1],
 						host: m[2],
@@ -101,7 +80,7 @@
 		})();
 	</script>
 	<script nomodule src="/js/lib/ps-polyfill.js"></script>
-	<script src="../config/testclient-key.js"></script>
+	<!-- Local guests never use login-server keys or assertions. -->
 	<script src="js/client-core.js" onerror="alert('You must build the client with `node build` before using testclient.html')"></script>
 
 	<script src="js/battle-dex-data.js"></script>
@@ -112,7 +91,7 @@
 	<script src="js/client-main.js"></script>
 	<script nomodule src="js/lib/sockjs-1.4.0-nwjsfix.min.js"></script>
 	<script src="js/client-connection.js"></script>
-	<script> Net.defaultRoute = 'https://play.pokemonshowdown.com'; </script>
+	<script> Net.defaultRoute = location.origin; </script>
 
 	<script src="js/lib/preact.min.js"></script>
 	<script src="js/panels.js"></script>
@@ -138,9 +117,10 @@
 
 	<script src="js/battle-sound.js"></script>
 	<script src="js/lib/jquery-2.2.4.min.js"></script>
-	<script src="data/graphics.js" onerror="loadRemoteData(this.src)"></script>
+	<script src="js/battle-animations.js"></script>
+	<script src="js/battle-animations-moves.js"></script>
 	<script src="data/text/en.js" onerror="loadRemoteData(this.src)"></script>
-	<script src="data/commands.js?" onerror="loadRemoteData(this.src)"></script>
+	<!-- Optional remote command autocomplete is excluded from this local seed. -->
 	<script src="js/battle-tooltips.js"></script>
 	<script src="js/battle.js"></script>
 	<script src="js/battle-choices.js"></script>
@@ -159,8 +139,8 @@
 	<script src="js/battle-team-editor.js?"></script>
 	<script src="js/panel-teambuilder-team.js?"></script>
 
-	<script src="https://play.pokemonshowdown.com/data/pokedex-mini.js"></script>
-	<script src="https://play.pokemonshowdown.com/data/pokedex-mini-bw.js"></script>
+
+
 	<script src="data/typechart.js" onerror="loadRemoteData(this.src)"></script>
 	<script src="data/aliases.js" onerror="loadRemoteData(this.src)"></script>
 	<script src="js/lib/d3.v3.min.js"></script>

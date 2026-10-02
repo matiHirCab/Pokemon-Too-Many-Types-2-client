@@ -1286,6 +1286,11 @@ export class ChatTextEntry extends preact.Component<{
 	override render() {
 		const { room } = this.props;
 		const OLD_TEXTBOX = !PSView.useContentEditable && !this.miniedit;
+		if (Config.tmt2Local && room.connectMode === null && room.id.startsWith('battle-uploaded-')) {
+			return <div
+				class="chat-log-add hasuserlist" onClick={this.focusIfNoSelection} style={{ left: this.props.left || 0 }}
+			><CopyableURLBox url={location.href} /></div>;
+		}
 		if (room.connectMode === null && room.id.startsWith('battle-')) {
 			return <div
 				class="chat-log-add hasuserlist" onClick={this.focusIfNoSelection} style={{ left: this.props.left || 0 }}
@@ -1373,6 +1378,7 @@ class ChatPanel extends PSRoomPanel<ChatRoom> {
 		const privacy = PS.mainmenu.adjustPrivacy();
 		if (!room.pmTarget) throw new Error("Not a PM room");
 		PS.send(`/utm ${packedTeam}`);
+		if (Config.tmt2Local && toID(format) === 'gen9tmt2seed') PS.send('/inviteonlynext');
 		PS.send(`${privacy}/challenge ${room.pmTarget}, ${format}`);
 		room.teamSent = format || '-';
 		room.update(null);

@@ -1871,7 +1871,7 @@ export function eHTML(strings: TemplateStringsArray | string[], ...args: any) {
 	return buf;
 }
 
-if (window.Net) {
+if (window.Net && !Config.tmt2Local) {
 	Net(`/config/colors.json?${Math.random()}`).get().then(response => {
 		const data = JSON.parse(response);
 		Object.assign(Config.customcolors, data);

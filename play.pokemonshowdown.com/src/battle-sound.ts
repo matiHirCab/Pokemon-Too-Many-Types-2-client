@@ -128,6 +128,7 @@ export const BattleSound = new class {
 	}
 
 	playSound(url: string, volume: number) {
+		if (Config.tmt2Local) return; // Local demo has no verified audio assets.
 		if (!volume) return;
 		const effect = this.getSound(url);
 		if (effect) {

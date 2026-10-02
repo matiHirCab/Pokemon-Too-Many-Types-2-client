@@ -31,6 +31,26 @@ import { BattleLog } from "./battle-log";
 /** Explicit isolated catalog route. Missing data is an error, never a base-Dex fallback. */
 export const TMT2 = {
 	id: 'gen9tmt2seed',
+	artwork() {
+		const assets = window.BattleTMT2Assets;
+		if (assets?.schemaVersion !== 1 || assets.datasetHash !== this.catalog().metadata.datasetHash ||
+			!['originals-local-evaluation', 'developer-placeholders'].includes(assets.mode)) {
+			throw new Error('TMT2 local artwork metadata missing or incompatible; rebuild pinned assets');
+		}
+		return assets;
+	},
+	validateReplay(value: any) {
+		if (value?.kind !== 'tmt2-local-replay-v1' || !Array.isArray(value.log) || value.log.length > 50000 ||
+			value.log.some((l: unknown) => typeof l !== 'string' || l.length > 10000 || l.includes('\n') || !l.startsWith('|') ||
+				/^\|(request|challstr|pm|updateuser)\|/.test(l))) throw new Error('Invalid public replay');
+		this.verify(value.version, value.datasetHash, value.catalogHash);
+		const records = value.log.filter((l: string) => l.startsWith('|tmt2data|'));
+		const tiers = value.log.filter((l: string) => l.startsWith('|tier|'));
+		if (records.length !== 1 || records[0] !== `|tmt2data|${value.version}|${value.datasetHash}|${value.catalogHash}` ||
+			tiers.length !== 1 || tiers[0] !== `|tier|${this.catalog().metadata.formatName}` ||
+			!value.log.some((l: string) => /^\|(win|tie)\|/.test(l))) throw new Error('Incomplete or incompatible replay');
+		return value;
+	},
 	matches(format: string) { return toID(format.split('@@@')[0]) === 'gen9tmt2seed'; },
 	catalog() {
 		const data = window.BattleTMT2;
@@ -590,6 +610,11 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	resolveAvatar(avatar: string): string {
+		if (Config.tmt2Local) {
+			const name = BattleAvatarNumbers[avatar] || avatar;
+			const file = TMT2.artwork().files[`sprites/trainers/${name}.png`];
+			return file?.path || 'tmt2/sprites/trainer.svg';
+		}
 		if (window.BattleAvatarNumbers && avatar in BattleAvatarNumbers) {
 			avatar = BattleAvatarNumbers[avatar];
 		}
@@ -935,7 +960,7 @@ export const Dex = new class implements ModdedDex {
 			document.getElementsByTagName('body')[0].appendChild(el);
 		});
 		let loading = loadScript(Config.testclient ? `data/text/${lang}.js` : `${this.resourcePrefix}data/text/${lang}.js`);
-		if (Config.testclient) {
+		if (Config.testclient && !Config.tmt2Local) {
 			loading = loading.catch(() => loadScript(`https://play.pokemonshowdown.com/data/text/${lang}.js`));
 		}
 		loading = loading.then(() => updateTranslatedNames(lang)).catch(() => {
@@ -987,6 +1012,22 @@ export const Dex = new class implements ModdedDex {
 			cryurl: '',
 			shiny: options.shiny,
 		};
+		if (Config.tmt2Local) {
+			const assets = TMT2.artwork();
+			const file = assets.files[`sprites/${isFront ? 'ani' : 'ani-back'}/${species.id}.gif`];
+			if (assets.mode === 'originals-local-evaluation' && TMT2.catalog().table.species[species.id] && !file) {
+				throw new Error('Required local TMT2 sprite missing');
+			}
+			const card = TMT2.catalog().table.species[species.id] ? species.id : 'placeholder';
+			spriteData.url = file?.path || `tmt2/sprites/${card}.svg`;
+			if (file) {
+				spriteData.w = file.width;
+				spriteData.h = file.height;
+				spriteData.pixelated = false;
+			}
+			spriteData.isFrontSprite = isFront;
+			return spriteData;
+		}
 		let name = species.spriteid;
 		let dir;
 		let facing;
@@ -1164,14 +1205,19 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getPokemonIcon(pokemon: string | Pokemon | ServerPokemon | Dex.PokemonSet | null, facingLeft?: boolean) {
+		if (Config.tmt2Local && TMT2.artwork().mode !== 'originals-local-evaluation') {
+			const id = toID(typeof pokemon === 'string' ? pokemon : (pokemon as any)?.speciesForme || (pokemon as any)?.species);
+			return `background: url(tmt2/sprites/${TMT2.catalog().table.species[id] ? id : 'placeholder'}.svg) center/40px 30px no-repeat`;
+		}
+		const iconPrefix = Config.tmt2Local ? 'tmt2/' : Dex.resourcePrefix;
 		if (pokemon === 'pokeball') {
-			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -0px 4px`;
+			return `background:transparent url(${iconPrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -0px 4px`;
 		} else if (pokemon === 'pokeball-statused') {
-			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -40px 4px`;
+			return `background:transparent url(${iconPrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -40px 4px`;
 		} else if (pokemon === 'pokeball-fainted') {
-			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -80px 4px;opacity:.4;filter:contrast(0)`;
+			return `background:transparent url(${iconPrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -80px 4px;opacity:.4;filter:contrast(0)`;
 		} else if (pokemon === 'pokeball-none') {
-			return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -80px 4px`;
+			return `background:transparent url(${iconPrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -80px 4px`;
 		}
 
 		let id = toID(pokemon);
@@ -1191,7 +1237,7 @@ export const Dex = new class implements ModdedDex {
 		let left = (num % 12) * 40;
 		let fainted = ((pokemon as Pokemon | ServerPokemon)?.fainted ?
 			`;opacity:.3;filter:grayscale(100%) brightness(.5)` : ``);
-		return `background:transparent url(${Dex.resourcePrefix}sprites/pokemonicons-sheet.png?v22) no-repeat scroll -${left}px -${top}px${fainted}`;
+		return `background:transparent url(${iconPrefix}sprites/pokemonicons-sheet.png${Config.tmt2Local ? '' : '?v22'}) no-repeat scroll -${left}px -${top}px${fainted}`;
 	}
 
 	getTeambuilderSpriteData(pokemon: any, dex: ModdedDex = Dex): TeambuilderSpriteData {
@@ -1289,6 +1335,7 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getTypeIcon(type: string | null, b?: boolean) { // b is just for utilichart.js
+		if (Config.tmt2Local) return `<span class="tmt2-type">${BattleLog.escapeHTML(type || '???')}</span>`;
 		if (window.BattleTMT2?.table.types[toID(type)] && !this.types.get(type).exists) {
 			return `<span class="tmt2-type">${BattleLog.escapeHTML(window.BattleTMT2.table.types[toID(type)].name)}</span>`;
 		}
@@ -1300,6 +1347,7 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getCategoryIcon(category: string | null) {
+		if (Config.tmt2Local) return `<span>${BattleLog.escapeHTML(category || '???')}</span>`;
 		const categoryID = toID(category);
 		let sanitizedCategory = '';
 		switch (categoryID) {

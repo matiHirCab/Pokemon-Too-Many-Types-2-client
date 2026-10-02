@@ -32,3 +32,6 @@ npm-debug.log
 /teams.pokemonshowdown.com/js/
 /teams.pokemonshowdown.com/caches/
 /teams.pokemonshowdown.com/ads.txt
+
+# Generated local native seed cards (source and hashes are recorded by build-native-tmt2)
+play.pokemonshowdown.com/tmt2/sprites/

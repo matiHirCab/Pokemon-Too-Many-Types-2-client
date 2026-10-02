@@ -1681,7 +1681,8 @@ export class Battle {
 	cantUseMove(pokemon: Pokemon, effect: Dex.Effect, move: Dex.Move, kwArgs: KWArgs) {
 		pokemon.clearMovestatuses();
 		this.scene.updateStatbar(pokemon);
-		if (effect.id in BattleStatusAnims) {
+		// Text-only local replays use BattleSceneStub and do not load graphics tables.
+		if (this.scene.animating && effect.id in BattleStatusAnims) {
 			this.scene.runStatusAnim(effect.id, [pokemon]);
 		}
 		this.activateAbility(pokemon, effect);

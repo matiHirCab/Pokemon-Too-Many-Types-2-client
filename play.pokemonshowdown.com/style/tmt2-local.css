@@ -1,0 +1,4 @@
+/* Local seed assets are explicit placeholders. Native layout and controls are unchanged. */
+.roomcounters .usercount, .roomcounters .battlecount,
+.roomcounters button:hover .usercount, .roomcounters button:hover .battlecount {background: none;}
+.tmt2-type {display:inline-block; padding:1px 5px; border:1px solid #596779; border-radius:3px; background:#edf2f7; color:#17212b; font-size:11px;}
