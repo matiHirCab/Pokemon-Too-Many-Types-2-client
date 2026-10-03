@@ -1367,6 +1367,12 @@ export const Dex = new class implements ModdedDex {
 
 	getTeambuilderSprite(pokemon: any, dex?: ModdedDex, xOffset = 0, yOffset = 0) {
 		if (!pokemon) return '';
+		if (Config.tmt2Local && dex?.modid === TMT2.id) {
+			// Reuse the verified front GIF or already-labeled local card; no HOME atlas.
+			const species = toID(pokemon.species || pokemon);
+			const sprite = this.getSpriteData(species, true, { gen: dex.gen });
+			return `background-image:url(${sprite.url});background-position:center;background-repeat:no-repeat;background-size:contain`;
+		}
 		const data = this.getTeambuilderSpriteData(pokemon, dex);
 		const shiny = (data.shiny ? '-shiny' : '');
 		const resize = (data.h ? `background-size:${data.h}px` : '');
@@ -1374,6 +1380,12 @@ export const Dex = new class implements ModdedDex {
 	}
 
 	getItemIcon(item: any) {
+		if (Config.tmt2Local) {
+			if (!item || item === 'none') return 'background:none';
+			// Decorative source-coded label, explicitly not original item artwork.
+			const badge = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><rect width="24" height="24" rx="3" fill="#e5e7eb"/><text x="12" y="15" text-anchor="middle" font-size="8" font-family="sans-serif">Item</text></svg>';
+			return `background:transparent url("data:image/svg+xml,${encodeURIComponent(badge)}") center/contain no-repeat`;
+		}
 		let num = 0;
 		if (typeof item === 'string' && window.BattleItems) item = window.BattleItems[toID(item)];
 		if (item?.spritenum) num = item.spritenum;

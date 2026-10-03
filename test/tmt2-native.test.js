@@ -140,3 +140,50 @@ test('local native background can initialize before PS without image-load bootst
  assert.equal(loaded,'fx/bg-city.png');assert.equal(bg.menuColors.length,6);
  assert.ok(fs.existsSync('play.pokemonshowdown.com/'+loaded));
 });
+
+test('native local teambuilder reuses verified front sprites/cards and item text badge without atlas fetches', () => {
+ const local=Config.tmt2Local;Config.tmt2Local=true;
+ try {
+  const dex=Dex.forFormat('gen9tmt2seed');
+  for(const species of BattleTMT2.seed.species) {
+   const sprite=Dex.getSpriteData(species.id,true,{gen:9});
+   const css=Dex.getTeambuilderSprite({species:species.id},dex);
+   assert(css.includes(sprite.url));assert.doesNotMatch(css,/home-centered|sprites\/dex/);
+  }
+  assert.equal(Dex.getItemIcon(''),'background:none');
+  const badge=Dex.getItemIcon('Pidgeotite');assert.match(badge,/data:image\/svg\+xml/);
+  assert.match(decodeURIComponent(badge),/>Item</);assert.doesNotMatch(badge,/itemicons-sheet/);
+  Config.tmt2Local=false;
+  assert.match(Dex.getTeambuilderSprite('pidgeot',Dex.forFormat('gen9ou')),/sprites\/home-centered\/pidgeot\.png/);
+  assert.match(Dex.getItemIcon('Pidgeotite'),/itemicons-sheet/);
+ }finally{Config.tmt2Local=local;}
+});
+
+test('actual native PSIcon renders ordered duplicate local type labels and keeps standard image behavior',()=>{
+ const preact=require('preact'),render=require('preact-render-to-string');
+ const source=fs.readFileSync('play.pokemonshowdown.com/src/panels.tsx','utf8');
+ const ast=babel.parseSync(source,{filename:'panels.tsx',babelrc:false,parserOpts:{plugins:['typescript','jsx']}});
+ const decl=ast.program.body.find(n=>n.type==='ExportNamedDeclaration'&&n.declaration?.id?.name==='PSIcon').declaration;
+ const code=babel.transformFromAstSync({type:'File',program:{type:'Program',sourceType:'script',body:[decl]}},source,
+  {filename:'icons.tsx',babelrc:false,plugins:[['@babel/plugin-transform-typescript',{isTSX:true}],
+   ['@babel/plugin-transform-react-jsx',{pragma:'preact.h',pragmaFrag:'preact.Fragment'}]]}).code;
+ const config={tmt2Local:true};const icon=vm.runInNewContext(code+'\nPSIcon;',{preact,Dex,Config:config,TL:value=>value.name||value,toID});
+ const types=Dex.forFormat('gen9tmt2seed').species.get('pidgeot').types;
+ const html=types.map(type=>render(preact.h(icon,{type}))).join('');
+ assert.equal((html.match(/Bird/g)||[]).length,3);assert.doesNotMatch(html,/<img/);
+ config.tmt2Local=false;assert.match(render(preact.h(icon,{type:'Water'})),/sprites\/types\/Water\.png/);
+});
+
+test('local scene does not preload unsupported substitute art; standard preload remains unchanged',()=>{
+ const source=fs.readFileSync('play.pokemonshowdown.com/src/battle-animations.ts','utf8');
+ const ast=babel.parseSync(source,{filename:'scene.ts',babelrc:false,parserOpts:{plugins:['typescript']}});
+ const scene=ast.program.body.find(n=>n.type==='ExportNamedDeclaration'&&n.declaration?.id?.name==='BattleScene').declaration;
+ const method=scene.body.body.find(n=>n.key?.name==='preloadEffects');
+ const fn={type:'FunctionDeclaration',id:{type:'Identifier',name:'preload'},params:[],body:method.body,generator:false,async:false};
+ const code=babel.transformFromAstSync({type:'File',program:{type:'Program',sourceType:'script',body:[fn]}},source,
+  {filename:'preload.ts',babelrc:false,plugins:['@babel/plugin-transform-typescript']}).code;
+ const config={tmt2Local:true};const preload=vm.runInNewContext(code+'\npreload;',{Config:config,Dex,BattleEffects:{fixture:{url:'tmt2/effect.svg'}}});
+ const calls=[];preload.call({preloadImage:url=>calls.push(url)});assert.deepEqual(calls,['tmt2/effect.svg']);
+ config.tmt2Local=false;calls.length=0;preload.call({preloadImage:url=>calls.push(url)});
+ assert(calls.some(x=>x.endsWith('sprites/ani/substitute.gif')));assert(calls.some(x=>x.endsWith('sprites/ani-back/substitute.gif')));
+});

@@ -8,7 +8,7 @@ const crypto=require('node:crypto');
 const {loadArtwork,importArtwork}=require('../build-tools/tmt2-native-artwork');
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 function fixture(){
- const dir=fs.mkdtempSync(path.join(os.tmpdir(),'tmt2-artwork-test-'));
+ const dir=fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()),'tmt2-artwork-test-'));
  const bytes=Buffer.from('R0lGODlhAQABAPAAAP///wAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==','base64');
  const file={path:'sprites/ani/rattata.gif',sizeBytes:bytes.length,sha256:hash(bytes),gif:{width:1,height:1,frames:1}};
  const manifest=Buffer.from(JSON.stringify({complete:true,files:[file]}));
