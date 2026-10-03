@@ -131,7 +131,7 @@ describe('Offline generation failure paths', () => {
 		assert.equal(fs.existsSync('caches/pokemon-showdown'), before);
 	});
 	it('rejects table drift and symlink output without overwriting unrelated data', () => {
-		const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'tmt05-client-'));
+		const dir = fs.mkdtempSync(path.join(fs.realpathSync(os.tmpdir()), 'tmt05-client-'));
 		try {
 			fs.mkdirSync(path.join(dir, 'build-tools'));
 			fs.mkdirSync(path.join(dir, 'tmt2'));

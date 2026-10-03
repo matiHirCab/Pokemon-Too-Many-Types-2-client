@@ -17,7 +17,7 @@ import { BattleTooltips } from "./battle-tooltips";
 import { Net } from "./client-connection";
 import type { PSModel, PSStreamModel, PSSubscription } from "./client-core";
 import {
-	NARROW_MODE_HEADER_WIDTH, PS, type PSRoom, type PSRoomFocusOptions, type RoomID, VERTICAL_HEADER_WIDTH,
+	Config, NARROW_MODE_HEADER_WIDTH, PS, type PSRoom, type PSRoomFocusOptions, type RoomID, VERTICAL_HEADER_WIDTH,
 } from "./client-main";
 import type { ChatRoom } from "./panel-chat";
 import { PSHeader, PSMiniHeader } from "./panel-topbar";
@@ -1719,6 +1719,7 @@ export function PSIcon(
 	if ('type' in props) {
 		const type = Dex.types.get(props.type);
 		const typeName = type.name || '???';
+		if (Config.tmt2Local) return <span class="tmt2-type">{Dex.text.typeName(typeName)}</span>;
 		if (props.new) {
 			return <span class={`typeicon typeicon-${typeName}${props.tera ? ' tera' : ''}`}>{TL(type)}</span>;
 		}
