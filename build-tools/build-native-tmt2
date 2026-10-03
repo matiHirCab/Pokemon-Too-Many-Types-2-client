@@ -49,6 +49,9 @@ const visuals = {
 	schemaVersion: 1, datasetHash: catalog.metadata.datasetHash,
 	mode: artwork ? 'originals-local-evaluation' : 'developer-placeholders',
 	manifestSha256: artwork?.manifestSha256 || null, files: artwork?.files || {},
+	// Derived from the reviewed pin, never from missing runtime files.
+	placeholderSpecies: cards.filter(s => !artworkPin.files.some(f => f.path === `sprites/ani/${s.id}.gif`))
+		.map(s => s.id),
 };
 outputs['data/tmt2-native-assets.js'] = `window.BattleTMT2Assets = ${JSON.stringify(visuals)};\n`;
 const prefix = 'play.pokemonshowdown.com/';

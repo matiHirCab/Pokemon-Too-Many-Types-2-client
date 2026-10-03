@@ -3,7 +3,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const {spawnSync} = require('child_process');
-const {describe, it} = require('node:test');
+const {describe, it, test} = require('node:test');
 global.window = global;
 global.Config = {routes: {root: 'localhost'}, whitelist: []};
 const catalog = require('../tmt2/catalog.json');
@@ -33,7 +33,7 @@ describe('TMT-05 client catalog routing (not complete battle)', () => {
 	it('parses completed deterministic simulator mega replay with selected Dex; rejects historical identity',
 		{ skip: !catalog.seed.forms?.length }, () => {
 			global.BattleText = require('../play.pokemonshowdown.com/data/text/en.js').BattleText;
-			const replay = require('./fixtures/tmt2-mega-simulator-replay.json');
+			const replay = require('./fixtures/tmt2-catalog-simulator-replay.json');
 			const log = replay.log;
 			TMT2.validateReplay(replay);
 			const b = new Battle({ debug: true });
@@ -152,4 +152,21 @@ describe('Offline generation failure paths', () => {
 			fs.rmSync(dir, {recursive: true, force: true});
 		}
 	});
+});
+
+test('TMT-09 gamma export and Dex use the bounded catalog rather than upstream Water/Flying records', () => {
+ assert.deepEqual(TMT2.premade('gamma').map(s=>s.species), ['pidgey','pidgeotto','krabby']);
+ const dex=Dex.forFormat('gen9tmt2seed');
+ for(const [id,types] of Object.entries({pidgey:['Bird'],pidgeotto:['Bird','Bird'],krabby:['Crab']})) {
+  assert.deepEqual(dex.species.get(id).types,types);
+ }
+ assert.match(TMT2.exportPremade('gamma'),/Krabby.*\nAbility: Shell Armor/);
+ assert.equal(dex.moves.get('waterpulse').exists,true);
+ assert.equal(dex.moves.get('surf').exists,false);
+});
+
+test('TMT-08 recorded replay keeps its original identity and cannot masquerade as the expanded dataset', () => {
+ const historical=require('./fixtures/tmt2-mega-simulator-replay.json');
+ assert.equal(historical.version,'0.2.0');
+ assert.throws(()=>TMT2.validateReplay(historical),/mismatch/);
 });

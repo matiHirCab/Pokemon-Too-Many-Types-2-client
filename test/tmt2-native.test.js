@@ -52,9 +52,10 @@ test('native original artwork routes exact facing/dimensions, trainers and icon 
  const previous=BattleTMT2Assets;const local=Config.tmt2Local;
  const pin=require('../tmt2/native-artwork.json');
  global.BattleTMT2Assets={schemaVersion:1,datasetHash:BattleTMT2.metadata.datasetHash,mode:'originals-local-evaluation',
+  placeholderSpecies: [...BattleTMT2.seed.species, ...(BattleTMT2.seed.forms || [])].filter(s=>!pin.files.some(f=>f.path===`sprites/ani/${s.id}.gif`)).map(s=>s.id),
   files:Object.fromEntries(pin.files.map(f=>[f.path,{path:'tmt2/'+f.path,...(f.gif||f.png)}]))};Config.tmt2Local=true;
  try {
-  for(const id of BattleTMT2.seed.species.map(s=>s.id)) {
+  for(const id of BattleTMT2.seed.species.map(s=>s.id).filter(id=>!BattleTMT2Assets.placeholderSpecies.includes(id))) {
    for(const front of [true,false]) {
     const expected=pin.files.find(f=>f.path===`sprites/${front?'ani':'ani-back'}/${id}.gif`);
     const sprite=Dex.getSpriteData(id,front,{gen:9});
@@ -63,9 +64,10 @@ test('native original artwork routes exact facing/dimensions, trainers and icon 
     assert.equal(sprite.cryurl,'');
    }
   }
-  for(const form of BattleTMT2.seed.forms || []) {
-   const sprite=Dex.getSpriteData(form.id,true,{gen:9});
-   assert.equal(sprite.url,`tmt2/sprites/${form.id}.svg`);assert.match(fs.readFileSync('play.pokemonshowdown.com/'+sprite.url,'utf8'),/sprite unavailable/);
+  for(const id of BattleTMT2Assets.placeholderSpecies) {
+   const sprite=Dex.getSpriteData(id,true,{gen:9});
+   assert.equal(sprite.url,`tmt2/sprites/${id}.svg`);
+   assert.match(Dex.getPokemonIcon(id),new RegExp(`tmt2/sprites/${id}.svg`));assert.match(fs.readFileSync('play.pokemonshowdown.com/'+sprite.url,'utf8'),/sprite unavailable/);
   }
   assert.equal(Dex.resolveAvatar('265'),'tmt2/sprites/trainers/rosa.png');
   assert.equal(Dex.resolveAvatar('102'),'tmt2/sprites/trainers/lyra.png');
@@ -91,10 +93,10 @@ test('native premade installation preserves saved teams and avoids duplicates; o
  const ctx = {PSStreamModel: class {update(){}}, Config:{tmt2Local:true},Teams:NativeTeams,TMT2,toID,
   window:{BattleFormats:{}},localStorage:{getItem:()=>saved,setItem:(_,v)=>{saved=v;}}};
  const TeamModel=vm.runInNewContext(js+'\nPSTeams;',ctx);
- const first=new TeamModel();assert.equal(first.list.length,2);
+ const first=new TeamModel();assert.equal(first.list.length,BattleTMT2.seed.teams.length);
  first.push({name:'Keep me',format:'gen9ou',packedTeam:NativeTeams.pack(TMT2.premade('alpha')),folder:'',key:'',iconCache:'',isBox:false});
  saved=first.packAll(first.list);
- const second=new TeamModel();assert.equal(second.list.length,3);assert.equal(second.list.filter(t=>t.name==='Keep me').length,1);
+ const second=new TeamModel();assert.equal(second.list.length,BattleTMT2.seed.teams.length+1);assert.equal(second.list.filter(t=>t.name==='Keep me').length,1);
  ctx.Config.tmt2Local=false;saved='';assert.equal(new TeamModel().list.length,0);
 });
 test('historical v0.1 native recording is rejected by v0.2 without rewriting evidence', () => {
@@ -112,7 +114,7 @@ test('historical recovered native recording retains original evidence and is rej
 });
 
 test('native seed opponent tooltip uses exact EV0 IV31 Hardy speed; ordinary ranges remain intact',()=>{
- const value=require('./fixtures/tmt2-mega-simulator-replay.json');
+ const value=require('./fixtures/tmt2-catalog-simulator-replay.json');
  const battle=new Battle({debug:true});try{
   battle.paused=true;battle.setQueue(value.log);battle.seekTurn(2);
   const tooltip=Object.create(NativeTooltips.prototype);tooltip.battle=battle;
