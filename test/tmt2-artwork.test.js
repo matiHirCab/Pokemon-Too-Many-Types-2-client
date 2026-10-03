@@ -72,3 +72,22 @@ test('ZIP traversal/duplicate entries and symlink destinations fail without outs
   fs.symlinkSync(f.dir,target);assert.throws(()=>importArtwork(input,target,f.pin),/symlink/);
  }finally{f.close();}
 });
+
+test('official metadata pins three views per bounded Pokemon and rejects untrusted sources',()=>{
+ const {validateShowdownPin}=require('../build-tools/tmt2-native-artwork');
+ const pin=require('../tmt2/showdown-artwork.json'),catalog=require('../tmt2/catalog.json');validateShowdownPin(pin);
+ assert.deepEqual(pin.mapping.map(x=>x.id).sort(),[...catalog.seed.species,...catalog.seed.forms].map(x=>x.id).sort());
+ assert.equal(pin.mapping.find(x=>x.id==='pidgeotmega').sourceID,'pidgeot-omega');
+ for(const mutate of [p=>p.files[0].sourcePath='../escape',p=>p.sourceCommit='master',p=>p.mapping.push(p.mapping[0])]){
+  const bad=structuredClone(pin);mutate(bad);assert.throws(()=>validateShowdownPin(bad));
+ }
+});
+test('supplied custom artwork wins byte-for-byte over matching official art without source changes',()=>{
+ const {composeArtwork}=require('../build-tools/tmt2-native-artwork');
+ const name='sprites/ani/rattata.gif',target='tmt2/'+name,custom=Buffer.from('synthetic custom'),standard=Buffer.from('synthetic official');
+ const user={outputs:{[target]:custom},files:{[name]:{path:target,sha256:hash(custom)}}};
+ const official={outputs:{[target]:standard,'tmt2/sprites/ani/krabby.gif':standard},files:{[name]:{path:target,sha256:hash(standard)}}};
+ const result=composeArtwork(user,official);assert.deepEqual(result.outputs[target],custom);
+ assert.equal(result.files[name].source,'user-provided-local');assert.deepEqual(user.outputs[target],custom);assert.deepEqual(official.outputs[target],standard);
+ assert.deepEqual(result.outputs['tmt2/sprites/ani/krabby.gif'],standard);
+});
