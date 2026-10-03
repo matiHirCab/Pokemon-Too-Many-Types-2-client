@@ -66,7 +66,8 @@
       "sourcePath": "src/models/srattata.gif",
       "path": "sprites/ani/rattata.gif",
       "gitBlobSha1": "7b36b3f7a878f1d21306edd105aeffbc7b3cbdca",
-      "sizeBytes": 16397
+      "sizeBytes": 16397,
+      "sha256": "3f412941f4c49ec09c3403e959ede3321ad10bee61d5321fde246ab5913ee3f4"
     },
     {
       "id": "rattata",
@@ -74,7 +75,8 @@
       "sourcePath": "src/models/srattata-b.gif",
       "path": "sprites/ani-back/rattata.gif",
       "gitBlobSha1": "2f914c7c40cce6b2e41f9f3048fb221192ed9388",
-      "sizeBytes": 15463
+      "sizeBytes": 15463,
+      "sha256": "fa8dfed0523f38831a694281f621dc61db6890179cff29c0e50a4e64645e9519"
     },
     {
       "id": "rattata",
@@ -82,7 +84,8 @@
       "sourcePath": "src/minisprites/pokemon/home/srattata.png",
       "path": "sprites/home-centered/rattata.png",
       "gitBlobSha1": "9c704de15eaf141fb922debb4e3b58562a136835",
-      "sizeBytes": 9843
+      "sizeBytes": 9843,
+      "sha256": "bc4a78eb57e8c7ccb83b301fc940be2a22b76b04d95082f3fd467f68663a5039"
     },
     {
       "id": "eevee",
@@ -90,7 +93,8 @@
       "sourcePath": "src/models/seevee.gif",
       "path": "sprites/ani/eevee.gif",
       "gitBlobSha1": "2a738aa5f9946628f2fdd8e8e17c5a18c921aaca",
-      "sizeBytes": 18944
+      "sizeBytes": 18944,
+      "sha256": "244c533a4d2d96fb89f35195cde1eec7eb06bd3b5f137fa116190cceaec05670"
     },
     {
       "id": "eevee",
@@ -98,7 +102,8 @@
       "sourcePath": "src/models/seevee-b.gif",
       "path": "sprites/ani-back/eevee.gif",
       "gitBlobSha1": "3dedeb3d93b3556cb282d4d1d25a3010fa9c09e5",
-      "sizeBytes": 16345
+      "sizeBytes": 16345,
+      "sha256": "1cc18c0bc14863cde4df3b18cc9dbf9984e0a2fd3577ea8a03b844f11bf64c7a"
     },
     {
       "id": "eevee",
@@ -106,7 +111,8 @@
       "sourcePath": "src/minisprites/pokemon/home/seevee.png",
       "path": "sprites/home-centered/eevee.png",
       "gitBlobSha1": "967f0e57464a794f594932244b88fddb0a56fef8",
-      "sizeBytes": 10878
+      "sizeBytes": 10878,
+      "sha256": "ecedf4ed9ee2d2d704dd5141ddf9da1d74a49316f413db3ce5a2014e2a76e3e9"
     },
     {
       "id": "froakie",
@@ -114,7 +120,8 @@
       "sourcePath": "src/models/sfroakie.gif",
       "path": "sprites/ani/froakie.gif",
       "gitBlobSha1": "51650d63dc0266613f055aaf0e5ff1e037fdcb28",
-      "sizeBytes": 21228
+      "sizeBytes": 21228,
+      "sha256": "21c9206a5c7814fd1cacb3ecfaced803ea6a48af51b1702c4e1ac850074103a0"
     },
     {
       "id": "froakie",
@@ -122,7 +129,8 @@
       "sourcePath": "src/models/sfroakie-b.gif",
       "path": "sprites/ani-back/froakie.gif",
       "gitBlobSha1": "a1b6845e20e2cdc0d96cfa4026cb7293eff0cb43",
-      "sizeBytes": 20183
+      "sizeBytes": 20183,
+      "sha256": "dd4e00fb68fa258b8661ee14daa0bd29742e21d259bf93ecbd1c6248a9c0f8ef"
     },
     {
       "id": "froakie",
@@ -130,7 +138,8 @@
       "sourcePath": "src/minisprites/pokemon/home/sfroakie.png",
       "path": "sprites/home-centered/froakie.png",
       "gitBlobSha1": "31513c3b5d8831431028e0fbe9bb195f850caaa9",
-      "sizeBytes": 11034
+      "sizeBytes": 11034,
+      "sha256": "580a54cc135aa334c77e2cd1be154a43bd43d14e80c28690a6411c1b394adfeb"
     },
     {
       "id": "nosepass",
@@ -138,7 +147,8 @@
       "sourcePath": "src/models/snosepass.gif",
       "path": "sprites/ani/nosepass.gif",
       "gitBlobSha1": "ba2da017cc61d7dc7aabb5ed19d16bbd3a54681b",
-      "sizeBytes": 36989
+      "sizeBytes": 36989,
+      "sha256": "3ec9be86686731c453dd7672f823067a0d68881fc07f9864f4904e5985f7d0da"
     },
     {
       "id": "nosepass",
@@ -146,7 +156,8 @@
       "sourcePath": "src/models/snosepass-b.gif",
       "path": "sprites/ani-back/nosepass.gif",
       "gitBlobSha1": "ff910ff2f4e203c56b9fcb5a7ea4aa5a284a22b8",
-      "sizeBytes": 37268
+      "sizeBytes": 37268,
+      "sha256": "ba5afe7d3ab2a1aa240f935ce97a41a7c23b21264d1b750e8bd16ae4b707643f"
     },
     {
       "id": "nosepass",
@@ -154,7 +165,8 @@
       "sourcePath": "src/minisprites/pokemon/home/snosepass.png",
       "path": "sprites/home-centered/nosepass.png",
       "gitBlobSha1": "853d757e105b6f6d5faab32716be7e1d2f1c547c",
-      "sizeBytes": 11027
+      "sizeBytes": 11027,
+      "sha256": "df832da4784e617da87ad792a30817bd30ad2d11deb92b69ab9c02acb9eb33ec"
     },
     {
       "id": "floragato",
@@ -162,7 +174,8 @@
       "sourcePath": "src/models/sfloragato.gif",
       "path": "sprites/ani/floragato.gif",
       "gitBlobSha1": "a2e08f2d483cec558030032f5cca05e72f9f131a",
-      "sizeBytes": 54414
+      "sizeBytes": 54414,
+      "sha256": "e87df45f15a967501f665383ce5c0c38802d91b2a491b0043d3eb3ef033612c2"
     },
     {
       "id": "floragato",
@@ -170,7 +183,8 @@
       "sourcePath": "src/models/sfloragato-b.gif",
       "path": "sprites/ani-back/floragato.gif",
       "gitBlobSha1": "13ca19297a1ce875fcbd4cb969f0c5157708ba23",
-      "sizeBytes": 47870
+      "sizeBytes": 47870,
+      "sha256": "2a8ec6fa3278736cef5c64242bd5e4427c5c91a97121f9b4d1925eabf9f41624"
     },
     {
       "id": "floragato",
@@ -178,7 +192,8 @@
       "sourcePath": "src/minisprites/pokemon/home/sfloragato.png",
       "path": "sprites/home-centered/floragato.png",
       "gitBlobSha1": "88def70401839eb3e4e23aa2df655d817a16373f",
-      "sizeBytes": 9618
+      "sizeBytes": 9618,
+      "sha256": "9a467ef699d8f4d27b486d634dd5ebe1a15c42028772309615b0540f722e9b87"
     },
     {
       "id": "pidgeot",
@@ -186,7 +201,8 @@
       "sourcePath": "src/models/spidgeot.gif",
       "path": "sprites/ani/pidgeot.gif",
       "gitBlobSha1": "b913517a4c5fbdf74652d2f2703e91b21e4cda09",
-      "sizeBytes": 68538
+      "sizeBytes": 68538,
+      "sha256": "87627a7e52808005076edf6aa4631eebeb2cfafbdae26b5590bb54ed901a8eca"
     },
     {
       "id": "pidgeot",
@@ -194,7 +210,8 @@
       "sourcePath": "src/models/spidgeot-b.gif",
       "path": "sprites/ani-back/pidgeot.gif",
       "gitBlobSha1": "0d6dac94be1fab8c5f374a253e8e7a7bcf7a7bf1",
-      "sizeBytes": 61644
+      "sizeBytes": 61644,
+      "sha256": "ac52dcdd367fc7c6a26827328c5b028a1f8bf58cbc124c3b8602d5bb8995f2d2"
     },
     {
       "id": "pidgeot",
@@ -202,7 +219,8 @@
       "sourcePath": "src/minisprites/pokemon/home/spidgeot.png",
       "path": "sprites/home-centered/pidgeot.png",
       "gitBlobSha1": "890b16d6ee088ea2d9fa4dc6ee2cf2effb7b8cef",
-      "sizeBytes": 15249
+      "sizeBytes": 15249,
+      "sha256": "c04398a27385e046cd6968fb70d27baa266d0461e9169234dea788b24a25abc2"
     },
     {
       "id": "pidgey",
@@ -210,7 +228,8 @@
       "sourcePath": "src/models/spidgey.gif",
       "path": "sprites/ani/pidgey.gif",
       "gitBlobSha1": "774891abea65402590c8a8683e9a3436a8d353af",
-      "sizeBytes": 12458
+      "sizeBytes": 12458,
+      "sha256": "04e89311c868e8012d04550b018a628bac21fc2b2fd3b13836517f7b585bd618"
     },
     {
       "id": "pidgey",
@@ -218,7 +237,8 @@
       "sourcePath": "src/models/spidgey-b.gif",
       "path": "sprites/ani-back/pidgey.gif",
       "gitBlobSha1": "7e63617fb1ff5b74fbc385bff8bb457868187eb8",
-      "sizeBytes": 15358
+      "sizeBytes": 15358,
+      "sha256": "d9de7cce2c1f192e1c55ef71ad370992b76b0d1aed7dc9fbf35679a585fd4c6b"
     },
     {
       "id": "pidgey",
@@ -226,7 +246,8 @@
       "sourcePath": "src/minisprites/pokemon/home/spidgey.png",
       "path": "sprites/home-centered/pidgey.png",
       "gitBlobSha1": "c82c0ebf00a5ce0c0f94ee60dc863bea79bf119a",
-      "sizeBytes": 9838
+      "sizeBytes": 9838,
+      "sha256": "b04728d8c0d69fa5007707f4501279621022a4c61b1450b5b4c0b32a2f912afe"
     },
     {
       "id": "pidgeotto",
@@ -234,7 +255,8 @@
       "sourcePath": "src/models/spidgeotto.gif",
       "path": "sprites/ani/pidgeotto.gif",
       "gitBlobSha1": "2930c96881a8206035599f92eb6e58ba03819cbd",
-      "sizeBytes": 19558
+      "sizeBytes": 19558,
+      "sha256": "9a9c164716dc30af6c682b38e11852c7d8bcea37f8d8d0d084dfbf959576d761"
     },
     {
       "id": "pidgeotto",
@@ -242,7 +264,8 @@
       "sourcePath": "src/models/spidgeotto-b.gif",
       "path": "sprites/ani-back/pidgeotto.gif",
       "gitBlobSha1": "ec4178ae8c8cc258f2607a7242b13946842c5c5e",
-      "sizeBytes": 19214
+      "sizeBytes": 19214,
+      "sha256": "64d6ce30a14e6035ed00f2a2be1eb53273dd0574ee5ece090ae3cddc11846084"
     },
     {
       "id": "pidgeotto",
@@ -250,7 +273,8 @@
       "sourcePath": "src/minisprites/pokemon/home/spidgeotto.png",
       "path": "sprites/home-centered/pidgeotto.png",
       "gitBlobSha1": "b8ba84f1fb5b55bf2a84a0f5309b00374d1c6127",
-      "sizeBytes": 12443
+      "sizeBytes": 12443,
+      "sha256": "feab22b94e0da3c51bb259f5addf9c5f9db8f2f386059fa3dc9f8aac0881e81f"
     },
     {
       "id": "krabby",
@@ -258,7 +282,8 @@
       "sourcePath": "src/models/skrabby.gif",
       "path": "sprites/ani/krabby.gif",
       "gitBlobSha1": "b7f5edefecc91b37f8f37a67b5915cd34da50d2b",
-      "sizeBytes": 28401
+      "sizeBytes": 28401,
+      "sha256": "4104612c5b14b564fd003731357bb77971e616b160a9ad62f0c96d996f6be79f"
     },
     {
       "id": "krabby",
@@ -266,7 +291,8 @@
       "sourcePath": "src/models/skrabby-b.gif",
       "path": "sprites/ani-back/krabby.gif",
       "gitBlobSha1": "0acc23ab73a2e54f04f53f9d52fb5d905ca91ee3",
-      "sizeBytes": 24742
+      "sizeBytes": 24742,
+      "sha256": "f5847137ce496b3a28c248a299660f78963bfb891e17d5611f23043c67472984"
     },
     {
       "id": "krabby",
@@ -274,7 +300,8 @@
       "sourcePath": "src/minisprites/pokemon/home/skrabby.png",
       "path": "sprites/home-centered/krabby.png",
       "gitBlobSha1": "2c8e27177ea79db59c2ab8594d814a21ebcde185",
-      "sizeBytes": 10405
+      "sizeBytes": 10405,
+      "sha256": "1a356eb591c61bb64cc41ae5b8d20ca3824a303d8b04674ec10037ec4cc6ff62"
     },
     {
       "id": "pidgeotmega",
@@ -282,7 +309,8 @@
       "sourcePath": "src/models/spidgeot-omega.gif",
       "path": "sprites/ani/pidgeotmega.gif",
       "gitBlobSha1": "b66349c8d66ad27783f74df437afac53423c37e3",
-      "sizeBytes": 60759
+      "sizeBytes": 60759,
+      "sha256": "f7dc72b9998b50457944d4a8acf98bcd43b65b7dcca3e2e26661d788220fe157"
     },
     {
       "id": "pidgeotmega",
@@ -290,7 +318,8 @@
       "sourcePath": "src/models/spidgeot-omega-b.gif",
       "path": "sprites/ani-back/pidgeotmega.gif",
       "gitBlobSha1": "62351be787a934b8fe050154a72a03a403750cd8",
-      "sizeBytes": 71023
+      "sizeBytes": 71023,
+      "sha256": "b674e5a9599f360b810aa2828db8429bcf12e1cf936f583d9ebde6aafe2ae4e8"
     },
     {
       "id": "pidgeotmega",
@@ -298,7 +327,8 @@
       "sourcePath": "src/minisprites/pokemon/home/spidgeot-omega.png",
       "path": "sprites/home-centered/pidgeotmega.png",
       "gitBlobSha1": "1c8fa3d87603d1fa825fc7278a14bbf5471d6bb1",
-      "sizeBytes": 8995
+      "sizeBytes": 8995,
+      "sha256": "86d9bd58699184665d092c63a3bac65cbd0544ebf9fb3dcbe6e3aac7d4ca8a3b"
     }
   ],
   "unmatchedSpecies": []
