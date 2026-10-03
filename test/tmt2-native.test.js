@@ -148,7 +148,9 @@ test('native local teambuilder reuses verified front sprites/cards and item text
   for(const species of BattleTMT2.seed.species) {
    const sprite=Dex.getSpriteData(species.id,true,{gen:9});
    const css=Dex.getTeambuilderSprite({species:species.id},dex);
-   assert(css.includes(sprite.url));assert.doesNotMatch(css,/home-centered|sprites\/dex/);
+   const centered=BattleTMT2Assets.files[`sprites/home-centered/${species.id}.png`];
+   const custom=BattleTMT2Assets.files[`sprites/ani/${species.id}.gif`]?.source==='user-provided-local';
+   assert(css.includes(centered&&!custom?centered.path:sprite.url));assert.doesNotMatch(css,/(?:url\()sprites\//);
   }
   assert.equal(Dex.getItemIcon(''),'background:none');
   const badge=Dex.getItemIcon('Pidgeotite');assert.match(badge,/data:image\/svg\+xml/);
@@ -186,4 +188,17 @@ test('local scene does not preload unsupported substitute art; standard preload 
  const calls=[];preload.call({preloadImage:url=>calls.push(url)});assert.deepEqual(calls,['tmt2/effect.svg']);
  config.tmt2Local=false;calls.length=0;preload.call({preloadImage:url=>calls.push(url)});
  assert(calls.some(x=>x.endsWith('sprites/ani/substitute.gif')));assert(calls.some(x=>x.endsWith('sprites/ani-back/substitute.gif')));
+});
+
+test('official centered view scales without cropping; custom front art takes precedence in native editor',()=>{
+ const old=global.BattleTMT2Assets,local=Config.tmt2Local;Config.tmt2Local=true;
+ try{
+  const assets=structuredClone(old),id='rattata';global.BattleTMT2Assets=assets;
+  const front=assets.files[`sprites/ani/${id}.gif`];
+  assert(front);front.source='official-showdown-matching-art';
+  assets.files[`sprites/home-centered/${id}.png`]={path:`tmt2/sprites/home-centered/${id}.png`,width:128,height:128,source:'official-showdown-matching-art'};
+  const dex=Dex.forFormat('gen9tmt2seed');const centered=Dex.getTeambuilderSprite({species:id},dex);
+  assert.match(centered,/tmt2\/sprites\/home-centered\/rattata.png/);assert.match(centered,/background-size:contain/);
+  front.source='user-provided-local';assert(Dex.getTeambuilderSprite({species:id},dex).includes(front.path));
+ }finally{global.BattleTMT2Assets=old;Config.tmt2Local=local;}
 });

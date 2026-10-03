@@ -82,4 +82,80 @@ function importArtwork(archive, destination, pin) {
 	}
 }
 
-module.exports = { loadArtwork, importArtwork };
+function validateShowdownPin(pin) {
+	if (pin.schemaVersion !== 1 || pin.kind !== 'official-showdown-matching-art-local-evaluation' ||
+		pin.sourceRepository !== 'smogon/sprites' || !/^[a-f0-9]{40}$/.test(pin.sourceCommit) ||
+		!Array.isArray(pin.mapping) || !pin.mapping.length || pin.mapping.length > 32) {
+		throw Error('Invalid Showdown artwork pin');
+	}
+	const unmatched = pin.unmatchedSpecies || [];
+	if (!Array.isArray(unmatched) || unmatched.some(id => !/^[a-z0-9]+$/.test(id)) ||
+		new Set(unmatched).size !== unmatched.length || pin.mapping.some(m => unmatched.includes(m.id))) {
+		throw Error('Invalid unmatched artwork identity');
+	}
+	const expected = new Map();
+	for (const { id, sourceID } of pin.mapping) {
+		if (!/^[a-z0-9]+$/.test(id) || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(sourceID)) throw Error('Unsafe artwork identity');
+		for (const facing of ['ani', 'ani-back', 'home-centered']) {
+			const target = `sprites/${facing}/${id}.${facing === 'home-centered' ? 'png' : 'gif'}`;
+			const source = facing === 'home-centered' ? `src/minisprites/pokemon/home/s${sourceID}.png` :
+				`src/models/s${sourceID}${facing === 'ani-back' ? '-b' : ''}.gif`;
+			if (expected.has(target)) throw Error('Duplicate artwork identity');
+			expected.set(target, source);
+		}
+	}
+	if (!Array.isArray(pin.files) || pin.files.length !== expected.size) throw Error('Incomplete Showdown artwork pin');
+	for (const f of pin.files) {
+		if (expected.get(f.path) !== f.sourcePath || !/^[a-f0-9]{40}$/.test(f.gitBlobSha1) ||
+			!Number.isInteger(f.sizeBytes) || f.sizeBytes < 14 || f.sizeBytes > 8 * 1024 * 1024 ||
+			(f.sha256 !== undefined && !/^[a-f0-9]{64}$/.test(f.sha256))) throw Error('Unsafe Showdown artwork pin entry');
+		expected.delete(f.path);
+	}
+}
+
+function verifyShowdownBytes(bytes, file) {
+	const blob = crypto.createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex');
+	if (bytes.length !== file.sizeBytes || blob !== file.gitBlobSha1 ||
+		(file.sha256 && hash(bytes) !== file.sha256)) throw Error(`Showdown artwork bytes mismatch: ${file.path}`);
+	let width, height;
+	if (file.path.endsWith('.gif')) {
+		if (!/^GIF8[79]a$/.test(bytes.subarray(0, 6).toString('ascii'))) throw Error('Invalid pinned GIF');
+		width = bytes.readUInt16LE(6); height = bytes.readUInt16LE(8);
+	} else {
+		if (!bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))) throw Error('Invalid pinned PNG');
+		width = bytes.readUInt32BE(16); height = bytes.readUInt32BE(20);
+	}
+	if (!width || !height || width > 4096 || height > 4096) throw Error('Invalid pinned image dimensions');
+	return { width, height, sha256: hash(bytes) };
+}
+
+function loadShowdownArtwork(directory, pin) {
+	validateShowdownPin(pin);
+	const manifest = readRegular(path.join(directory, 'manifest.json'), 131072);
+	const parsed = JSON.parse(manifest);
+	if (!parsed.complete || parsed.pinSha256 !== hash(JSON.stringify(pin)) ||
+		parsed.files?.length !== pin.files.length) throw Error('Showdown artwork manifest mismatch');
+	const outputs = {}, files = {};
+	for (const f of pin.files) {
+		const bytes = readRegular(path.join(directory, f.path), 8 * 1024 * 1024);
+		const info = verifyShowdownBytes(bytes, f);
+		const recorded = parsed.files.find(x => x.path === f.path);
+		if (recorded?.sha256 !== info.sha256) throw Error('Showdown artwork manifest file mismatch');
+		const target = `tmt2/${f.path}`; outputs[target] = bytes;
+		files[f.path] = { path: target, ...info, source: 'official-showdown-matching-art' };
+	}
+	return { outputs, files, manifestSha256: hash(manifest) };
+}
+
+function composeArtwork(user, official) {
+	const outputs = { ...official?.outputs, ...user?.outputs };
+	const files = { ...official?.files };
+	for (const [name, file] of Object.entries(user?.files || {})) {
+		files[name] = { ...file, source: 'user-provided-local' };
+	}
+	return { outputs, files };
+}
+
+module.exports = {
+	loadArtwork, importArtwork, loadShowdownArtwork, validateShowdownPin, verifyShowdownBytes, composeArtwork,
+};

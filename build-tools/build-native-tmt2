@@ -26,10 +26,22 @@ const outputs = {
 };
 const catalog = JSON.parse(fs.readFileSync('tmt2/catalog.json', 'utf8'));
 const artworkPin = JSON.parse(fs.readFileSync('tmt2/native-artwork.json', 'utf8'));
+const officialPin = JSON.parse(fs.readFileSync('tmt2/showdown-artwork.json', 'utf8'));
+require('./tmt2-native-artwork').validateShowdownPin(officialPin);
+const officialDir = process.env.TMT2_SHOWDOWN_SPRITES_DIR || 'caches/tmt2-showdown-artwork';
+const official = process.env.TMT2_SHOWDOWN_SPRITES_DIR || fs.existsSync(officialDir) ?
+	require('./tmt2-native-artwork').loadShowdownArtwork(officialDir, officialPin) : null;
+const expectedIDs = [...catalog.seed.species, ...(catalog.seed.forms || [])].map(s => s.id).sort();
+const mappedIDs = [...officialPin.mapping.map(s => s.id), ...(officialPin.unmatchedSpecies || [])].sort();
+if (JSON.stringify(expectedIDs) !== JSON.stringify(mappedIDs)) {
+	throw Error('Showdown artwork mapping does not match bounded catalog');
+}
 const artworkDir = process.env.TMT2_SPRITES_DIR || 'caches/tmt2-native-artwork';
 const artwork = process.env.TMT2_SPRITES_DIR || fs.existsSync(artworkDir) ?
 	require('./tmt2-native-artwork').loadArtwork(artworkDir, artworkPin) : null;
-if (artwork) Object.assign(outputs, artwork.outputs);
+const composed = require('./tmt2-native-artwork').composeArtwork(artwork, official);
+Object.assign(outputs, composed.outputs); // Custom/user-supplied files always win.
+const visualFiles = composed.files;
 const cards = [
 	...catalog.seed.species, ...(catalog.seed.forms || []),
 	{ id: 'placeholder', name: 'Unavailable' }, { id: 'trainer', name: 'Local player' },
@@ -47,10 +59,12 @@ for (const species of cards) {
 const hash = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const visuals = {
 	schemaVersion: 1, datasetHash: catalog.metadata.datasetHash,
-	mode: artwork ? 'originals-local-evaluation' : 'developer-placeholders',
-	manifestSha256: artwork?.manifestSha256 || null, files: artwork?.files || {},
-	// Derived from the reviewed pin, never from missing runtime files.
-	placeholderSpecies: cards.filter(s => !artworkPin.files.some(f => f.path === `sprites/ani/${s.id}.gif`))
+	mode: artwork || official ? 'originals-local-evaluation' : 'developer-placeholders',
+	manifestSha256: artwork?.manifestSha256 || official?.manifestSha256 || null, files: visualFiles,
+	sources: { user: artwork?.manifestSha256 || null, showdown: official?.manifestSha256 || null },
+	// Both facings are required before replacing an unavailable card.
+	placeholderSpecies: cards.filter(s =>
+		!visualFiles[`sprites/ani/${s.id}.gif`] || !visualFiles[`sprites/ani-back/${s.id}.gif`])
 		.map(s => s.id),
 };
 outputs['data/tmt2-native-assets.js'] = `window.BattleTMT2Assets = ${JSON.stringify(visuals)};\n`;
@@ -71,6 +85,7 @@ fs.writeFileSync(prefix + 'data/tmt2-native-assets.json', JSON.stringify({
 	artworkSources: {
 		validator: hash(fs.readFileSync('build-tools/tmt2-native-artwork.js')),
 		pin: hash(fs.readFileSync('tmt2/native-artwork.json')),
+		showdownPin: hash(fs.readFileSync('tmt2/showdown-artwork.json')),
 	},
 	formatter: { serverCommit: commit, path: 'server/chat-formatter.ts', sha256: hash(source), license: 'MIT' },
 	artwork: visuals,

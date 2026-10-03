@@ -1258,6 +1258,10 @@ export const Dex = new class implements ModdedDex {
 			const id = localID;
 			return `background: url(tmt2/sprites/${TMT2.catalog().table.species[id] ? id : 'placeholder'}.svg) center/40px 30px no-repeat`;
 		}
+		if (Config.tmt2Local && !TMT2.artwork().files['sprites/pokemonicons-sheet.png']) {
+			const file = TMT2.artwork().files[`sprites/home-centered/${localID}.png`];
+			return `background: url(${file?.path || 'tmt2/sprites/placeholder.svg'}) center/contain no-repeat`;
+		}
 		const iconPrefix = Config.tmt2Local ? 'tmt2/' : Dex.resourcePrefix;
 		if (pokemon === 'pokeball') {
 			return `background:transparent url(${iconPrefix}sprites/pokemonicons-pokeball-sheet.png) no-repeat scroll -0px 4px`;
@@ -1368,10 +1372,14 @@ export const Dex = new class implements ModdedDex {
 	getTeambuilderSprite(pokemon: any, dex?: ModdedDex, xOffset = 0, yOffset = 0) {
 		if (!pokemon) return '';
 		if (Config.tmt2Local && dex?.modid === TMT2.id) {
-			// Reuse the verified front GIF or already-labeled local card; no HOME atlas.
+			// Supplied front art wins; otherwise use a pinned individual centered image or labeled card.
 			const species = toID(pokemon.species || pokemon);
-			const sprite = this.getSpriteData(species, true, { gen: dex.gen });
-			return `background-image:url(${sprite.url});background-position:center;background-repeat:no-repeat;background-size:contain`;
+			const files = TMT2.artwork().files;
+			const centered = files[`sprites/ani/${species}.gif`]?.source !== 'user-provided-local' &&
+				files[`sprites/home-centered/${species}.png`];
+			const sprite = centered || this.getSpriteData(species, true, { gen: dex.gen });
+			const url = 'url' in sprite ? sprite.url : sprite.path;
+			return `background-image:url(${url});background-position:center;background-repeat:no-repeat;background-size:contain`;
 		}
 		const data = this.getTeambuilderSpriteData(pokemon, dex);
 		const shiny = (data.shiny ? '-shiny' : '');
