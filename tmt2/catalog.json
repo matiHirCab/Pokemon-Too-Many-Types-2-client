@@ -1,13 +1,13 @@
 {
   "metadata": {
     "baseServerCommit": "2f5b273925862ac242b419086c1e7a8868b51da1",
-    "catalogHash": "e5b00d4809673f8e3e5013d68d27ef0c1574100afca4b05c85031e724a1e3e27",
-    "datasetHash": "848de03952b707a48efa8e5c708ff1d32116912f38b0e0496882482acbb20a76",
+    "catalogHash": "c28d5dc6383c1956c446994609435ab2b9918b682bc274322069d6adcedf2ef0",
+    "datasetHash": "6c03764a0518d08bd6a5a92262d40f322308e291e47e9377be70fed91627118b",
     "formatID": "gen9tmt2seed",
     "formatName": "[Gen 9] TMT2 Seed",
     "generator": "tmt2-data/tmt05-v1",
     "modID": "gen9tmt2seed",
-    "version": "0.3.0"
+    "version": "0.3.1"
   },
   "seed": {
     "abilities": [
@@ -16,70 +16,84 @@
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "runaway",
-        "name": "Run Away"
+        "name": "Run Away",
+        "shortDesc": "No competitive use."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#torrent",
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "torrent",
-        "name": "Torrent"
+        "name": "Torrent",
+        "shortDesc": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Water attacks."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#sturdy",
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "sturdy",
-        "name": "Sturdy"
+        "name": "Sturdy",
+        "shortDesc": "If this Pokemon is at full HP, it survives one hit with at least 1 HP. Immune to OHKO."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#overgrow",
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "overgrow",
-        "name": "Overgrow"
+        "name": "Overgrow",
+        "shortDesc": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Grass attacks."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#keeneye",
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "keeneye",
-        "name": "Keen Eye"
+        "name": "Keen Eye",
+        "shortDesc": "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#shellarmor",
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "shellarmor",
-        "name": "Shell Armor"
+        "name": "Shell Armor",
+        "shortDesc": "This Pokemon cannot be struck by a critical hit."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#noguard",
         "fieldSources": {
           "behaviorRef": "showdown",
           "id": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "noguard",
-        "name": "No Guard"
+        "name": "No Guard",
+        "shortDesc": "Every move used by or against this Pokemon will always hit."
       }
     ],
     "chart": [
@@ -2413,10 +2427,12 @@
         "fieldSources": {
           "behaviorRef": "policy",
           "id": "policy",
-          "name": "policy"
+          "name": "policy",
+          "shortDesc": "policy"
         },
         "id": "none",
-        "name": "No item"
+        "name": "No item",
+        "shortDesc": "No held item in this premade."
       },
       {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/items.ts#pidgeotite",
@@ -2425,7 +2441,8 @@
           "id": "showdown",
           "itemUser": "showdown",
           "megaStone": "showdown",
-          "name": "showdown"
+          "name": "showdown",
+          "shortDesc": "showdown"
         },
         "id": "pidgeotite",
         "itemUser": [
@@ -2434,7 +2451,8 @@
         "megaStone": {
           "Pidgeot": "Pidgeot-Mega"
         },
-        "name": "Pidgeotite"
+        "name": "Pidgeotite",
+        "shortDesc": "If held by a Pidgeot, this item allows it to Mega Evolve in battle."
       }
     ],
     "kind": "production",
@@ -2454,6 +2472,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2466,6 +2485,7 @@
         "name": "Tackle",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "normal"
       },
       {
@@ -2483,6 +2503,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2495,6 +2516,7 @@
         "name": "Quick Attack",
         "pp": 30,
         "priority": 1,
+        "shortDesc": "Usually goes first.",
         "type": "normal"
       },
       {
@@ -2512,6 +2534,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2525,6 +2548,7 @@
         "name": "Bite",
         "pp": 25,
         "priority": 0,
+        "shortDesc": "30% chance to make the target flinch.",
         "type": "dark"
       },
       {
@@ -2542,6 +2566,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2552,6 +2577,7 @@
         "name": "Protect",
         "pp": 10,
         "priority": 4,
+        "shortDesc": "Prevents moves from affecting the user this turn.",
         "type": "normal"
       },
       {
@@ -2569,6 +2595,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2581,6 +2608,7 @@
         "name": "Pound",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "normal"
       },
       {
@@ -2598,6 +2626,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2609,6 +2638,7 @@
         "name": "Water Gun",
         "pp": 25,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "water"
       },
       {
@@ -2626,6 +2656,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2637,6 +2668,7 @@
         "name": "Rock Throw",
         "pp": 15,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "rock"
       },
       {
@@ -2654,6 +2686,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2666,6 +2699,7 @@
         "name": "Thunder Wave",
         "pp": 20,
         "priority": 0,
+        "shortDesc": "Paralyzes the target.",
         "type": "electric"
       },
       {
@@ -2683,6 +2717,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2695,6 +2730,7 @@
         "name": "Scratch",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "normal"
       },
       {
@@ -2712,6 +2748,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2723,6 +2760,7 @@
         "name": "Magical Leaf",
         "pp": 20,
         "priority": 0,
+        "shortDesc": "This move does not check accuracy.",
         "type": "grass"
       },
       {
@@ -2740,6 +2778,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2753,6 +2792,7 @@
         "name": "Gust",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "Power doubles during Bounce, Fly, and Sky Drop.",
         "type": "flying"
       },
       {
@@ -2770,6 +2810,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2783,6 +2824,7 @@
         "name": "Wing Attack",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "flying"
       },
       {
@@ -2800,6 +2842,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2812,6 +2855,7 @@
         "name": "Vise Grip",
         "pp": 30,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "normal"
       },
       {
@@ -2829,6 +2873,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2842,6 +2887,7 @@
         "name": "Water Pulse",
         "pp": 20,
         "priority": 0,
+        "shortDesc": "20% chance to confuse the target.",
         "type": "water"
       },
       {
@@ -2859,6 +2905,7 @@
           "name": "showdown",
           "pp": "showdown",
           "priority": "showdown",
+          "shortDesc": "showdown",
           "type": "showdown"
         },
         "flags": {
@@ -2871,6 +2918,7 @@
         "name": "Leer",
         "pp": 30,
         "priority": 0,
+        "shortDesc": "Lowers the foe(s) Defense by 1.",
         "type": "normal"
       }
     ],
@@ -2901,7 +2949,7 @@
         "id": "showdown",
         "kind": "showdown",
         "locator": "https://github.com/matiHirCab/Pokemon-Too-Many-Types-2/tree/2f5b273925862ac242b419086c1e7a8868b51da1/data; selected historical learnset entries allowed by adaptation",
-        "sha256": "44cd5544360e74c148cab1279b650ca26a60ffc6d12503d7f571be97130067cc",
+        "sha256": "801f9d7ffcdb34b0eaf60990d0ebeb5c3abfd56d024f50e1e131c60bf1a3aa10",
         "version": "2f5b273925862ac242b419086c1e7a8868b51da1"
       },
       {
@@ -3784,7 +3832,7 @@
         "passive": "none-adaptation"
       }
     ],
-    "version": "0.3.0"
+    "version": "0.3.1"
   },
   "table": {
     "abilities": {
@@ -3793,49 +3841,56 @@
         "exists": true,
         "gen": 9,
         "id": "keeneye",
-        "name": "Keen Eye"
+        "name": "Keen Eye",
+        "shortDesc": "This Pokemon's accuracy can't be lowered by others; ignores their evasiveness stat."
       },
       "noguard": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#noguard",
         "exists": true,
         "gen": 9,
         "id": "noguard",
-        "name": "No Guard"
+        "name": "No Guard",
+        "shortDesc": "Every move used by or against this Pokemon will always hit."
       },
       "overgrow": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#overgrow",
         "exists": true,
         "gen": 9,
         "id": "overgrow",
-        "name": "Overgrow"
+        "name": "Overgrow",
+        "shortDesc": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Grass attacks."
       },
       "runaway": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#runaway",
         "exists": true,
         "gen": 9,
         "id": "runaway",
-        "name": "Run Away"
+        "name": "Run Away",
+        "shortDesc": "No competitive use."
       },
       "shellarmor": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#shellarmor",
         "exists": true,
         "gen": 9,
         "id": "shellarmor",
-        "name": "Shell Armor"
+        "name": "Shell Armor",
+        "shortDesc": "This Pokemon cannot be struck by a critical hit."
       },
       "sturdy": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#sturdy",
         "exists": true,
         "gen": 9,
         "id": "sturdy",
-        "name": "Sturdy"
+        "name": "Sturdy",
+        "shortDesc": "If this Pokemon is at full HP, it survives one hit with at least 1 HP. Immune to OHKO."
       },
       "torrent": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/abilities.ts#torrent",
         "exists": true,
         "gen": 9,
         "id": "torrent",
-        "name": "Torrent"
+        "name": "Torrent",
+        "shortDesc": "At 1/3 or less of its max HP, this Pokemon's offensive stat is 1.5x with Water attacks."
       }
     },
     "engineMoves": {
@@ -3873,7 +3928,8 @@
         "exists": true,
         "gen": 9,
         "id": "none",
-        "name": "No item"
+        "name": "No item",
+        "shortDesc": "No held item in this premade."
       },
       "pidgeotite": {
         "behaviorRef": "server@2f5b273925862ac242b419086c1e7a8868b51da1:data/items.ts#pidgeotite",
@@ -3886,7 +3942,8 @@
         "megaStone": {
           "Pidgeot": "Pidgeot-Mega"
         },
-        "name": "Pidgeotite"
+        "name": "Pidgeotite",
+        "shortDesc": "If held by a Pidgeot, this item allows it to Mega Evolve in battle."
       }
     },
     "moves": {
@@ -3908,6 +3965,7 @@
         "name": "Bite",
         "pp": 25,
         "priority": 0,
+        "shortDesc": "30% chance to make the target flinch.",
         "type": "Dark"
       },
       "gust": {
@@ -3928,6 +3986,7 @@
         "name": "Gust",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "Power doubles during Bounce, Fly, and Sky Drop.",
         "type": "Flying"
       },
       "leer": {
@@ -3947,6 +4006,7 @@
         "name": "Leer",
         "pp": 30,
         "priority": 0,
+        "shortDesc": "Lowers the foe(s) Defense by 1.",
         "type": "Normal"
       },
       "magicalleaf": {
@@ -3965,6 +4025,7 @@
         "name": "Magical Leaf",
         "pp": 20,
         "priority": 0,
+        "shortDesc": "This move does not check accuracy.",
         "type": "Grass"
       },
       "pound": {
@@ -3984,6 +4045,7 @@
         "name": "Pound",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Normal"
       },
       "protect": {
@@ -4001,6 +4063,7 @@
         "name": "Protect",
         "pp": 10,
         "priority": 4,
+        "shortDesc": "Prevents moves from affecting the user this turn.",
         "type": "Normal"
       },
       "quickattack": {
@@ -4020,6 +4083,7 @@
         "name": "Quick Attack",
         "pp": 30,
         "priority": 1,
+        "shortDesc": "Usually goes first.",
         "type": "Normal"
       },
       "rockthrow": {
@@ -4038,6 +4102,7 @@
         "name": "Rock Throw",
         "pp": 15,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Rock"
       },
       "scratch": {
@@ -4057,6 +4122,7 @@
         "name": "Scratch",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Normal"
       },
       "tackle": {
@@ -4076,6 +4142,7 @@
         "name": "Tackle",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Normal"
       },
       "thunderwave": {
@@ -4095,6 +4162,7 @@
         "name": "Thunder Wave",
         "pp": 20,
         "priority": 0,
+        "shortDesc": "Paralyzes the target.",
         "type": "Electric"
       },
       "visegrip": {
@@ -4114,6 +4182,7 @@
         "name": "Vise Grip",
         "pp": 30,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Normal"
       },
       "watergun": {
@@ -4132,6 +4201,7 @@
         "name": "Water Gun",
         "pp": 25,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Water"
       },
       "waterpulse": {
@@ -4152,6 +4222,7 @@
         "name": "Water Pulse",
         "pp": 20,
         "priority": 0,
+        "shortDesc": "20% chance to confuse the target.",
         "type": "Water"
       },
       "wingattack": {
@@ -4172,6 +4243,7 @@
         "name": "Wing Attack",
         "pp": 35,
         "priority": 0,
+        "shortDesc": "No additional effect.",
         "type": "Flying"
       }
     },

@@ -34,7 +34,7 @@ test('local replay rejects drift, base format fallback, incomplete outcomes and 
 		r => { r.log = r.log.filter(l => !l.startsWith('|win|')); },
 		r => { r.log.push('|request|{}'); }, r => { r.log.push('|challstr|credential'); },
 		r => { r.log.push('|tier|[Gen 9] OU'); }, r => { r.log.push(r.log.find(l => l.startsWith('|tmt2data|'))); }]) {
-		const bad = structuredClone(require('./fixtures/tmt2-catalog-simulator-replay.json')); mutate(bad); assert.throws(() => privateClient.replay(bad));
+		const bad = structuredClone(require('./fixtures/tmt2-teambuilder-simulator-replay.json')); mutate(bad); assert.throws(() => privateClient.replay(bad));
 	}
 });
 test('browser controller sends each rqid once and halts choices on live dataset drift', () => {

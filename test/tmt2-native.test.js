@@ -114,7 +114,7 @@ test('historical recovered native recording retains original evidence and is rej
 });
 
 test('native seed opponent tooltip uses exact EV0 IV31 Hardy speed; ordinary ranges remain intact',()=>{
- const value=require('./fixtures/tmt2-catalog-simulator-replay.json');
+ const value=require('./fixtures/tmt2-teambuilder-simulator-replay.json');
  const battle=new Battle({debug:true});try{
   battle.paused=true;battle.setQueue(value.log);battle.seekTurn(2);
   const tooltip=Object.create(NativeTooltips.prototype);tooltip.battle=battle;

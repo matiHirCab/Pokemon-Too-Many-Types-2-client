@@ -33,7 +33,7 @@ describe('TMT-05 client catalog routing (not complete battle)', () => {
 	it('parses completed deterministic simulator mega replay with selected Dex; rejects historical identity',
 		{ skip: !catalog.seed.forms?.length }, () => {
 			global.BattleText = require('../play.pokemonshowdown.com/data/text/en.js').BattleText;
-			const replay = require('./fixtures/tmt2-catalog-simulator-replay.json');
+			const replay = require('./fixtures/tmt2-teambuilder-simulator-replay.json');
 			const log = replay.log;
 			TMT2.validateReplay(replay);
 			const b = new Battle({ debug: true });
@@ -102,7 +102,7 @@ describe('TMT-05 client catalog routing (not complete battle)', () => {
 		const search = new TMTSearch();
 		search.setType('pokemon', 'gen9tmt2seed');
 		search.find('');
-		assert.equal(search.results.length, catalog.seed.species.length + (catalog.seed.forms?.length || 0));
+		assert.equal(search.results.length, catalog.seed.species.length);
 		search.addFilter(['type', 'Cat']);
 		search.find('');
 		assert.deepEqual(search.results.map(r => r[1]).sort(), ['eevee', 'floragato']);
