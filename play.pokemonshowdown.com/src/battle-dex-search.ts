@@ -835,6 +835,11 @@ abstract class BattleTypedSearch<T extends SearchType> {
 			const key = keys[this.searchType];
 			const table = TMT2.catalog().table[key];
 			let rows: SearchRow[] = Object.keys(table).map(id => [this.searchType, toID(id)]);
+			// Mega records remain available to battle/replay Dex, never as starting-form choices.
+			if (this.searchType === 'pokemon') {
+				const forms = TMT2.catalog().seed.forms || [];
+				rows = rows.filter(row => !forms.some((f: any) => f.id === row[1]));
+			}
 			if (this.species && this.searchType === 'move') rows = rows.filter(row => this.canLearn(this.species, toID(row[1])));
 			if (this.species && this.searchType === 'ability') {
 				rows = rows.filter(row => Dex.hasAbility(

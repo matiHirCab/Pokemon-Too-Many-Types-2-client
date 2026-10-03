@@ -7,7 +7,7 @@
 
 import { PS, PSRoom, type RoomOptions, type Team } from "./client-main";
 import { PSPanelWrapper, PSRoomPanel } from "./panels";
-import { TL, toID, type ID } from "./battle-dex";
+import { TMT2, TL, toID, type ID } from "./battle-dex";
 import { BattleLog } from "./battle-log";
 import { TeamEditor, type TeamEditorState } from "./battle-team-editor";
 import { Net, PSLoginServer } from "./client-connection";
@@ -121,6 +121,7 @@ class TeamPanel extends PSRoomPanel<TeamRoom> {
 	static formatResources = {} as Record<string, FormatResource>;
 
 	static getFormatResources(format: string): Promise<FormatResource> {
+		if (TMT2.matches(format)) return Promise.resolve(null);
 		if (format in this.formatResources) return Promise.resolve(this.formatResources[format]);
 		return Net('https://www.smogon.com/dex/api/formats/by-ps-name/' + format).get()
 			.then(result => {
@@ -361,7 +362,7 @@ class TeamPanel extends PSRoomPanel<TeamRoom> {
 				{!!(team.packedTeam && team.format.length > 4) && <p>
 					<button data-cmd="/validate" class="button"><i class="fa fa-check"></i> {TL`[Validate]`}</button>
 				</p>}
-				{!!(team.packedTeam || team.uploaded) && <p class="infobox" style="padding: 5px 8px">
+				{!TMT2.matches(team.format) && !!(team.packedTeam || team.uploaded) && <p class="infobox" style="padding: 5px 8px">
 					{team.uploadedPackedTeam && !team.uploaded ? <>
 						{TL`Uploading...`}
 					</> : team.uploaded ? <>

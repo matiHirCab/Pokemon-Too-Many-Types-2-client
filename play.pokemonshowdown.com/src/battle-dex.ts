@@ -71,6 +71,49 @@ export const TMT2 = {
 		if (!team) throw new Error('Unknown TMT2 premade');
 		return JSON.parse(JSON.stringify(team.sets)).map((s: any) => ({ ...s, item: s.item === 'none' ? '' : s.item }));
 	},
+	/** Advisory client gate; authoritative server gate is tested for parity. */
+	teamProblems(team: any[]): string[] {
+		const stats = ['hp', 'atk', 'def', 'spa', 'spd', 'spe'];
+		const fields = ['name', 'species', 'ability', 'item', 'moves', 'nature', 'level', 'evs', 'ivs',
+			'gender', 'shiny', 'happiness', 'pokeball', 'teraType', 'dynamaxLevel', 'gigantamax'];
+		if (!Array.isArray(team) || team.length !== 3) return ['TMT2 requires one complete catalog premade (3 Pokémon).'];
+		const problems: string[] = [];
+		if (team.some(set => !set || typeof set !== 'object')) return ['Invalid TMT2 set.'];
+		team.forEach(set => {
+			const id = toID(set.species);
+			const expected = this.catalog().seed.teams.flatMap((t: any) => t.sets).find((s: any) => s.species === id);
+			if (!expected) { problems.push('Species/form outside the TMT2 premades.'); return; }
+			const fail = (message: string) => problems.push(`${expected.species}: ${message}`);
+			if (Object.keys(set).some(k => !fields.includes(k))) fail('Unsupported set field.');
+			if (set.level !== 50) fail('Level must be exactly 50.');
+			if (toID(set.nature) !== toID(expected.nature)) fail('Nature must be Hardy.');
+			if (toID(set.ability) !== expected.ability) fail('Ability must match the premade.');
+			if ((toID(set.item) || 'none') !== expected.item) fail('Item must match the premade.');
+			if (!Array.isArray(set.moves) || set.moves.length !== 4 || set.moves.some((m: any) => typeof m !== 'string') ||
+				set.moves.map((m: string) => toID(m)).sort().join() !== [...expected.moves].sort().join()) {
+				fail('Use all four premade moves, without duplicates.');
+			}
+			(['evs', 'ivs'] as const).forEach(kind => {
+				const values = set[kind];
+				const required = kind === 'evs' ? 0 : 31;
+				if (values !== undefined && (!values || typeof values !== 'object' || Array.isArray(values) ||
+					Object.keys(values).some(k => !stats.includes(k)))) {
+					fail(`Invalid ${kind} fields.`); return;
+				}
+				if (stats.some(s => values?.[s] !== undefined && values[s] !== required)) {
+					fail(`${kind.toUpperCase()} must all be ${required}.`);
+				}
+			});
+			if (set.teraType || set.gigantamax || (set.dynamaxLevel !== undefined && set.dynamaxLevel !== 10)) {
+				fail('Transformations are not supported.');
+			}
+		});
+		const roster = team.map(s => toID(s?.species)).sort().join();
+		if (!this.catalog().seed.teams.some((t: any) => t.sets.map((s: any) => s.species).sort().join() === roster)) {
+			problems.push('Use a complete catalog premade roster; mixed/duplicate species are not supported.');
+		}
+		return problems;
+	},
 	stats(species: string) {
 		const data = this.catalog().table.species[toID(species)];
 		if (!data) throw new Error('Species outside the TMT2 seed');

@@ -8,7 +8,7 @@
 
 import preact from "../js/lib/preact";
 import { type Team, Config, PS } from "./client-main";
-import { Dex, type ModdedDex, toID, type ID, PSUtils, TL } from "./battle-dex";
+import { TMT2, Dex, type ModdedDex, toID, type ID, PSUtils, TL } from "./battle-dex";
 import { Teams } from './battle-teams';
 import { DexSearch, type SearchRow, type SearchType } from "./battle-dex-search";
 import { PSSearchResults } from "./battle-searchresults";
@@ -72,6 +72,7 @@ export class TeamEditorState extends PSModel {
 	isChampions = false;
 	formeLegality: 'normal' | 'hackmons' | 'custom' = 'normal';
 	abilityLegality: 'normal' | 'hackmons' = 'normal';
+	isTMT2 = false;
 	defaultLevel = 100;
 	readonly = false;
 	fetching = false;
@@ -97,6 +98,7 @@ export class TeamEditorState extends PSModel {
 		this.format = formatid;
 		team.format = formatid;
 		this.dex = Dex.forFormat(formatid);
+		this.isTMT2 = this.dex.modid === TMT2.id;
 		this.gen = this.dex.gen;
 
 		format = toID(format).slice(4);
@@ -127,6 +129,7 @@ export class TeamEditorState extends PSModel {
 		) {
 			this.defaultLevel = 50;
 		}
+		if (this.isTMT2) this.defaultLevel = 50;
 		if (formatid.includes('lc')) {
 			this.defaultLevel = 5;
 		}
@@ -683,6 +686,7 @@ export class TeamEditorState extends PSModel {
 		const species = this.dex.species.get(set.species);
 		if (!species.exists) return 0;
 
+		if (this.isTMT2) return TMT2.stats(set.species)[stat];
 		const level = set.level || this.defaultLevel;
 
 		const baseStat = species.baseStats[stat];
@@ -829,7 +833,7 @@ export class TeamEditorState extends PSModel {
 	_sampleSetPromises: Record<string, Promise<void>> = {};
 	fetchSampleSets(formatid: ID) {
 		if (formatid in TeamEditorState.sampleSets) return;
-		if (formatid.length <= 4) {
+		if (TMT2.matches(formatid) || formatid.length <= 4) {
 			TeamEditorState.sampleSets[formatid] = null;
 			return;
 		}
@@ -978,6 +982,15 @@ export class TeamEditor extends preact.Component<{
 	getZoomOutSearch() {
 		return window.PS?.prefs.teameditorzoomoutsearch ?? this.zoomOutSearch;
 	}
+	loadTMT2Premade = (ev: Event) => {
+		const select = ev.currentTarget as HTMLSelectElement;
+		if (!select.value || this.editor.readonly) return;
+		this.editor.sets = TMT2.premade(select.value);
+		this.editor.save();
+		this.props.onChange?.();
+		select.value = '';
+		this.forceUpdate();
+	};
 	setTab = (ev: Event) => {
 		const target = ev.currentTarget as HTMLButtonElement;
 		this.mode = target.value as TeamEditorMode;
@@ -1125,6 +1138,21 @@ export class TeamEditor extends preact.Component<{
 		const automaticLayout = document.documentElement.clientHeight >= 950 ? TL`Comfortable` : TL`Compact`;
 
 		return <div class={className}>
+			{editor.isTMT2 && <div class="infobox pad" data-testid="tmt2-team-contract">
+				<p>Gen9 adaptation · complete fixed premades · Level 50 · IV31 · EV0 · Hardy.</p>
+				<p>Stats show these fixed format values. Unsupported imports must be corrected before battling.</p>
+				<label>Load complete premade <select
+					class="select" aria-label="TMT2 premade"
+					onChange={this.loadTMT2Premade} disabled={editor.readonly} defaultValue=""
+				>
+					<option value="">Choose a premade</option>
+					{TMT2.catalog().seed.teams.map((t: any) => <option value={t.id}>{t.id}</option>)}
+				</select></label>
+				{TMT2.teamProblems(editor.sets).length ? <div role="status" aria-label="TMT2 team problems">
+					<strong>Team cannot be used in TMT2:</strong>
+					<ul>{TMT2.teamProblems(editor.sets).map(problem => <li>{problem}</li>)}</ul>
+				</div> : <p role="status">Complete TMT2 premade; use Validate for the authoritative server check.</p>}
+			</div>}
 			<ul class="tabbar unpadded-tabbar">
 				<li><button onClick={this.setTab} value="form" class={`button${this.mode === 'form' ? ' cur' : ''}`}>
 					{TL`Form`}
@@ -1324,7 +1352,7 @@ class TeamTextbox extends preact.Component<{
 		const value = this.textbox.value.slice(lineStart, current);
 
 		const pokepaste = /^https?:\/\/pokepast.es\/([a-z0-9]+)(?:\/.*)?$/.exec(value)?.[1];
-		if (pokepaste) {
+		if (pokepaste && !this.editor.isTMT2) {
 			this.editor.fetching = true;
 			Net(`https://pokepast.es/${pokepaste}/json`).get().then(json => {
 				const paste = JSON.parse(json);
@@ -3005,7 +3033,7 @@ class TeamEditorForm extends preact.Component<{
 										src={`${Dex.resourcePrefix}sprites/misc/shiny.png`} width={18} height={18} alt="Yes" style="margin-top: -2px"
 									/> : '\u2014'}
 								</span>}
-								{editor.gen === 9 && !editor.isChampions && <span class="detailcell">
+								{editor.gen === 9 && !editor.isChampions && !editor.isTMT2 && <span class="detailcell">
 									<label>{TL`Tera`}</label> {}
 									<PSIcon type={set.teraType || species.requiredTeraType || species.types[0]} new={!editor.narrow} tera />
 								</span>}
@@ -3265,6 +3293,7 @@ class StatForm extends preact.Component<{
 	onChange: () => void,
 }> {
 	static renderStatGraph(set: Dex.PokemonSet, editor: TeamEditorState, evs?: boolean) {
+		if (editor.isTMT2) evs = false;
 		const defaultEV = (editor.gen > 2 ? 0 : 252);
 		const ivs = editor.getIVs(set);
 		return Dex.statNames.map(statID => {
@@ -3721,6 +3750,12 @@ class StatForm extends preact.Component<{
 	}
 	override render() {
 		const { editor, set } = this.props;
+		if (editor.isTMT2) return <div class="set-stats-form" role="dialog" aria-label="TMT2 fixed stats">
+			<div class="resultheader"><h3>TMT2 fixed stats</h3></div>
+			<div class="pad"><p>Level 50 · IV31 · EV0 · Hardy. These format values cannot be edited.</p>
+				{StatForm.renderStatGraph(set, editor)}
+			</div>
+		</div>;
 		const narrow = editor.narrowStats;
 		const species = editor.dex.species.get(set.species);
 
@@ -3942,6 +3977,12 @@ class DetailsForm extends preact.Component<{
 	render() {
 		const { editor, set } = this.props;
 		const species = editor.dex.species.get(set.species);
+		if (editor.isTMT2) return <div class="set-details-form" role="dialog" aria-label="TMT2 fixed details">
+			<div class="resultheader"><h3>TMT2 fixed details</h3></div>
+			<div class="pad"><p>Private singles · complete premade 3v3 · Level 50 · IV31 · EV0 · Hardy.</p>
+				<p>No Tera, Dynamax or starting Mega forms. Beta Pidgeot may Mega Evolve with Pidgeotite.</p>
+			</div>
+		</div>;
 		const baseSpecies = editor.dex.species.get(species.baseSpecies);
 		return <div class="set-details-form" role="dialog" aria-label={TL`Details`}>
 			<div class="resultheader"><h3>{TL`Details`}</h3></div>
