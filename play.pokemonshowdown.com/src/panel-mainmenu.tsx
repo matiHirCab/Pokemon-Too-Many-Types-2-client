@@ -783,7 +783,7 @@ class MainMenuPanel extends PSRoomPanel<MainMenuRoom> {
 					{Config.tmt2Local && <div class="menugroup">
 						<p><strong>TMT2 private local seed</strong><br />Find a user → Challenge → TMT2 Seed → catalog premade.</p>
 						<p>{TMT2.artwork().mode === 'originals-local-evaluation' ?
-							'Native Showdown UI. Available original species sprites loaded locally; missing art uses labeled cards. Type/item badges are source-coded; audio unavailable.' :
+							'Native Showdown UI. Matching Showdown sprites and available user assets loaded locally; missing art uses labeled cards. Type/item badges are source-coded; audio unavailable.' :
 							'Developer preview: original sprite art/audio unavailable; labeled local cards are used.'}</p>
 						<label class="button">Load local TMT2 replay {}
 							<input type="file" accept="application/json" onChange={this.loadLocalReplay} />

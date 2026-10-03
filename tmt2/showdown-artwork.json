@@ -1,0 +1,305 @@
+{
+  "schemaVersion": 1,
+  "kind": "official-showdown-matching-art-local-evaluation",
+  "sourceRepository": "smogon/sprites",
+  "sourceCommit": "bad55c7b7e7292f459366505460d41dcab08d4cd",
+  "observedAt": "2026-10-03",
+  "approval": "User authorized matching canonical Showdown art; custom supplied assets retain priority. Placeholder feedback is not blanket TMT-07 or release approval.",
+  "redistributionRights": "Not established. Source README distinguishes code MIT from Pokemon artwork rights; local/private evaluation only.",
+  "sourceReadme": "https://github.com/smogon/sprites/blob/bad55c7b7e7292f459366505460d41dcab08d4cd/README.md",
+  "mapping": [
+    {
+      "id": "rattata",
+      "sourceID": "rattata",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "eevee",
+      "sourceID": "eevee",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "froakie",
+      "sourceID": "froakie",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "nosepass",
+      "sourceID": "nosepass",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "floragato",
+      "sourceID": "floragato",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "pidgeot",
+      "sourceID": "pidgeot",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "pidgey",
+      "sourceID": "pidgey",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "pidgeotto",
+      "sourceID": "pidgeotto",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "krabby",
+      "sourceID": "krabby",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    },
+    {
+      "id": "pidgeotmega",
+      "sourceID": "pidgeot-omega",
+      "match": "canonical Pokemon appearance, not a claim of custom TMT2 ROM art"
+    }
+  ],
+  "files": [
+    {
+      "id": "rattata",
+      "facing": "ani",
+      "sourcePath": "src/models/srattata.gif",
+      "path": "sprites/ani/rattata.gif",
+      "gitBlobSha1": "7b36b3f7a878f1d21306edd105aeffbc7b3cbdca",
+      "sizeBytes": 16397
+    },
+    {
+      "id": "rattata",
+      "facing": "ani-back",
+      "sourcePath": "src/models/srattata-b.gif",
+      "path": "sprites/ani-back/rattata.gif",
+      "gitBlobSha1": "2f914c7c40cce6b2e41f9f3048fb221192ed9388",
+      "sizeBytes": 15463
+    },
+    {
+      "id": "rattata",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/srattata.png",
+      "path": "sprites/home-centered/rattata.png",
+      "gitBlobSha1": "9c704de15eaf141fb922debb4e3b58562a136835",
+      "sizeBytes": 9843
+    },
+    {
+      "id": "eevee",
+      "facing": "ani",
+      "sourcePath": "src/models/seevee.gif",
+      "path": "sprites/ani/eevee.gif",
+      "gitBlobSha1": "2a738aa5f9946628f2fdd8e8e17c5a18c921aaca",
+      "sizeBytes": 18944
+    },
+    {
+      "id": "eevee",
+      "facing": "ani-back",
+      "sourcePath": "src/models/seevee-b.gif",
+      "path": "sprites/ani-back/eevee.gif",
+      "gitBlobSha1": "3dedeb3d93b3556cb282d4d1d25a3010fa9c09e5",
+      "sizeBytes": 16345
+    },
+    {
+      "id": "eevee",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/seevee.png",
+      "path": "sprites/home-centered/eevee.png",
+      "gitBlobSha1": "967f0e57464a794f594932244b88fddb0a56fef8",
+      "sizeBytes": 10878
+    },
+    {
+      "id": "froakie",
+      "facing": "ani",
+      "sourcePath": "src/models/sfroakie.gif",
+      "path": "sprites/ani/froakie.gif",
+      "gitBlobSha1": "51650d63dc0266613f055aaf0e5ff1e037fdcb28",
+      "sizeBytes": 21228
+    },
+    {
+      "id": "froakie",
+      "facing": "ani-back",
+      "sourcePath": "src/models/sfroakie-b.gif",
+      "path": "sprites/ani-back/froakie.gif",
+      "gitBlobSha1": "a1b6845e20e2cdc0d96cfa4026cb7293eff0cb43",
+      "sizeBytes": 20183
+    },
+    {
+      "id": "froakie",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/sfroakie.png",
+      "path": "sprites/home-centered/froakie.png",
+      "gitBlobSha1": "31513c3b5d8831431028e0fbe9bb195f850caaa9",
+      "sizeBytes": 11034
+    },
+    {
+      "id": "nosepass",
+      "facing": "ani",
+      "sourcePath": "src/models/snosepass.gif",
+      "path": "sprites/ani/nosepass.gif",
+      "gitBlobSha1": "ba2da017cc61d7dc7aabb5ed19d16bbd3a54681b",
+      "sizeBytes": 36989
+    },
+    {
+      "id": "nosepass",
+      "facing": "ani-back",
+      "sourcePath": "src/models/snosepass-b.gif",
+      "path": "sprites/ani-back/nosepass.gif",
+      "gitBlobSha1": "ff910ff2f4e203c56b9fcb5a7ea4aa5a284a22b8",
+      "sizeBytes": 37268
+    },
+    {
+      "id": "nosepass",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/snosepass.png",
+      "path": "sprites/home-centered/nosepass.png",
+      "gitBlobSha1": "853d757e105b6f6d5faab32716be7e1d2f1c547c",
+      "sizeBytes": 11027
+    },
+    {
+      "id": "floragato",
+      "facing": "ani",
+      "sourcePath": "src/models/sfloragato.gif",
+      "path": "sprites/ani/floragato.gif",
+      "gitBlobSha1": "a2e08f2d483cec558030032f5cca05e72f9f131a",
+      "sizeBytes": 54414
+    },
+    {
+      "id": "floragato",
+      "facing": "ani-back",
+      "sourcePath": "src/models/sfloragato-b.gif",
+      "path": "sprites/ani-back/floragato.gif",
+      "gitBlobSha1": "13ca19297a1ce875fcbd4cb969f0c5157708ba23",
+      "sizeBytes": 47870
+    },
+    {
+      "id": "floragato",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/sfloragato.png",
+      "path": "sprites/home-centered/floragato.png",
+      "gitBlobSha1": "88def70401839eb3e4e23aa2df655d817a16373f",
+      "sizeBytes": 9618
+    },
+    {
+      "id": "pidgeot",
+      "facing": "ani",
+      "sourcePath": "src/models/spidgeot.gif",
+      "path": "sprites/ani/pidgeot.gif",
+      "gitBlobSha1": "b913517a4c5fbdf74652d2f2703e91b21e4cda09",
+      "sizeBytes": 68538
+    },
+    {
+      "id": "pidgeot",
+      "facing": "ani-back",
+      "sourcePath": "src/models/spidgeot-b.gif",
+      "path": "sprites/ani-back/pidgeot.gif",
+      "gitBlobSha1": "0d6dac94be1fab8c5f374a253e8e7a7bcf7a7bf1",
+      "sizeBytes": 61644
+    },
+    {
+      "id": "pidgeot",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/spidgeot.png",
+      "path": "sprites/home-centered/pidgeot.png",
+      "gitBlobSha1": "890b16d6ee088ea2d9fa4dc6ee2cf2effb7b8cef",
+      "sizeBytes": 15249
+    },
+    {
+      "id": "pidgey",
+      "facing": "ani",
+      "sourcePath": "src/models/spidgey.gif",
+      "path": "sprites/ani/pidgey.gif",
+      "gitBlobSha1": "774891abea65402590c8a8683e9a3436a8d353af",
+      "sizeBytes": 12458
+    },
+    {
+      "id": "pidgey",
+      "facing": "ani-back",
+      "sourcePath": "src/models/spidgey-b.gif",
+      "path": "sprites/ani-back/pidgey.gif",
+      "gitBlobSha1": "7e63617fb1ff5b74fbc385bff8bb457868187eb8",
+      "sizeBytes": 15358
+    },
+    {
+      "id": "pidgey",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/spidgey.png",
+      "path": "sprites/home-centered/pidgey.png",
+      "gitBlobSha1": "c82c0ebf00a5ce0c0f94ee60dc863bea79bf119a",
+      "sizeBytes": 9838
+    },
+    {
+      "id": "pidgeotto",
+      "facing": "ani",
+      "sourcePath": "src/models/spidgeotto.gif",
+      "path": "sprites/ani/pidgeotto.gif",
+      "gitBlobSha1": "2930c96881a8206035599f92eb6e58ba03819cbd",
+      "sizeBytes": 19558
+    },
+    {
+      "id": "pidgeotto",
+      "facing": "ani-back",
+      "sourcePath": "src/models/spidgeotto-b.gif",
+      "path": "sprites/ani-back/pidgeotto.gif",
+      "gitBlobSha1": "ec4178ae8c8cc258f2607a7242b13946842c5c5e",
+      "sizeBytes": 19214
+    },
+    {
+      "id": "pidgeotto",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/spidgeotto.png",
+      "path": "sprites/home-centered/pidgeotto.png",
+      "gitBlobSha1": "b8ba84f1fb5b55bf2a84a0f5309b00374d1c6127",
+      "sizeBytes": 12443
+    },
+    {
+      "id": "krabby",
+      "facing": "ani",
+      "sourcePath": "src/models/skrabby.gif",
+      "path": "sprites/ani/krabby.gif",
+      "gitBlobSha1": "b7f5edefecc91b37f8f37a67b5915cd34da50d2b",
+      "sizeBytes": 28401
+    },
+    {
+      "id": "krabby",
+      "facing": "ani-back",
+      "sourcePath": "src/models/skrabby-b.gif",
+      "path": "sprites/ani-back/krabby.gif",
+      "gitBlobSha1": "0acc23ab73a2e54f04f53f9d52fb5d905ca91ee3",
+      "sizeBytes": 24742
+    },
+    {
+      "id": "krabby",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/skrabby.png",
+      "path": "sprites/home-centered/krabby.png",
+      "gitBlobSha1": "2c8e27177ea79db59c2ab8594d814a21ebcde185",
+      "sizeBytes": 10405
+    },
+    {
+      "id": "pidgeotmega",
+      "facing": "ani",
+      "sourcePath": "src/models/spidgeot-omega.gif",
+      "path": "sprites/ani/pidgeotmega.gif",
+      "gitBlobSha1": "b66349c8d66ad27783f74df437afac53423c37e3",
+      "sizeBytes": 60759
+    },
+    {
+      "id": "pidgeotmega",
+      "facing": "ani-back",
+      "sourcePath": "src/models/spidgeot-omega-b.gif",
+      "path": "sprites/ani-back/pidgeotmega.gif",
+      "gitBlobSha1": "62351be787a934b8fe050154a72a03a403750cd8",
+      "sizeBytes": 71023
+    },
+    {
+      "id": "pidgeotmega",
+      "facing": "home-centered",
+      "sourcePath": "src/minisprites/pokemon/home/spidgeot-omega.png",
+      "path": "sprites/home-centered/pidgeotmega.png",
+      "gitBlobSha1": "1c8fa3d87603d1fa825fc7278a14bbf5471d6bb1",
+      "sizeBytes": 8995
+    }
+  ],
+  "unmatchedSpecies": []
+}
