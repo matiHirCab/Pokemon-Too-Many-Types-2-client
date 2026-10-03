@@ -16,14 +16,14 @@ const Teams = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/b
 const Search = vm.runInThisContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-dex-search.js','utf8')+'\nDexSearch;');
 const data = vm.runInNewContext(fs.readFileSync('play.pokemonshowdown.com/js/battle-dex-data.js','utf8')+'\n({BattleNatures});');
 const context = {preact, PSModel:class {}, TMT2, Dex, Teams, DexSearch:Search, toID,
- window:{}, Config, PSUtils:{}, TL:Object.assign((s,...args)=>s.reduce((a,v,i)=>a+v+(args[i]||''),''),
-  {statShort:{hp:'HP',atk:'Atk',def:'Def',spa:'SpA',spd:'SpD',spe:'Spe'}}), ...data};
+ window:{}, Config, PSUtils:{}, PSIcon:()=>preact.h("span",null,"type icon"), TL:Object.assign((s,...args)=>s.reduce((a,v,i)=>a+v+(args[i]||''),''),
+  {term:{level:"Level",shiny:"Shiny",gender:"Gender"},statShort:{hp:'HP',atk:'Atk',def:'Def',spa:'SpA',spd:'SpD',spe:'Spe'}}), ...data};
 const source=fs.readFileSync('play.pokemonshowdown.com/src/battle-team-editor.tsx','utf8');
 const compiled=babel.transformSync(source,{filename:'editor.tsx',babelrc:false,plugins:[
  ['@babel/plugin-transform-typescript',{isTSX:true}],['@babel/plugin-transform-react-jsx',{pragma:'preact.h',pragmaFrag:'preact.Fragment'}],
  'remove-import-export',
 ]}).code;
-const classes=vm.runInNewContext(compiled+'\n({TeamEditorState,StatForm,DetailsForm});',context);
+const classes=vm.runInNewContext(compiled+'\n({TeamEditorState,StatForm,DetailsForm,TeamTextbox});',context);
 const team=id=>({format:'gen9tmt2seed',packedTeam:Teams.pack(TMT2.premade(id)),name:'TMT2 '+id});
 test('native state renders fixed format stats, preserves invalid import for correction and roundtrips legal premades',()=>{
  for(const premade of BattleTMT2.seed.teams) {
@@ -35,7 +35,11 @@ test('native state renders fixed format stats, preserves invalid import for corr
   const invalid=editor.export().replace('Level: 50','Level: 100');
   editor.import(invalid);
   assert.equal(editor.sets[0].level,100);assert.match(TMT2.teamProblems(editor.sets).join('\n'),/Level must be exactly 50/);
+  assert.match(editor.export(),/Level: 100/);
+  const reopened=new classes.TeamEditorState(editor.team);
+  assert.equal(reopened.sets[0].level,100,'invalid level must survive packing and reopening');
  }
+ assert.equal(Teams.unpack(Teams.pack([{species:'Rattata',level:100,moves:['Tackle']}]))[0].level,undefined,'ordinary default-level packing unchanged');
 });
 test('fixed native stats/details expose no EV/IV/nature/Tera editors or automatic spread controls',()=>{
  const editor=new classes.TeamEditorState(team('beta'));
@@ -66,4 +70,12 @@ test('local move/ability/item tooltip text matches pinned catalog and remains no
  assert.match(dex.moves.get('waterpulse').shortDesc,/20%/);
  assert.match(dex.abilities.get('shellarmor').shortDesc,/critical/i);
  assert.equal(dex.moves.get('surf').exists,false);
+});
+
+test('native text import summaries hide unsupported Tera only for TMT2',()=>{
+ for(const format of ['gen9tmt2seed','gen9ou']) {
+  const editor=new classes.TeamEditorState({...team('beta'),format});
+  const html=render(classes.TeamTextbox.prototype.renderDetails.call({editor,clickDetails:()=>{}},editor.sets[0],0));
+  if(editor.isTMT2)assert.doesNotMatch(html,/Tera/);else assert.match(html,/Tera/);
+ }
 });

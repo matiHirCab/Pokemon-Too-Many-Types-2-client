@@ -1,4 +1,4 @@
-import { Dex, toID, type ModdedDex } from "./battle-dex";
+import { Dex, TMT2, toID, type ModdedDex } from "./battle-dex";
 import { BattleNatures, BattleStatNames, BattleStatIDs, type StatNameExceptHP, type ID } from "./battle-dex-data";
 
 export declare namespace Teams {
@@ -57,7 +57,7 @@ export declare namespace Teams {
 }
 
 export const Teams = new class {
-	pack(team: Teams.PokemonSet[] | null): string {
+	pack(team: Teams.PokemonSet[] | null, keepDefaultLevel = false): string {
 		if (!team) return '';
 
 		function getIv(ivs: Dex.StatsTable, s: keyof Dex.StatsTable): string {
@@ -110,7 +110,7 @@ export const Teams = new class {
 			buf += `|${set.shiny ? 'S' : ''}`;
 
 			// level
-			buf += `|${set.level && set.level !== 100 ? set.level : ''}`;
+			buf += `|${set.level && (set.level !== 100 || keepDefaultLevel) ? set.level : ''}`;
 
 			// happiness
 			buf += `|${set.happiness !== undefined && set.happiness !== 255 ? set.happiness : ''}`;
@@ -377,7 +377,7 @@ export const Teams = new class {
 		}
 
 		// details
-		if (set.level && set.level !== 100) {
+		if (set.level && (set.level !== 100 || dex.modid === TMT2.id)) {
 			text += `Level: ${set.level}\n`;
 		}
 		if (set.shiny) {

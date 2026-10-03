@@ -819,7 +819,7 @@ export class TeamEditorState extends PSModel {
 		return undefined;
 	}
 	save() {
-		this.team.packedTeam = Teams.pack(this.sets);
+		this.team.packedTeam = Teams.pack(this.sets, this.isTMT2);
 		this.lastPackedTeam = this.team.packedTeam;
 		this.team.iconCache = null;
 	}
@@ -1839,7 +1839,7 @@ class TeamTextbox extends preact.Component<{
 			<span class="detailcell">
 				<label>{TL.term.shiny}</label>{set.shiny ? 'Yes' : '\u2014'}
 			</span>
-			{editor.gen === 9 && !editor.isChampions ? (
+			{editor.gen === 9 && !editor.isChampions && !editor.isTMT2 ? (
 				<span class="detailcell">
 					<label>{TL`Tera`}</label><PSIcon type={set.teraType || species.requiredTeraType || species.types[0]} />
 				</span>
@@ -1901,7 +1901,8 @@ class TeamTextbox extends preact.Component<{
 					class="textbox teamtextbox" style={`padding-left:${editor.narrow ? '50px' : '100px'}`}
 					onInput={this.input} onContextMenu={this.contextMenu} onKeyUp={this.keyUp} onKeyDown={this.keyDown}
 					onClick={this.keyUp} onChange={this.maybeReplaceLine}
-					placeholder=" Paste exported teams, pokepaste URLs, or JSON here" readOnly={editor.readonly}
+					placeholder={editor.isTMT2 ? " Paste exported teams here" : " Paste exported teams, pokepaste URLs, or JSON here"}
+					readOnly={editor.readonly}
 				/>
 				<textarea
 					class="textbox teamtextbox heighttester" tabIndex={-1} aria-hidden
